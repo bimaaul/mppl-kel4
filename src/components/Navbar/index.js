@@ -1,5 +1,6 @@
 import React from 'react'
 import {FaBars} from 'react-icons/fa'
+import Logo from "./logo.png"
 import { 
     Nav, 
     NavbarContainer, 
@@ -17,7 +18,10 @@ const Navbar = ({toggle}) => {
         <div>
             <Nav>
                 <NavbarContainer>
-                    <NavLogo to="/"  > Mamen Projek </NavLogo>
+                    <div to="/home">
+                        <img src={ Logo }  />
+                    </div>
+                    
                     
                     <MobileIcon onClick={toggle}>
                         <FaBars />
@@ -28,7 +32,7 @@ const Navbar = ({toggle}) => {
                             <NavLinks to="tentang">Tentang Kami</NavLinks>
                         </NavItem>
                         <NavItem>
-                            <NavLinks to="projek">Projek Kami</NavLinks>
+                            <NavLinks to="/projek">Projek Kami</NavLinks>
                         </NavItem>
                         <NavItem>
                             <NavLinks to="anggota">Anggota</NavLinks>

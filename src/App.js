@@ -1,11 +1,13 @@
 import './App.css';
-import {BrowserRouter as Router} from 'react-router-dom'
+import Cards from './components/ProjekKami/Cards';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './pages';
 
 function App() {
   return (
     <Router>
       <Home />
+      <Cards />
     </Router>
   );
 }
