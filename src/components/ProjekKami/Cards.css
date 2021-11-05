@@ -1,16 +1,16 @@
 body{
-    background-color: #0D0C0F;
+  background-color: #0D0C0F;
 }
 
 .cards {
     padding: 4rem;
-    background: black;
   }
   
   h2 {
     text-align: center;
     color: white;
     font-weight: 700;
+    font-size: 32px;
   }
 
   h5 {
@@ -21,6 +21,11 @@ body{
   .cards__wrapper {
     position: relative;
     margin: 40px 14.5%;
+  }
+
+  .testi__wrapper {
+    position: relative;
+    margin: 40px 8.82%;
   }
 
   .slider__icon__left {
@@ -38,14 +43,9 @@ body{
     height: 61px;
     width: 61px;
 }
-
-  .cards__items {
-    position: relative;
-    left: 14.5%;
-  }
   
   .cards__item {
-    background: #1D1C21;
+    background-color: #1D1C21;
     box-shadow: 0px 0px 3.81415px #1B0CA1;
     display: flex;
     flex: 1;
@@ -59,8 +59,6 @@ body{
     position: relative;
     width: 100%;
     box-shadow: 0 6px 20px rgba(56, 125, 255, 0.17);
-    -webkit-filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.017));
-    filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.017));
     border-radius: 10px;
     overflow: hidden;
     text-decoration: none;
@@ -69,8 +67,20 @@ body{
   .cards__item__pic-wrap {
     position: relative;
     height: 100%;
+    margin-top: 0%;
     padding-right: 67%;
     overflow: hidden;
+  }
+
+  .testi__item__photo {
+    position: relative;
+    height: 28%;
+    display: flex;
+    margin: 27.5px 39px 0 39px;
+  }
+
+  .testi__item__photo-wrap {
+    clip-path: circle();
   }
   
   .fade-img {
@@ -100,11 +110,26 @@ body{
   .cards__item__info {
     padding: 42px 46px 92px;
   }
+
+  .testi__item__info {
+    position: relative;
+    top: 27.45px;
+    left: -30px;
+    width: 55%;
+    margin-bottom: 45px;
+  }
   
   .cards__item__text {
     color: #fff;
     font-size: 23px;
     line-height: 24px;
+    font-weight: 700;
+  }
+
+  .testi__item__text {
+    color: #fff;
+    font-size: 18px;
+    line-height: 27px;
     font-weight: 700;
   }
 
@@ -121,6 +146,20 @@ body{
     border-width: 1px;
   }
 
+  .testi__item__position {
+    color: #644EEC;
+    font-size: 14px;
+    line-height: 21px;
+    text-align: justify;
+    font-weight: 300;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
+
   .cards__item__desc {
     color: #fff;
     font-size: 16px;
@@ -133,6 +172,20 @@ body{
     display: -webkit-box;
     -webkit-line-clamp: 5;
     line-clamp: 5;
+    -webkit-box-orient: vertical;
+  }
+
+  .testi__item__desc {
+    color: #fff;
+    font-size: 14px;
+    line-height: 21px;
+    text-align: justify;
+    font-weight: 300;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 8;
+    line-clamp: 8;
     -webkit-box-orient: vertical;
   }
 
