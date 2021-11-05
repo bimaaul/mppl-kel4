@@ -130,6 +130,8 @@ body{
     color: #fff;
     font-size: 18px;
     line-height: 27px;
+    margin-bottom: -5px;
+    margin-top: 20px;
     font-weight: 700;
   }
 
@@ -151,6 +153,7 @@ body{
     font-size: 14px;
     line-height: 21px;
     text-align: justify;
+    margin-bottom: 25px;
     font-weight: 300;
     overflow: hidden;
     text-overflow: ellipsis;
