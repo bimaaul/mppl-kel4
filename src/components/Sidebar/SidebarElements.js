@@ -11,7 +11,7 @@ export const SidebarContainer = styled.aside`
   background: #1D1C21;
   display: grid;
   align-items: center;
-  top: 0;
+  top: 0;np 
   left: 0;
   transition: 0.3s ease-in-out;
   opacity: ${({isOpen}) => (isOpen ? '100%' : '0')};
