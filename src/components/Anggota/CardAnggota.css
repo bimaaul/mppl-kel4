@@ -1,0 +1,78 @@
+h4{
+    text-align: left;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 20px 0px;
+    color: white;
+}
+h5{
+    text-align: left;
+    font-size: 24px;
+    font-weight: normal;
+    margin: 20px 0px;
+    color: white;
+}
+h6{
+    position: relative;
+    text-align: left;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+
+.anggota-wrapper{
+    position: relative;
+    justify-content: center;
+}
+
+.card-nama{
+    font-size: 24px;
+}
+
+.card-anggota{
+    height: 264px;
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.card-anggota-img {
+    clip-path: circle();
+    height: 200px;
+}
+
+.card-anggota-pic{
+    display: flex;
+    position: relative;    
+    margin: 10px 10px 10px 10px;
+}
+
+.card-data{
+    /* height: 264px; */
+    position: relative;
+    width: 50%;
+    font-size: 14px;
+    justify-content: center;
+    text-align: justify;
+    color: white;
+}
+
+.rm-link{
+    text-decoration: none;
+}
+.readmore{
+    text-align: left;
+    font-size: 16px;
+    font-weight: bold;
+    color: #644EEC;
+}
+
+.card-exp-work .card-exp-proj{
+    position: relative;
+    text-align: justify;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: normal;
+    color: white;
+}
