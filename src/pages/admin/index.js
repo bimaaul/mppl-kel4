@@ -1,18 +1,24 @@
 import { Switch, Route, useRouteMatch } from "react-router";
-import ResponsiveDrawer from "../../components/Admin/ResponsiveDrawer";
+import AnggotaPage from "./subpage/anggota";
+import PermintaanPage from "./subpage/permintaan";
+import ProjekPage from "./subpage/projek";
+import TestimoniPage from "./subpage/testimoni";
+import AboutPage from "./subpage/about";
+import Layout from "../../components/Admin/Layout";
 
 const AdminLayout = () => {
   const match = useRouteMatch();
 
   return (
-    <ResponsiveDrawer>
+    <Layout>
       <Switch>
-        <Route path={`${match.path}/projek`}>Projek</Route>
-        <Route path={`${match.path}/anggota`}>Anggota</Route>
-        <Route path={`${match.path}/testimoni`}>Testimoni</Route>
-        <Route path={`${match.path}/permintaan`}>Permintaan</Route>
+        <Route exact path={`${match.path}`} component={AboutPage} />
+        <Route path={`${match.path}/projek`} component={ProjekPage} />
+        <Route path={`${match.path}/anggota`} component={AnggotaPage} />
+        <Route path={`${match.path}/testimoni`} component={TestimoniPage} />
+        <Route path={`${match.path}/permintaan`} component={PermintaanPage} />
       </Switch>
-    </ResponsiveDrawer>
+    </Layout>
   );
 };
 
