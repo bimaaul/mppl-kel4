@@ -18,9 +18,12 @@ const Navbar = ({toggle}) => {
         <div>
             <Nav>
                 <NavbarContainer>
-                    <div to="/home">
-                        <img src={ Logo }  />
-                    </div>
+                    <NavLogo>
+                        <div to="/home">
+                            <img src={ Logo }  />
+                        </div>
+                    </NavLogo>
+                    
                     
                     
                     <MobileIcon onClick={toggle}>
@@ -39,11 +42,12 @@ const Navbar = ({toggle}) => {
                         </NavItem>
                         <NavItem>
                             <NavLinks to="testimoni">Testimoni</NavLinks>
-                        </NavItem>
+                        </NavItem>                    
+                        <NavBtn>
+                            <NavBtnLink to="/hubungi">Hubungi Kami</NavBtnLink>
+                        </NavBtn>
                     </NavMenu>
-                    <NavBtn>
-                        <NavBtnLink to="/hubungi">Hubungi Kami</NavBtnLink>
-                    </NavBtn>
+
                 </NavbarContainer>
             </Nav>
             
