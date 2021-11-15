@@ -15,7 +15,7 @@ h5{
 h6{
     position: relative;
     text-align: left;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     color: white;
 }
@@ -49,23 +49,12 @@ h6{
 }
 
 .card-data{
-    /* height: 264px; */
     position: relative;
     width: 50%;
-    font-size: 14px;
+    font-size: 18px;
     justify-content: center;
     text-align: justify;
     color: white;
-}
-
-.rm-link{
-    text-decoration: none;
-}
-.readmore{
-    text-align: left;
-    font-size: 16px;
-    font-weight: bold;
-    color: #644EEC;
 }
 
 .card-exp-work .card-exp-proj{
@@ -76,3 +65,181 @@ h6{
     font-weight: normal;
     color: white;
 }
+
+.rm-link{
+    font-size: 16px;
+    font-weight: bolder;
+    color: #644EEC;
+    background-color: transparent;
+    border: 2px #1D1C21;
+    transition-duration: 0.5s;
+    cursor: pointer;
+}
+.rm-link:hover{
+    color: white;
+}
+
+.readmore{
+    display: flex;
+    justify-content: center;
+    margin: 20px 0px;
+}
+
+.rm-line{
+    flex: 70%; 
+    background-color: white; 
+    width: 10px;
+    height: 2px;
+    border-style: inset; 
+    border-width: 1px;
+    border-radius: 10px;
+}
+
+.rm-btn{
+    width: 200px;
+    font-size: 14px;
+    font-weight: medium;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    padding: 5px 10px;
+    text-align: center;
+    color: #644EEC;
+    background-color: transparent;
+    border-style: none;
+    border-width: 3px;
+    border-color: #644EEC;
+    border-radius: 50px;
+    margin-right: 10%;
+    margin-left: auto;
+    transition-duration: 0.5s;
+    cursor: pointer;
+}
+.rm-btn:hover{
+    color: white;
+}
+
+.popup-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-box{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    position: relative;
+    width: 750px;
+    height: 550px;
+
+    background: #1D1C21;
+    box-shadow: 0px 0px 15px #1B0CA1;
+    border-radius: 10px;
+}
+
+.popup-data{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    width: 700px;
+    height: 500px;
+    margin: 20px 30px;
+}
+
+.top-row {
+    display: flex;
+    margin: -30px 0px -30px 0px;
+}
+
+.bot-row {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 0px -20px 0px;
+}
+  
+.top-col{
+    flex: 50%;
+}
+
+.close-btn{
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bolder;
+    color: #644EEC;
+    background-color: #1D1C21;
+    border-style: none;
+    border-radius: 1%;
+    margin-top: 30px;
+    margin-bottom: -90px;
+    margin-right: 0%;
+    margin-left: auto;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+.close-btn:hover {
+    color: white;
+}
+
+.popup-nama{
+    margin: 0px 0px -30px;
+    font-size: 24px;
+}
+
+.popup-role{
+    margin: -20px 0px -15px;
+    font-size: 24px;
+    color: #644EEC;
+}
+
+.line1{
+    display: block; 
+    background-color: white; 
+    width: 300px;
+    height: 2px;
+    border-style: inset; 
+    border-width: 1px;
+    border-radius: 10px;
+}
+
+.line2{
+    display: flex;
+    align-items: flex-end; 
+    background-color: white; 
+    width: 300px;
+    height: 2px;
+    border-style: inset; 
+    border-width: 1px;
+    border-radius: 10px;
+    margin-left: auto;
+}
+
+.exp-row {
+    display: flex;
+    width: 700px;
+    height: 380px;
+}
+  
+.exp-col {
+    flex: 50%;
+    color: white;
+    margin: 0px 10px;
+}
+
+.narahubung{
+    font-weight: normal;
+    margin-left: auto;
+    margin-top: 10px;
+}
+
+.logo-li{
+    width: 100px;
+    margin-left: auto;
+    margin-right: 75px;
+    margin-top: -40px;
+}
+
