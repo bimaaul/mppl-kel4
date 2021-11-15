@@ -1,14 +1,46 @@
+import { TextField } from '@material-ui/core';
+import { Box, maxWidth } from '@mui/system';
 import React, { Component } from 'react';
 import './Hubungi.css';
+import { withStyles } from "@material-ui/core/styles";
+
+// const styles = {
+//   root: {
+//     background: "#131216"
+//   },
+//   input: {
+//     color: "#644EEC"
+//   }
+// };
 
 export default class Hubungi extends Component{
     render(){
+        const { classes } = this.props;
         return (
-            <div className="container-hubungi">
+            <Box class="container-hubungi" sx={{ flexDirection: 'column', maxWidth: 1316}}>
                 <h2>Hubungi Kami</h2>
                 <h3>Silahkan isi form di bawah ini dan kami akan membalas pesanmu melalui email. Silahkan cek email secara berkala selama maksimal 3 hari setelah form dikirimkan. Jangan lupa cek spam untuk berjaga-jaga.</h3>
-                <div className="hubungi-wrapper">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices ante et tortor finibus congue. Morbi quis dolor lacus.</p>
+                <div class="hubungi-wrapper">
+                    <div class="form-wrapper">
+                        <Box
+                         component="form"
+                         sx={{
+                             '& > :not(style)': { m: 5, width: '700px' },
+                         }}
+                         noValidate
+                         autoComplete="off"
+                        >
+                            <TextField 
+                             id="name" 
+                             label="Nama" 
+                             variant="outlined"
+                             required
+                             InputProps={{
+                                // className: classes.input
+                             }}
+                            />
+                        </Box>
+                    </div>
                     {/* <div class="row">
                         <div className="form-input-wrapper" key={i}>
                         <input
@@ -53,7 +85,7 @@ export default class Hubungi extends Component{
                         </div>
                     </div> */}
                 </div>
-            </div>
+            </Box>
         );
     }
 }

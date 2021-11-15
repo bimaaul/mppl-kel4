@@ -9,7 +9,7 @@ h3{
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 1316px;
+    /* max-width: 1316px; */
     justify-content: center;
     box-align: center;
     margin: auto;
@@ -19,15 +19,26 @@ h3{
     display: flex;
     flex-direction: column;
     position: relative;
-    width: 964px;
+    max-width: 960px;
     justify-content: center;
     box-align: center;
     margin: auto;
-    /* height: 641.04px;
-    left: 238px;
-    top: 3573px; */
 
     background: #131216;
     box-shadow: 0px 0px 13.0978px #1B0CA1;
     border-radius: 10px;
+}
+
+.form-wrapper{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    max-width: 770px;
+    justify-content: center;
+    box-align: center;
+    margin: auto;
+}
+
+.form-input{
+    color: #644EEC;
 }
