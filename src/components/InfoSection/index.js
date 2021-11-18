@@ -5,14 +5,19 @@ import {
     Column1, 
     Column2, 
     Heading, 
+    Heading1,
     Img, 
     ImgWrap, 
     InfoContainer, 
-    InfoRow, 
+    InfoRow,
+    InfoP,
+    InfoPs, 
     InfoWrapper, 
     Subtitle, 
     TextWrapper, 
-    TopLine 
+    TopLine,
+    InfoCard,
+    PoinWrapper 
   } from './InfoElements'
 
 const InfoSection = ({id,
@@ -25,6 +30,7 @@ const InfoSection = ({id,
                       buttonLabel, 
                       img, 
                       alt,
+                      numberOf,
                       primary, 
                       dark, 
                       dark2
@@ -32,13 +38,32 @@ const InfoSection = ({id,
     return (
         <>
          <InfoContainer id={id}  lightBg={lightBg}>
-            <InfoWrapper>
-                <InfoRow imgStart= {imgStart}>
+             <InfoWrapper>
+            <InfoRow imgStart= {imgStart}>
                     <Column1>
                         <TextWrapper>
                             <Heading lightText={lightText }>{headLine}</Heading>
                             <Subtitle darkText={darkText}>{description}</Subtitle>
                         </TextWrapper>
+
+                        <PoinWrapper>
+                            <InfoCard>
+                                <Heading1 lightText={lightText }>{numberOf}</Heading1>
+                                <InfoP>Tahun</InfoP>
+                                <InfoPs>Pengalaman Kerja</InfoPs>
+                            </InfoCard>
+                            <InfoCard>
+                                <Heading1 lightText={lightText }>{numberOf}</Heading1>
+                                <InfoP>Total</InfoP>
+                                <InfoPs>Projek Berhasil</InfoPs>
+                            </InfoCard>
+                            <InfoCard>
+                                <Heading1 lightText={lightText }>{numberOf}</Heading1>
+                                <InfoP>Total</InfoP>
+                                <InfoPs>Kerjasama Client</InfoPs>
+                            </InfoCard>
+                        </PoinWrapper>
+
                     </Column1>
                     <Column2>
                         <ImgWrap>

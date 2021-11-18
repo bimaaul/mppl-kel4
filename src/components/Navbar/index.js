@@ -32,16 +32,16 @@ const Navbar = ({toggle}) => {
 
                     <NavMenu>
                         <NavItem>
-                            <NavLinks to="tentang">Tentang Kami</NavLinks>
+                            <NavLinks to="/tentang">Tentang Kami</NavLinks>
                         </NavItem>
                         <NavItem>
                             <NavLinks to="/projek">Projek Kami</NavLinks>
                         </NavItem>
                         <NavItem>
-                            <NavLinks to="anggota">Anggota</NavLinks>
+                            <NavLinks to="/anggota">Anggota</NavLinks>
                         </NavItem>
                         <NavItem>
-                            <NavLinks to="testimoni">Testimoni</NavLinks>
+                            <NavLinks to="/testimoni">Testimoni</NavLinks>
                         </NavItem>                    
                         <NavBtn>
                             <NavBtnLink to="/hubungi">Hubungi Kami</NavBtnLink>

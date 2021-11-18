@@ -7,7 +7,9 @@ import Testimoni_Cards from "../components/Testimoni/Testimoni_Cards";
 import Anggota from "../components/Anggota";
 import Hubungi from "../components/Hubungi";
 import InfoSection from "../components/InfoSection";
+import Services from "../components/Services";
 import { homeObjOne } from "../components/InfoSection/Data";
+
 
 const Home = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,6 +23,7 @@ const Home = () => {
       <Sidebar isOpen={isOpen} toggle={toggle} />
       <Navbar toggle={toggle} />
       <InfoSection {...homeObjOne}/>
+      <Services />
       <Cards />
       <Anggota />
       <Testimoni_Cards />

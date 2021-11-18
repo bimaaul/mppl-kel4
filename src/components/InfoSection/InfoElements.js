@@ -7,19 +7,12 @@ export const InfoContainer= styled.div`
  
 `
 export const InfoWrapper= styled.div`
-// background-color: green;
-  display: grid;
-  z-index: 1;
   width:100%;
-  max-width: 1200px;
-  margin-right: auto;
-  margin-left: auto;
-  padding: 0 24px;
-  justify-content: center;
 `
 
 export const InfoRow = styled.div`
-  padding-top: 30px;
+  align-content: flex-end;
+  width: 100%;
   display: grid;
   grid-auto-columns: minmax(auto, 1fr);
   grid-template-areas: ${({imgStart})=> (imgStart ? `'col2 col1'`: `'col1 col2'`)};
@@ -31,22 +24,52 @@ export const InfoRow = styled.div`
 `
 
 export const Column1= styled.div`
-// background-color: blue;
+  //background-color: blue;
+  margin-top: 30px;
   margin-bottom: 15px;
-  padding: 0 0 0 25px;
+  padding: 0 0 0 100px;
   grid-area: col1;
+  width: 100%;
 `
 
 export const Column2= styled.div`
-// background-color: red;
+//background-color: red;
   margin-bottom: 15px;
   grid-area: col2;
-  justify-content: flex-end;
+  width: 100%;
 `
 export const TextWrapper= styled.div`
-  max-width: 440px;
   padding-top: 0;
-  padding-bottom: 60px;
+  margin-bottom: -20px;
+`
+
+export const PoinWrapper= styled.div`
+  padding-top: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: flex-start;
+  align-item: center;
+  grid-gap: 0px;
+  max-width: 100%;
+`
+
+export const InfoCard= styled.div`
+  //background: red;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items:center;
+  border-radius: 10px;
+  max-width: 180px;
+  max-height: 200px;
+  
+  @media screen and (max-width: 1000px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+    padding: 0 20px;
+  }
 `
 
 export const Heading= styled.h1`  
@@ -61,12 +84,34 @@ export const Heading= styled.h1`
   }
 `
 
+export const Heading1= styled.h1`
+  color: #644EEC;  
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: -20px;
+  margin-top: -5px;
+`
+
 export const Subtitle= styled.p`
   max-width: 540px;
   margin-bottom: 35px;
   font-size: 16px;
   line-height: 24px;
+  font-weight: normal;
   color: ${({darkText})=> (darkText ? '#010606' : '#fff')};
+`
+
+export const InfoP= styled.p`
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: -20px;
+`
+
+export const InfoPs= styled.p`
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
 `
 
 export const BtnWrap= styled.div`
@@ -75,6 +120,7 @@ export const BtnWrap= styled.div`
 `
 
 export const ImgWrap= styled.div`
+float:right;
   max-width: 555px;
   height: 100%;
 `

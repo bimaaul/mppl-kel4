@@ -11,6 +11,7 @@ export const homeObjOne = {
     img: img1,
     alt: 'Money',
     dark: true,
+    numberOf: '3',
     primary: true,
     darkText: false,
   } 
