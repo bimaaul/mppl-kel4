@@ -1,8 +1,8 @@
 import React, {Component, useState} from 'react';
 import CardAnggota from './CardAnggota';
 import { Box, Button } from '@material-ui/core';
-import KeyboardArrowUpSharpIcon from '@mui/icons-material/KeyboardArrowUpSharp';
-import KeyboardArrowDownSharpIcon from '@mui/icons-material/KeyboardArrowDownSharp';
+import KeyboardArrowUpRoundedIcon from '@material-ui/icons/KeyboardArrowUpRounded';
+import KeyboardArrowDownRoundedIcon from '@material-ui/icons/KeyboardArrowDownRounded';
 
 const ReadMore = ({ children }) => {
   const member = children;
@@ -16,12 +16,12 @@ const ReadMore = ({ children }) => {
       <span onClick={toggleReadMore} className="read-or-hide">
         {isReadMore ? 
         <Box class="readmore" component="div">
-          <Button class="rm-btn" startIcon={<KeyboardArrowDownSharpIcon fontsize="large"/>}>
+          <Button class="rm-btn" startIcon={<KeyboardArrowDownRoundedIcon fontsize="large"/>}>
             Tampilkan Lebih Banyak  
           </Button>
         </Box> : 
         <Box class="readmore" component="div">
-          <Button class="rm-btn" startIcon={<KeyboardArrowUpSharpIcon fontsize="large"/>}>
+          <Button class="rm-btn" startIcon={<KeyboardArrowUpRoundedIcon fontsize="large"/>}>
             Tampilkan Lebih Sedikit  
           </Button>
         </Box>}
