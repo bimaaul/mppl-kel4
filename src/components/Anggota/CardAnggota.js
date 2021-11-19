@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './CardAnggota.css';
-import Box from '@material-ui/core/box'
+import Box from '@material-ui/core/box';
 import Button from '@material-ui/core/Button';
 import Modal from '@material-ui/core/Modal';
 import Lilogo from "./lilogo.png";

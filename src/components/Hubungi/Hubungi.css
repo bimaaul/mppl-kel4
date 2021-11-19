@@ -24,7 +24,7 @@ h3{
     box-align: center;
     margin: auto;
 
-    background: #131216;
+    /* background: #131216; */
     box-shadow: 0px 0px 13.0978px #1B0CA1;
     border-radius: 10px;
 }
@@ -33,12 +33,16 @@ h3{
     display: flex;
     flex-direction: column;
     position: relative;
+    width: 800px;
     max-width: 770px;
     justify-content: center;
     box-align: center;
     margin: auto;
 }
 
-.form-input{
-    color: #644EEC;
+.form-field{
+    /* color: #644EEC; */
+    width: 700px;
+    margin: 5px;
+    
 }
