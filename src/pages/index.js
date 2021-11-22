@@ -8,6 +8,7 @@ import Anggota from "../components/Anggota";
 import Hubungi from "../components/Hubungi";
 import InfoSection from "../components/InfoSection";
 import Services from "../components/Services";
+import Footer from "../components/Footer";
 import { homeObjOne } from "../components/InfoSection/Data";
 
 
@@ -28,6 +29,7 @@ const Home = () => {
       <Anggota />
       <Testimoni_Cards />
       <Hubungi />
+      <Footer />
     </Router>
   );
 };

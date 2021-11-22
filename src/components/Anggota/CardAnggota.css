@@ -20,6 +20,10 @@ h6{
     color: white;
 }
 
+.container-anggota{
+    margin: 20px 0px;
+}
+
 .anggota-wrapper{
     position: relative;
     justify-content: center;
@@ -99,7 +103,6 @@ h6{
     width: 200px;
     font-size: 14px;
     font-weight: medium;
-    text-align: center;
     text-decoration: none;
     display: inline-block;
     padding: 5px 10px;
@@ -216,30 +219,28 @@ h6{
     border-width: 1px;
     border-radius: 10px;
     margin-left: auto;
-}
-
-.exp-row {
-    display: flex;
-    width: 700px;
-    height: 380px;
-}
-  
-.exp-col {
-    flex: 50%;
-    color: white;
-    margin: 0px 10px;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 .narahubung{
+    text-align: right;
     font-weight: normal;
     margin-left: auto;
     margin-top: 10px;
+    margin-bottom: 5px;
+    color: white;
 }
 
 .logo-li{
+    text-align: right;
     width: 100px;
+    margin-right: auto;
+    margin-top: -20px;
+}
+
+.box-logo{
+    text-align: right;
     margin-left: auto;
-    margin-right: 75px;
-    margin-top: -40px;
 }
 
