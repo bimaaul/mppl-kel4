@@ -4,7 +4,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import './Hubungi.css';
 import { makeStyles } from '@material-ui/core/styles';
 
-const styles = theme =>  ({
+const styles = makeStyles((theme) =>  ({
     root: {
     },
 
@@ -32,7 +32,7 @@ const styles = theme =>  ({
         borderWidth: '1px',
         borderColor: 'green !important'
     },
-});
+}));
 
 const defaultValues = {
     nama: "",
