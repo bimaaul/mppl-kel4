@@ -137,6 +137,7 @@ const TestimoniPage = () => {
                       }}
                       variant = "contained"
                       color = "primary"
+                      onClick = {() => history.push("/admin/edit_testimoni")}
                     >
                         Edit
                     </Button>
