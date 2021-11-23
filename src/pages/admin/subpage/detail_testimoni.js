@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useHistory } from "react-router-dom";
 import { Box, Grid, TextField, Button, makeStyles, InputAdornment } from '@material-ui/core';
 import { useDropzone } from 'react-dropzone';
 import AddPhotoAlternateOutlinedIcon from '@material-ui/icons/AddPhotoAlternateOutlined';
@@ -75,23 +74,11 @@ const useStyles = makeStyles((theme) => ({
         color: 'white',
         fontFamily: "Poppins",
         marginBottom: '30px',
-        width: '232px',
+        width: '1024px',
+        marginLeft: '-160px',
         textTransform: 'initial',
         '&:hover': {
             color: 'black',
-        },
-    },
-
-    btn_cancel: {
-        backgroundColor: "#645E6F",
-        color: 'white',
-        fontFamily: "Poppins",
-        margin: '0 35px 30px 100px',
-        width: '232px',
-        textTransform: 'initial',
-        '&:hover': {
-            backgroundColor: 'red',
-            color: 'white',
         },
     },
 
@@ -100,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
         border: '1px solid #645E6F',
         width: '193px',
         height: '170px',
-        margin: '5px 0 5px 0'
+        margin: '5px 0 73px 0'
     },
 
     dnd__icon: {
@@ -122,10 +109,9 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const EditTestimoniPage = () => {
+const DetailTestimoniPage = () => {
     const classes = useStyles();
     const [image, setImage] = useState([]);
-    const history = useHistory();
     const { getRootProps, isDragActive } = useDropzone({
         accept: "image/*",
         onDrop: (acceptedFiles) => {
@@ -179,7 +165,7 @@ const EditTestimoniPage = () => {
     return (
         <div className={classes.root}>
             <div className={classes.add__testi}>
-                <h3 className={classes.h3}>Edit Testimoni</h3>
+                <h3 className={classes.h3}>Detail Testimoni</h3>
                 <hr style={{ color: '#fff', height: 1 }} />
                 <form onSubmit={handleSubmit} className={classes.form} noValidate autoComplete="off">
                     <Grid container alignItems="center" justify="center" direction="column">
@@ -260,44 +246,14 @@ const EditTestimoniPage = () => {
                                             )
                                         })}
                                     </div>
-                                    <AddPhotoAlternateOutlinedIcon className={classes.dnd__icon} />
-                                    {
-                                        isDragActive ?
-                                            <p className={classes.text__dnd} align="center" >Drop foto<br />di sini...</p> :
-                                            <p className={classes.text__dnd} align="center">Drag dan drop<br />foto di sini</p>
-                                    }
                                 </div>
                             </div>
                         </Grid>
                     </Grid>
                 </form>
-                <Grid container alignItems="center" justify="center" direction="column">
-                    <Grid item class="form-field">
-                        <Button
-                            onClick= {() => history.goBack()}
-                            className={classes.btn_cancel}
-
-                            variant="contained"
-                            type="submit"
-                        // disabled={!formValues.nama & !formValues.nomorhp && !formValues.email && !formValues.pesan}
-                        >
-                            Batal
-                        </Button>
-                        <Button
-                            onClick={handleSubmit}
-                            className={classes.btn}
-
-                            variant="contained"
-                            type="submit"
-                        // disabled={!formValues.nama && !formValues.nomorhp && !formValues.email && !formValues.pesan}
-                        >
-                            Simpan
-                        </Button>
-                    </Grid>
-                </Grid>
             </div>
         </div>
     );
 };
 
-export default EditTestimoniPage;
+export default DetailTestimoniPage;

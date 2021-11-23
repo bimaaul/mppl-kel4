@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     background: '#111113',
     color: '#fff',
     borderRadius: '10px!important',
-    margin: '35px',
+    margin: '20px 35px 35px 35px',
     justifyContent: 'center',
   },
 
@@ -127,6 +127,7 @@ const TestimoniPage = () => {
                       }}
                       variant = "contained"
                       color = "primary"
+                      onClick = {() => history.push("/admin/detail_testimoni")}
                     >
                         Lihat Detail
                     </Button>
