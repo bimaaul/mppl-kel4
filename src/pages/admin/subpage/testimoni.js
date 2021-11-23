@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from "react-router-dom";
 import { makeStyles } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
@@ -8,11 +9,11 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     fontFamily: 'Poppins',
+    background: "#0D0C0F"
   },
 
   h3: {
@@ -79,6 +80,7 @@ const rows = [
 
 const TestimoniPage = () => {
   const classes = useStyles();
+  const history = useHistory();
 
   return (
     <div className={classes.root}>
@@ -90,6 +92,7 @@ const TestimoniPage = () => {
             className={classes.button}
             variant = "contained"
             color = "primary"
+            onClick = {() => history.push("/admin/add_testimoni")}
           >
             <AddIcon />
           </Button>

@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("sm")]: {
       display: "none",
     },
+    
   },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
@@ -39,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
+    
   },
 }));
 
