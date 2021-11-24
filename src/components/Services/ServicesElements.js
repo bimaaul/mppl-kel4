@@ -63,6 +63,16 @@ export const ServicesCard= styled.div`
 export const ServicesIcon= styled.img`
   height: 160px;
   width: 160px;
+  justify-content: center;
+  align-items: center;
+`
+
+export const ServicesIcon1= styled.img`
+  height: 200px;
+  width: 200px;
+  margin-bottom: -50px;
+  margin-top: -15px;
+  margin-left: 220px;
 `
 
 export const ServicesH1= styled.h1`
@@ -87,6 +97,15 @@ export const ServicesP= styled.p`
   font-size: 16px;
   font-weight: 700;
   text-align: center;
+
+  &:active {
+    color: #0C046B;
+  }
+
+  &:hover{
+    color: #B1A1FB;
+    transition: 0.2s ease-in-out;
+  }
 `
 export const ServiceP= styled.p`
   color: #fff;
