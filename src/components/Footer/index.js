@@ -2,6 +2,7 @@ import { Box, Container, Grid, Link, makeStyles} from '@material-ui/core';
 
 const styles = makeStyles(() =>({
     box:{
+        width: "100%",
         backgroundColor: "#1D1C21",
     },
     gridContainer:{
@@ -27,25 +28,15 @@ const styles = makeStyles(() =>({
             color: '#644EEC',
             textDecorationLine: "none",
         }
-    }
-    // instagram: {
-    //     textAlign: "right",
-    // },
-    // twitter: {
-    //     textAlign: "right",
-    // },
-    // email: {
-    //     textAlign: "right",
-    // },
+    },
 }));
 
 export default function Footer(){
     const classes = styles()
 
     return(
-        <Box className={classes.box}>
-            <Container maxWidth='lg'>
-                <Grid container spacing={4} className={classes.gridContainer}>
+        <Box component="div" className={classes.box}>
+                <Grid container xs={12} spacing={4} className={classes.gridContainer}>
                     <Grid item xs={12} className={classes.title}>
                         <Box >Mamen Project</Box>
                     </Grid>
@@ -70,7 +61,6 @@ export default function Footer(){
                     </Grid>
                     <Grid item xs={1}></Grid>
                 </Grid>
-            </Container>
         </Box>
     );
 }

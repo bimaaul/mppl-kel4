@@ -31,14 +31,28 @@ h6{
 
 .card-nama{
     font-size: 24px;
+    font-weight: normal;
+    text-align: left;
+}
+.card-role{
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: -20px;
+    text-align: left;
+}
+.card-desc{
+    font-size: 20px;
+    font-weight: normal;
+    text-align: left;
 }
 
 .card-anggota{
-    height: 264px;
+    /* height: 264px; */
     display: flex;
     position: relative;
     flex-direction: row;
     justify-content: center;
+    margin-bottom: 10px;
 }
 
 .card-anggota-img {
@@ -219,7 +233,7 @@ h6{
     border-width: 1px;
     border-radius: 10px;
     margin-left: auto;
-    margin-top: 0px;
+    margin-top: -5px;
     margin-bottom: 0px;
 }
 
@@ -227,7 +241,7 @@ h6{
     text-align: right;
     font-weight: normal;
     margin-left: auto;
-    margin-top: 10px;
+    margin-top: 0px;
     margin-bottom: 5px;
     color: white;
 }
