@@ -10,6 +10,7 @@ const drawerWidth = 250;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
+    background: "#0D0C0F"
   },
   drawer: {
     [theme.breakpoints.up("sm")]: {
@@ -29,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("sm")]: {
       display: "none",
     },
+    
   },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
@@ -38,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
+    
   },
 }));
 

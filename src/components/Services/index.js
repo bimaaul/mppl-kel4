@@ -3,6 +3,10 @@ import Icon1 from './icon1.svg'
 import Icon2 from './icon2.svg'
 import Icon3 from './icon3.svg'
 import Icon4 from './icon4.svg'
+import ModalApk from './Modal/modalapk'
+import ModalDsn from './Modal/modaldesain'
+import ModalVid from './Modal/modalvideo'
+import ModalWeb from './Modal/modalweb'
 import { 
   ServicesCard, 
   ServicesContainer, 
@@ -33,25 +37,25 @@ const Services = () => {
           <ServicesCard>
             <ServicesIcon src={Icon1}/>
             <ServicesH2>Pengembangan Aplikasi</ServicesH2>
-            <ServicesP>Selengkapnya</ServicesP>
+            <ModalApk />
           </ServicesCard>
   
           <ServicesCard>
             <ServicesIcon src={Icon2}/>
             <ServicesH2>Pengembangan Website</ServicesH2>
-            <ServicesP>Selengkapnya</ServicesP>
+            <ModalWeb />
           </ServicesCard>
   
           <ServicesCard>
             <ServicesIcon src={Icon3}/>
             <ServicesH2>Pengeditan Video</ServicesH2>
-            <ServicesP>Selengkapnya</ServicesP>
+            <ModalVid />
           </ServicesCard>
 
           <ServicesCard>
             <ServicesIcon src={Icon4}/>
             <ServicesH2>Desain Tampilan Web dan Aplikasi</ServicesH2>
-            <ServicesP>Selengkapnya</ServicesP>
+            <ModalDsn />
           </ServicesCard>
   
         </ServicesWrapper>

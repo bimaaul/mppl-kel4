@@ -10,7 +10,7 @@ function CardItem(props) {
     return (
         <>
            <li class="cards__item">
-               <Link class="cards__item__link" to={props.path}>
+               <div class="cards__item__link">
                     <div className="testi__item__photo">
                         <img src={ props.src } className="testi__item__photo-wrap"/>
                     </div>
@@ -26,7 +26,7 @@ function CardItem(props) {
                        </p>
                    </div>
                    
-               </Link>
+               </div>
            </li>
         </>
     )
