@@ -132,8 +132,8 @@ export default function FormHubungi()  {
                 <p>Silahkan isi form di bawah ini dan kami akan membalas pesanmu melalui email. Silahkan cek email secara berkala selama maksimal 3 hari setelah form dikirimkan.
                     <br></br>Jangan lupa cek spam untuk berjaga-jaga.</p>
             </h3>
-            <div class="hubungi-wrapper">
-                <div class="form-wrapper">
+            <Box component="div" class="hubungi-wrapper">
+                <Box component="div" class="form-wrapper">
                     <Box component="div" class="form-wrapper">
                     {/* {formValues.map((val, i) => { */}
                         {/* return( */}
@@ -152,7 +152,6 @@ export default function FormHubungi()  {
                                         fullWidth
                                         required
                                         type="text"
-                                        // onChange={(e) => setNama(e.target.value)}
                                         value={formValues.nama}
                                         onChange={e => handleChangeNama(e)}
                                         autoFocus={true}
@@ -242,8 +241,8 @@ export default function FormHubungi()  {
                         </Grid>
                     </Grid>
                     </Box>
-                </div>
-            </div>
+                </Box>
+            </Box>
         </Box>
     );
 };
