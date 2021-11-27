@@ -40,7 +40,7 @@ const styles = makeStyles(() =>({
     },
 
     expbox:{
-        marginTop: '-25px',
+        marginTop: '-30px',
         marginBottom: '10px',
     },
     
@@ -59,7 +59,6 @@ export default function CardAnggota(props) {
     const handleClose = () => setOpen(false);
 
     return (
-        <>
             <Box component="div" class="card-anggota">
                 <Box component="div" class="card-anggota-pic">
                     <figure class="card-anggota-img">
@@ -67,15 +66,11 @@ export default function CardAnggota(props) {
                     </figure>
                 </Box>
                 <Box component="div" class="card-data">
-                    <h5 class="card-nama">
-                        <p>Halo, Saya {props.name}</p>
-                    </h5>
-                    <h4 class="card-role">
-                        {props.role}
-                    </h4>
-                        <p class="cards-desc">
-                            {props.desc}
-                        </p>
+                    <Box component="div">
+                        <p class="card-nama">Halo, Saya {props.name}</p>
+                        <p class="card-role">{props.role}</p>
+                        <p class="cards-desc">{props.desc}</p>    
+                    </Box>
                     <Button class="rm-link" onClick={handleOpen}>Selengkapnya</Button>
                     <Modal
                         class='popup-container'
@@ -98,7 +93,7 @@ export default function CardAnggota(props) {
                                     </div>
                                 </div>
 
-                                <Grid container xs={12} spacing={4}>
+                                <Grid container xs={12} spacing={3}>
                                     <Grid item xs={6} >
                                         <p className={classes.exptag}>Pengalaman Projek</p>
                                         <p className={classes.exptitle}>{props.projtitle1}</p>
@@ -138,7 +133,6 @@ export default function CardAnggota(props) {
                     </Modal>
                 </Box>                   
             </Box>
-        </>
     )
 };
 
