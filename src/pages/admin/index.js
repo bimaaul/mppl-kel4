@@ -1,6 +1,7 @@
 import { Switch, Route, useRouteMatch } from "react-router";
 import AnggotaPage from "./subpage/anggota";
 import PermintaanPage from "./subpage/permintaan";
+import DetailPermintaanPage from "./subpage/detail_permintaan";
 import ProjekPage from "./subpage/projek";
 import AddProjekPage from "./subpage/add_projek";
 import DetailProjekPage from "./subpage/detail_projek";
@@ -29,6 +30,7 @@ const AdminLayout = () => {
         <Route path={`${match.path}/edit_testimoni`} component={EditTestimoniPage} />
         <Route path={`${match.path}/detail_testimoni`} component={DetailTestimoniPage} />
         <Route path={`${match.path}/permintaan`} component={PermintaanPage} />
+        <Route path={`${match.path}/detail_permintaan`} component={DetailPermintaanPage} />
       </Switch>
     </Layout>
   );

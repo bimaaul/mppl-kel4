@@ -185,7 +185,7 @@ const EditProjekPage = () => {
     return (
         <div className={classes.root}>
             <div className={classes.add__testi}>
-                <h3 className={classes.h3}>Tambahkan Projek</h3>
+                <h3 className={classes.h3}>Edit Detail Projek</h3>
                 <hr style={{ color: '#fff', height: 1 }} />
                 <form onSubmit={handleSubmit} className={classes.form} noValidate autoComplete="off">
                     <Grid container alignItems="center" justify="center" direction="column">
