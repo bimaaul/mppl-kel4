@@ -8,6 +8,8 @@ import DetailProjekPage from "./subpage/detail_projek";
 import EditProjekPage from "./subpage/edit_projek";
 import TestimoniPage from "./subpage/testimoni";
 import AddTestimoniPage from "./subpage/add_testimoni";
+import AddAnggotaPage from "./subpage/add_anggota";
+import AddAnggotaPage1 from "./subpage/add_anggota1";
 import EditTestimoniPage from "./subpage/edit_testimoni";
 import DetailTestimoniPage from "./subpage/detail_testimoni";
 import AboutPage from "./subpage/about";
@@ -27,6 +29,7 @@ const AdminLayout = () => {
         <Route path={`${match.path}/anggota`} component={AnggotaPage} />
         <Route path={`${match.path}/testimoni`} component={TestimoniPage} />
         <Route path={`${match.path}/add_testimoni`} component={AddTestimoniPage} />
+        <Route path={`${match.path}/add_anggota`} component={AddAnggotaPage1} />
         <Route path={`${match.path}/edit_testimoni`} component={EditTestimoniPage} />
         <Route path={`${match.path}/detail_testimoni`} component={DetailTestimoniPage} />
         <Route path={`${match.path}/permintaan`} component={PermintaanPage} />

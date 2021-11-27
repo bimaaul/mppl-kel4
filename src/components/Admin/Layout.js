@@ -19,10 +19,11 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   appBar: {
-    // backgroundColor: "#0D0C0F",
     [theme.breakpoints.up("sm")]: {
       width: `calc(100% - ${drawerWidth}px)`,
+      height: "94.61px",
       marginLeft: drawerWidth,
+      background: "#0D0C0F"
     },
   },
   menuButton: {
@@ -74,6 +75,7 @@ function Layout(props) {
           <UserMenu />
         </Toolbar>
       </AppBar>
+      <hr style={{background: "#1D1C21", border: '0', margin: "0", height: "1px"}}/>
       <nav className={classes.drawer} aria-label="mailbox folders">
         <Hidden smUp implementation="css">
           <Drawer
