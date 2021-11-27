@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import icon from "./calendar.png"
-import { Box, Grid, TextField, Button, makeStyles, InputAdornment } from '@material-ui/core';
+import {Paper,  Box, Grid, TextField, Button, makeStyles, Table, TableHead, TableCell, TableRow, TableBody, Typography } from '@material-ui/core';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import { useDropzone } from 'react-dropzone';
 import AddPhotoAlternateOutlinedIcon from '@material-ui/icons/AddPhotoAlternateOutlined';
+import { border } from '@mui/system';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -18,13 +19,21 @@ const useStyles = makeStyles((theme) => ({
         margin: '-20px 0px -10px 0',
     },
 
-    add__testi: {
+    add__permintaan: {
         background: '#111113',
         color: '#fff',
         borderRadius: '10px!important',
-        margin: '15px',
+        margin: '20px 40px 35px 35px',
         justifyContent: 'center',
     },
+
+    h5: {
+        alignItems: 'left',
+        fontSize: '26px',
+        fontFamily: 'Poppins',
+        fontWeight: 'bold',
+        margin: '20px 35px 35px 35px',
+      },
 
     field: {
         "& .MuiOutlinedInput-root": {
@@ -112,7 +121,37 @@ const useStyles = makeStyles((theme) => ({
 
     icon:{
         color: "#FFFFFF"
-    }
+    },
+    table: {
+        // margin: '0 60px 30px 60px'
+       },
+    // tableHead: {
+    //     display:"flex",
+    //     flexDirection:"column",
+    // },
+    tableBody: {
+        display:"flex",
+        alignItems: "center",
+        borderBottom: "none",
+    },
+    tableRow: {
+        display:"flex",
+        flexDirection:"column",
+    },
+    tableCellJudul:{
+        borderBottom: "none",
+        color: "#fff",
+        align: "left",
+        fontFamily: 'Poppins',
+        fontWeight: "bold",
+        width: 250,
+        },
+    tableCellIsi:{
+        borderBottom: "none",
+        color: "#fff",
+        align: "left",
+        fontFamily: 'Poppins',
+    },
 }));
 const DetailPermintaanPage = () => {
     const classes = useStyles();
@@ -166,4 +205,46 @@ const DetailPermintaanPage = () => {
 
         console.log(formValues);
     }
-    
+
+    const tableTitle = ['Name', 'Nomor Handphone', 'Alamat Email', 'Deskripsi Permintaan'];
+
+    const tableData = {
+        name: 'Mutia Marcha Fatika',
+        phone: '+62867565656',
+        email: 'mutiamarcha@gmail.com',
+        desc: 'Hallo saya mutia, saya tertarik untuk bekerjasama dengan mamen khususnya dalam pengembangan aplikasi bisnis saya, kira-kira bisakah kita bekerja sama?'
+    };
+
+    return (
+        <div className={classes.root}>
+             <Box mb={3}>
+                <h5 className={classes.h5}>Detail Permintaan</h5>
+            </Box>
+            <div className={classes.add__permintaan}>
+                <h3 className={classes.h3}>Form Permintaan</h3>
+                <hr style={{ color: '#fff', height: 1 }} />
+                <Box p={7}>
+                <Grid container  className={classes.table}>
+                    <Grid item xs={4}>
+                        {tableTitle.map((title) => ( 
+                            <Box mb={4}>
+                                <Typography style={{fontFamily:'Poppins', fontWeight:'bold'}}>
+                                    {title}
+                                </Typography>
+                            </Box>
+                        ))}
+                    </Grid>
+                    <Grid item xs={8}>
+                            <Typography style={{marginBottom: '32px', fontFamily:'Poppins'}}>{tableData.name}</Typography>
+                            <Typography style={{marginBottom: '32px', fontFamily:'Poppins'}}>{tableData.phone}</Typography>
+                            <Typography style={{marginBottom: '32px', fontFamily:'Poppins'}}>{tableData.email}</Typography>
+                            <Typography style={{marginBottom: '32px', fontFamily:'Poppins'}}>{tableData.desc}</Typography>
+                    </Grid>
+                </Grid>
+                </Box>
+            </div>
+        </div>
+    );
+}
+
+export default DetailPermintaanPage;

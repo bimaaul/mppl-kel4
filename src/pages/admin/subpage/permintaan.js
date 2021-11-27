@@ -1,18 +1,9 @@
 import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
 import { makeStyles } from '@material-ui/styles';
-import Box from '@material-ui/core/box';
-import Modal from '@material-ui/core/Modal';
+import {Paper, Box,Modal, AddIcon, Table, TableBody, TableContainer, TableCell, TableHead, TableRow, Typography} from "@material-ui/core";
 import Button from '@material-ui/core/Button';
-import AddIcon from '@material-ui/icons/Add';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
-import Typography from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,6 +18,13 @@ const useStyles = makeStyles((theme) => ({
     fontweight: '700',
     padding: '18px',
     margin: '-20px 0px -10px 0',
+  },
+  h5: {
+    alignItems: 'left',
+    fontSize: '26px',
+    fontFamily: 'Poppins',
+    fontWeight: 'bold',
+    margin: '20px 35px 35px 35px',
   },
 
   add__testi: {
@@ -127,9 +125,18 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 'auto',
     transitionDuration: '0.4s',
     cursor: 'pointer',
+  },
+  card: {
+    backgroundColor: "#645E6F",
+    color: "white",
+    margin: '20px 35px 35px 35px',
+    },
+  typography: {
+    fontFamily: ['"Poppins"', "sans-serif"].join(","),
+    body2: {
+      fontSize: "18px",
+    },
   }
-
-
 }));
 
 function createData(no, nama, persetujuan, aksi) {
@@ -137,8 +144,8 @@ function createData(no, nama, persetujuan, aksi) {
 }
 
 const rows = [
-  createData(1, "Ali Naufal Ammarullah", "Belum Dilihat", ""),
-  createData(2, "Ali Naufal Ammarullah", "Sudah Dilihat", ""),
+  createData(1, "Mutia Marcha Fatika", "Belum Dilihat", ""),
+  createData(2, "Hana Salsabila", "Sudah Dilihat", ""),
   // createData(3, "Ali Naufal Ammarullah", "CTO Mamen", ""),
   // createData(4, "Ali Naufal Ammarullah", "CTO Mamen", ""),
 
@@ -153,13 +160,13 @@ export default function PermintaanPage(props) {
   return (
     <div className={classes.root}>
       <Box mb={3}>
-        <Typography variant="h2">Dokumen Pengajuan</Typography>
+        <h5 className={classes.h5}>Permintaan Persetujuan</h5>
       </Box>
       <Paper className={classes.card}>
         <Box padding={3}>
           <Typography variant="body2">
-            Semua dokumen pengajuan yang telah anda unggah akan muncul pada
-            halaman ini
+          Berikut daftar pengajuan kerjasama yang harus anda lihat. Anda harus melihat detail 
+          pengajuan untuk melihat detail informasi kontak dan melakukan tindakan persetujuan atau penolakan.
           </Typography>
         </Box>
       </Paper>
