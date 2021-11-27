@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 import { makeStyles } from '@material-ui/styles';
 import Box from '@material-ui/core/box';
 import Modal from '@material-ui/core/Modal';
-import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import Table from '@material-ui/core/Table';
@@ -148,7 +147,7 @@ const rows = [
 export default function TestimoniPage(props) {
   const classes = useStyles();
   const history = useHistory();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -251,7 +250,7 @@ export default function TestimoniPage(props) {
                     onClick= {handleClose}
                   >
                     Hapus
-                    </Button>
+                </Button>
               </div>
             </div>
           </Box>

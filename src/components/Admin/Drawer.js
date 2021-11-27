@@ -1,22 +1,58 @@
+import { useState } from 'react'
 import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import { List, ListItem, ListItemIcon, ListItemText, Drawer, Box } from "@material-ui/core";
+import { List, ListItem, ListItemIcon, ListItemText, Drawer, Box, Button } from "@material-ui/core";
 import DashboardOutlinedIcon from "@material-ui/icons/DashboardOutlined";
 import AssessmentOutlinedIcon from "@material-ui/icons/AssessmentOutlined";
 import SupervisorAccountOutlinedIcon from "@material-ui/icons/SupervisorAccountOutlined";
 import SpeakerNotesOutlinedIcon from "@material-ui/icons/SpeakerNotesOutlined";
 import DescriptionOutlinedIcon from "@material-ui/icons/DescriptionOutlined";
 import ExitToAppOutlinedIcon from "@material-ui/icons/ExitToAppOutlined";
+import LogoAdmin from "../../images/mamen_admin.png";
 
 const useStyles = makeStyles((theme) => ({
-  toolbar: theme.mixins.toolbar,
+  toolbar: {
+    background: "#0D0C0F",
+  },
   menu: {
-    marginTop: "12%",
+    paddingTop: "25px",
     height: "100%",
+    background: "#0D0C0F",
+    color: "white",
+    fontFamily: "Poppins",
   },
   marginBottom: {
-    marginBottom: "10%",
+    margin: "0 23px 10% 23px",
+    color: "#fff",
+    textTransform: 'initial',
+    alignItems: "left",
+    justifyContent: "left",
+    padding: "12px 0 12px 25px",
+    fontFamily: "Poppins",
+    fontSize: "14px"
   },
+  logo: {
+    height: "55.3px",
+    width: "157px",
+    margin: "27px 0 15px 31px",
+  },
+  item: {
+    width: "221px",
+    color: "#fff",
+    background: "#111113",
+    textTransform: 'initial',
+    alignItems: "left",
+    justifyContent: "left",
+    padding: "12px 0 12px 25px",
+    fontFamily: "Poppins",
+    fontSize: "14px",
+    '&:active':{
+      background: "#120781",
+    },
+    '&:hover':{
+      background: "#644EEC"
+    }
+  }
 }));
 
 const CustomDrawer = (props) => {
@@ -24,27 +60,27 @@ const CustomDrawer = (props) => {
 
   const menuList = [
     {
-      icon: <DashboardOutlinedIcon />,
+      icon: <DashboardOutlinedIcon style={{color: 'white'}} />,
       text: "Tentang Kami",
       onClick: () => history.push("/admin"),
     },
     {
-      icon: <AssessmentOutlinedIcon />,
+      icon: <AssessmentOutlinedIcon style={{color: 'white'}} />,
       text: "Projek Kami",
       onClick: () => history.push("/admin/projek"),
     },
     {
-      icon: <SupervisorAccountOutlinedIcon />,
+      icon: <SupervisorAccountOutlinedIcon style={{color: 'white'}} />,
       text: "Anggota",
       onClick: () => history.push("/admin/anggota"),
     },
     {
-      icon: <DescriptionOutlinedIcon />,
+      icon: <DescriptionOutlinedIcon style={{color: 'white'}} />,
       text: "Testimoni",
       onClick: () => history.push("/admin/testimoni"),
     },
     {
-      icon: <SpeakerNotesOutlinedIcon />,
+      icon: <SpeakerNotesOutlinedIcon style={{color: 'white'}} />,
       text: "Permintaan",
       onClick: () => history.push("/admin/permintaan"),
     },
@@ -53,22 +89,35 @@ const CustomDrawer = (props) => {
 
   return (
     <Drawer {...props}>
-      <div className={classes.toolbar} />
+      <div className={classes.toolbar}>
+        <img src={LogoAdmin} className={classes.logo} alt="Mamen Admin" />
+      </div> 
       <Box display="flex" flexDirection="column" justifyContent="space-between" className={classes.menu}>
+        
         <List>
           {menuList.map(({ text, icon, onClick }, index) => (
-            <ListItem button key={text} onClick={onClick}>
-              <ListItemIcon>{icon}</ListItemIcon>
-              <ListItemText primary={text} />
+            <ListItem key={text}>
+            <Button
+              variant="contained"
+              onClick={onClick}
+              className={classes.item}
+              startIcon={icon}
+            >
+              {text}
+            </Button>
             </ListItem>
           ))}
         </List>
-        <ListItem button className={classes.marginBottom}>
-          <ListItemIcon>
-            <ExitToAppOutlinedIcon />
-          </ListItemIcon>
-          <ListItemText primary={"Keluar"} />
-        </ListItem>
+        
+        <Button
+          color="primary"
+          variant="contained"
+          onClick={() => history.push("/")} //bug stylenya ga ikutan muncul
+          className={classes.marginBottom}
+          startIcon={<ExitToAppOutlinedIcon style={{color: 'white'}} />}
+        >
+          Keluar
+        </Button>
       </Box>
     </Drawer>
   );
