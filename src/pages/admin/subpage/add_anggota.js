@@ -222,7 +222,7 @@ const AddAnggotaPage = () => {
                         <Grid item class="form-field">
                             <TextField
                                 className={classes.field}
-                                name="nama"
+                                name="keahlian"
                                 // label="Nama"
                                 placeholder="Role Keahlian Anggota"
                                 variant="outlined"
@@ -243,7 +243,7 @@ const AddAnggotaPage = () => {
                         <Grid item class="form-field">
                             <TextField
                                 className={classes.field}
-                                name="nama"
+                                name="desc"
                                 // label="Nama"
                                 placeholder="Deskripsi Singkat"
                                 variant="outlined"
