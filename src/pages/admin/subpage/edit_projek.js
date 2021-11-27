@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import icon from "./calendar.png"
+import { useHistory } from "react-router-dom";
 import { Box, Grid, TextField, Button, makeStyles, InputAdornment } from '@material-ui/core';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import { useDropzone } from 'react-dropzone';
@@ -70,21 +71,29 @@ const useStyles = makeStyles((theme) => ({
     add__button: {
         padding: '57px'
     },
-    
-    add__button: {
-        padding: '57px'
-    },
 
     btn: {
         backgroundColor: "#644EEC",
         color: 'white',
         fontFamily: "Poppins",
         marginBottom: '30px',
-        width: '1024px',
-        marginLeft: '-160px',
+        width: '232px',
         textTransform: 'initial',
         '&:hover': {
             color: 'black',
+        },
+    },
+    
+    btn_cancel: {
+        backgroundColor: "#645E6F",
+        color: 'white',
+        fontFamily: "Poppins",
+        margin: '0 35px 30px 100px',
+        width: '232px',
+        textTransform: 'initial',
+        '&:hover': {
+            backgroundColor: 'red',
+            color: 'white',
         },
     },
 
@@ -119,9 +128,10 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const AddProjekPage = () => {
+const EditProjekPage = () => {
     const classes = useStyles();
     const [image, setImage] = useState([]);
+    const history = useHistory();
     const { getRootProps, isDragActive } = useDropzone({
         accept: "image/*",
         onDrop: (acceptedFiles) => {
@@ -291,30 +301,40 @@ const AddProjekPage = () => {
                                         isDragActive ?
                                             <p className={classes.text__dnd} align="center" >Drop foto<br />di sini...</p> :
                                             <p className={classes.text__dnd} align="center">Drag dan drop<br />foto di sini</p>
-                                    }
-                                </div>
-                            </div>
+                                        }
+                                        </div>
+                                    </div>
+                                </Grid>
+                            </Grid>
+                        </form>
+
+                        <Grid container alignItems="center" justify="center" direction="column">
+                            <Grid item class="form-field">
+                                <Button
+                                    onClick= {() => history.goBack()}
+                                    className={classes.btn_cancel}
+        
+                                    variant="contained"
+                                    type="submit"
+                                // disabled={!formValues.nama & !formValues.nomorhp && !formValues.email && !formValues.pesan}
+                                >
+                                    Batal
+                                </Button>
+                                <Button
+                                    onClick={handleSubmit}
+                                    className={classes.btn}
+        
+                                    variant="contained"
+                                    type="submit"
+                                // disabled={!formValues.nama && !formValues.nomorhp && !formValues.email && !formValues.pesan}
+                                >
+                                    Simpan
+                                </Button>
+                            </Grid>
                         </Grid>
-                    </Grid>
-                </form>
-                <Grid container alignItems="center" justify="center" direction="column">
-                    <Grid item class="form-field">
-                        <Button
-                            onClick={handleSubmit}
-                            className={classes.btn}
-
-                            variant="contained"
-                            type="submit"
-                            fullWidth
-                        // disabled={!formValues.nama && !formValues.nomorhp && !formValues.email && !formValues.pesan}
-                        >
-                            Tambah
-                        </Button>
-                    </Grid>
-                </Grid>
-            </div>
-        </div>
-    );
-};
-
-export default AddProjekPage;
+                    </div>
+                </div>
+            );
+        };
+        
+export default EditProjekPage;

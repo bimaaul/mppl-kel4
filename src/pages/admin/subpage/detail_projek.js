@@ -70,10 +70,6 @@ const useStyles = makeStyles((theme) => ({
     add__button: {
         padding: '57px'
     },
-    
-    add__button: {
-        padding: '57px'
-    },
 
     btn: {
         backgroundColor: "#644EEC",
@@ -119,7 +115,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const AddProjekPage = () => {
+const DetailProjekPage = () => {
     const classes = useStyles();
     const [image, setImage] = useState([]);
     const { getRootProps, isDragActive } = useDropzone({
@@ -297,24 +293,9 @@ const AddProjekPage = () => {
                         </Grid>
                     </Grid>
                 </form>
-                <Grid container alignItems="center" justify="center" direction="column">
-                    <Grid item class="form-field">
-                        <Button
-                            onClick={handleSubmit}
-                            className={classes.btn}
-
-                            variant="contained"
-                            type="submit"
-                            fullWidth
-                        // disabled={!formValues.nama && !formValues.nomorhp && !formValues.email && !formValues.pesan}
-                        >
-                            Tambah
-                        </Button>
-                    </Grid>
-                </Grid>
             </div>
         </div>
     );
 };
 
-export default AddProjekPage;
+export default DetailProjekPage;
