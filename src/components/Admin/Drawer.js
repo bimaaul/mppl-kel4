@@ -29,11 +29,15 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "left",
     padding: "12px 0 12px 25px",
     fontFamily: "Poppins",
-    fontSize: "14px"
+    fontSize: "14px",
+    background: "#644EEC",
+    '&:hover':{
+      background: "#120781"
+    }
   },
   logo: {
-    height: "55.3px",
-    width: "157px",
+    height: "47px",
+    width: "135px",
     margin: "27px 0 15px 31px",
   },
   item: {
@@ -91,10 +95,11 @@ const CustomDrawer = (props) => {
     <Drawer {...props}>
       <div className={classes.toolbar}>
         <img src={LogoAdmin} className={classes.logo} alt="Mamen Admin" />
+        <hr style={{background: "#1D1C21", border: '0', margin: "0", height: "1px"}}/>
       </div> 
       <Box display="flex" flexDirection="column" justifyContent="space-between" className={classes.menu}>
         
-        <List>
+        <List style = {{padding : "0",}}>
           {menuList.map(({ text, icon, onClick }, index) => (
             <ListItem key={text}>
             <Button
@@ -110,7 +115,6 @@ const CustomDrawer = (props) => {
         </List>
         
         <Button
-          color="primary"
           variant="contained"
           onClick={() => history.push("/")} //bug stylenya ga ikutan muncul
           className={classes.marginBottom}
