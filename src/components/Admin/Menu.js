@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     display: "flex",
     flexDirection: "row-reverse",
+    marginTop: "20px",
   },
   small: {
     width: theme.spacing(3),
@@ -34,6 +35,28 @@ const useStyles = makeStyles((theme) => ({
       display: "none",
     },
   },
+  button: {
+    color: "#644EEC",
+    background: "transparent",
+    padding: "12px 18px 12px 18px",
+    border: "1px solid #645E6F",
+    borderRadius: "10px",
+    "&:hover": {
+      background: "white",
+    } 
+  },
+  acc_btn: {
+    color: "white",
+    background: "transparent",
+    marginLeft: "30px",
+    marginRight: "35px",
+    padding: "12px 18px 12px 18px",
+    border: "1px solid #645E6F",
+    borderRadius: "10px",
+    "&:hover": {
+      background: "primary",
+    }
+  }
 }));
 
 const UserMenu = () => {
@@ -54,20 +77,25 @@ const UserMenu = () => {
   };
   return (
     <div className={classes.menu}>
-      <Button>
+      <Button className={classes.acc_btn}>
         <Avatar className={classes.small}></Avatar>
         <span style={{ padding: "0 20px 0 12px" }} className={classes.adminName}>
           Ali Naufal Ammarullah
         </span>
-      </Button>
-      <IconButton
+      </Button>      
+      <Button
+        className={classes.button}
+        variant="contained"
+        color="primary"
         ref={anchorRef}
         aria-controls={open ? "menu-list-grow" : undefined}
         aria-haspopup="true"
         onClick={handleToggle}
+        //onClick={} // TODO: add notification page
       >
         <NotificationsIcon />
-      </IconButton>
+      </Button>
+
       <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
         {({ TransitionProps, placement }) => (
           <Grow
