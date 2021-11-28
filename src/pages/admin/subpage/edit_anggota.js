@@ -184,7 +184,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const AddAnggotaPage = () => {
+const EditAnggotaPage = () => {
     const classes = useStyles();
     const [image, setImage] = useState([]);
     const { getRootProps, isDragActive } = useDropzone({
@@ -741,4 +741,4 @@ const AddAnggotaPage = () => {
     );
 };
 
-export default AddAnggotaPage;
+export default EditAnggotaPage;
