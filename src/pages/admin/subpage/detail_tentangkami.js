@@ -21,8 +21,9 @@ const useStyles = makeStyles((theme) => ({
         background: '#111113',
         color: 'white',
         borderRadius: '10px',
-        // margin: '15px',
-        // justifyContent: 'center',
+        marginTop: '60px',
+        marginBottom: '200px',
+        justifyContent: 'center',
     },
     container: {
         justifyContent: 'center',
@@ -84,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
     
 }));
 
-export default function AddTentangKami()  {
+export default function DetailTentangKami()  {
     const classes = useStyles();
     const history = useHistory();
 
@@ -211,23 +212,6 @@ export default function AddTentangKami()  {
                         </Grid>
                     </Grid>
                 </form>
-                <Grid container xs={12} alignItems="center" justify="center">
-                    <Grid item xs={12}>
-                        <Button
-                            onClick={() => {
-                                handleSubmit();
-                                history.push("/admin/about");
-                            }}
-                            className={classes.btn}
-                            variant="contained"
-                            type="submit"
-                            fullWidth
-                            // disabled={!formValues.nama && !formValues.nomorhp && !formValues.email && !formValues.pesan}
-                        >
-                        Tambah
-                        </Button>
-                    </Grid>
-                </Grid>
             </div>
         </div>
     );

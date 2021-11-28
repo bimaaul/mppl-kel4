@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import icon from "./calendar.png"
-import {Paper,  Box, Grid, TextField, Button, makeStyles, Table, TableHead, TableCell, TableRow, TableBody, Typography } from '@material-ui/core';
-import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
+import {Paper,  Box, Grid, TextField, Button, makeStyles, Border, Table, TableHead, TableCell, TableRow, TableBody, Typography } from '@material-ui/core';
+import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
 import { useDropzone } from 'react-dropzone';
 import AddPhotoAlternateOutlinedIcon from '@material-ui/icons/AddPhotoAlternateOutlined';
-import { border } from '@mui/system';
 
 const useStyles = makeStyles((theme) => ({
     root: {

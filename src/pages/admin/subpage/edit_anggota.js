@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import icon from "./calendar.png"
-import { Box, Grid, TextField, Button, makeStyles, InputAdornment, Card } from '@material-ui/core';
-import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
+import { Box, Grid, TextField, Button, makeStyles, InputAdornment, Card, Stack } from '@material-ui/core';
+import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
 import { useDropzone } from 'react-dropzone';
 import AddPhotoAlternateOutlinedIcon from '@material-ui/icons/AddPhotoAlternateOutlined';
-import Stack from '@mui/material/Stack';
-import { grid } from '@mui/system';
+// import Stack from '@mui/material/Stack';
+// import { grid } from '@mui/system';
 
 const useStyles = makeStyles((theme) => ({
     root: {
