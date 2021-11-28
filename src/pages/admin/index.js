@@ -8,6 +8,7 @@ import EditTestimoniPage from "./subpage/edit_testimoni";
 import DetailTestimoniPage from "./subpage/detail_testimoni";
 import AboutPage from "./subpage/about";
 import Layout from "../../components/Admin/Layout";
+import AddTentangKami from "./subpage/add_tentangkami";
 
 const AdminLayout = () => {
   const match = useRouteMatch();
@@ -16,6 +17,7 @@ const AdminLayout = () => {
     <Layout>
       <Switch>
         <Route exact path={`${match.path}`} component={AboutPage} />
+        <Route path={`${match.path}/add_tentangkami`} component={AddTentangKami} />
         <Route path={`${match.path}/projek`} component={ProjekPage} />
         <Route path={`${match.path}/anggota`} component={AnggotaPage} />
         <Route path={`${match.path}/testimoni`} component={TestimoniPage} />
