@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import icon from "./calendar.png"
 import { useHistory } from "react-router-dom";
 import { Box, Grid, TextField, Button, makeStyles, InputAdornment } from '@material-ui/core';
-import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
+import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
 import { useDropzone } from 'react-dropzone';
 import AddPhotoAlternateOutlinedIcon from '@material-ui/icons/AddPhotoAlternateOutlined';
 
