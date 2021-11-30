@@ -131,17 +131,15 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-function createData(no, nama, jabatan, aksi) {
-  return { no, nama, jabatan, aksi };
+function createData(no, name, job) {
+  return { no, name, job};
 }
 
 const rows = [
-  createData(1, "Ali Naufal Ammarullah", "CTO Mamen", ""),
-  createData(2, "Ali Naufal Ammarullah", "CTO Mamen", ""),
-  createData(3, "Ali Naufal Ammarullah", "CTO Mamen", ""),
-  createData(4, "Ali Naufal Ammarullah", "CTO Mamen", ""),
-
-
+  createData(1, "Ali Naufal Ammarullah", "CTO Mamen"),
+  createData(2, "Ali Naufal Ammarullah", "CTO Mamen"),
+  createData(3, "Ali Naufal Ammarullah", "CTO Mamen"),
+  createData(4, "Ali Naufal Ammarullah", "CTO Mamen"),
 ];
 
 export default function TestimoniPage(props) {
@@ -186,8 +184,8 @@ export default function TestimoniPage(props) {
               {rows.map((row) => (
                 <TableRow key={row.no}>
                   <TableCell className={classes.cell} align="center">{row.no}</TableCell>
-                  <TableCell className={classes.cell} align="left">{row.nama}</TableCell>
-                  <TableCell className={classes.cell} align="left">{row.jabatan}</TableCell>
+                  <TableCell className={classes.cell} align="left">{row.name}</TableCell>
+                  <TableCell className={classes.cell} align="left">{row.job}</TableCell>
                   <TableCell className={classes.cell} align="left">
                     <Button
                       style={{

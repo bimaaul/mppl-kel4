@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Box, Grid, TextField, Button, makeStyles, InputAdornment } from '@material-ui/core';
+import { nanoid } from 'nanoid';
+import { Grid, TextField, Button, makeStyles, InputAdornment } from '@material-ui/core';
 import { useDropzone } from 'react-dropzone';
 import AddPhotoAlternateOutlinedIcon from '@material-ui/icons/AddPhotoAlternateOutlined';
 
@@ -124,18 +125,39 @@ const AddTestimoniPage = () => {
     })
 
     const [formValues, setFormValues] = useState([{
-        //nama: '', 
-        //nomorhp: '', 
-        //email: '', 
-        //pesan: ''
+        name: '', 
+        job: '', 
+        testimoni: '', 
+        profile: ''
     }])
 
+    const handleFormChange = (e) => {
+        e.preventDefault();
+
+        const fieldName = e.target.getAttribute("name");
+        const fieldValue = e.target.value;
+
+        const newFormValue = {...formValues};
+        newFormValue[fieldName] = fieldValue;
+
+        setFormValues(newFormValue);
+    }
+
     const handleSubmit = (e) => {
-        // e.preventDefault();
-        // setNamaError(false)
-        // setNohpError(false)
-        // setEmailError(false)
-        // setPesanError(false)
+        e.preventDefault();
+
+        const newTestimoni = {
+            id: nanoid(),
+            name: formValues.name,
+            job: formValues.job,
+            testimoni: formValues.testimoni,
+            profile: formValues.profile
+        }
+
+        //setNamaError(false)
+        //setNohpError(false)
+        //setEmailError(false)
+        //setPesanError(false)
 
         // if(namaValue == ''){
         //     setNamaError(true)
@@ -159,7 +181,7 @@ const AddTestimoniPage = () => {
         //     setIsDisabled(true)
         // }
 
-        console.log(formValues);
+        //console.log(formValues);
     }
 
     return (
@@ -172,7 +194,7 @@ const AddTestimoniPage = () => {
                         <Grid item class="form-field">
                             <TextField
                                 className={classes.field}
-                                name="nama"
+                                name="name"
                                 // label="Nama"
                                 placeholder="Nama Lengkap"
                                 variant="outlined"
@@ -183,9 +205,8 @@ const AddTestimoniPage = () => {
                                 fullWidth
                                 required
                                 type="text"
-                                // onChange={(e) => setNama(e.target.value)}
+                                onChange={handleFormChange}
                                 //value={formValues.nama}
-                                //onChange={e => handleChangeNama(e)}
                                 autoFocus={true}
                             // error={namaError}
                             />
@@ -193,7 +214,7 @@ const AddTestimoniPage = () => {
                         <Grid item class="form-field">
                             <TextField
                                 className={classes.field}
-                                name="nama"
+                                name="job"
                                 // label="Nama"
                                 placeholder="Jabatan"
                                 variant="outlined"
@@ -204,9 +225,8 @@ const AddTestimoniPage = () => {
                                 size="small"
                                 required
                                 type="text"
-                                // onChange={(e) => setNama(e.target.value)}
                                 //value={formValues.nama}
-                                //onChange={e => handleChangeNama(e)}
+                                onChange={handleFormChange}
                                 autoFocus={true}
                             // error={namaError}
                             />
@@ -214,7 +234,7 @@ const AddTestimoniPage = () => {
                         <Grid item class="form-field">
                             <TextField
                                 className={classes.field}
-                                name="nama"
+                                name="testimoni"
                                 // label="Nama"
                                 placeholder="Testimoni"
                                 variant="outlined"
@@ -227,9 +247,8 @@ const AddTestimoniPage = () => {
                                 size="small"
                                 required
                                 type="text"
-                                // onChange={(e) => setNama(e.target.value)}
                                 //value={formValues.nama}
-                                //onChange={e => handleChangeNama(e)}
+                                onChange={handleFormChange}
                                 autoFocus={true}
                             // error={namaError}
                             />

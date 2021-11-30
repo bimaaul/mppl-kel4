@@ -143,6 +143,10 @@ function createData(no, nama, persetujuan, aksi) {
   return { no, nama, persetujuan, aksi };
 }
 
+function deleteData(id){
+  
+}
+
 const rows = [
   createData(1, "Mutia Marcha Fatika", "Belum Dilihat", ""),
   createData(2, "Hana Salsabila", "Sudah Dilihat", ""),
@@ -219,7 +223,7 @@ export default function PermintaanPage(props) {
                         textTransform: 'initial',
                       }}
                       variant="contained"
-                      onClick={handleOpen}
+                      onClick={handleOpen, deleteData}
                     >
                       Hapus
                     </Button>
