@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { withStyles } from "@material-ui/core/styles";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
-import { Button, OutlinedInput, InputAdornment, IconButton } from "@material-ui/core";
+import { Button, OutlinedInput, InputAdornment, IconButton, CircularProgress } from "@material-ui/core";
 
 const StyledInput = withStyles(() => ({
   root: {
@@ -30,6 +30,9 @@ const StyledButton = withStyles(() => ({
     padding: "8px",
     color: "white",
     background: "#644EEC",
+    "&:hover": {
+      background: "#644EEC",
+    },
     "&.Mui-disabled": {
       color: "white",
       background: "#645E6F",
@@ -37,7 +40,7 @@ const StyledButton = withStyles(() => ({
   },
 }))(Button);
 
-export default function LoginForm() {
+export default function LoginForm(props) {
   const {
     control,
     handleSubmit,
@@ -56,12 +59,8 @@ export default function LoginForm() {
     setShowPassword((prev) => !prev);
   };
 
-  const onSubmit = (data) => {
-    console.log(JSON.stringify(data));
-  };
-
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(props.onSubmit)}>
       <Controller
         name="email"
         control={control}
@@ -110,9 +109,15 @@ export default function LoginForm() {
           </>
         )}
       />
-      <StyledButton variant="contained" type="submit" fullWidth={true} disabled={!isDirty || !isValid}>
-        Masuk
-      </StyledButton>
+      {isSubmitting ? (
+        <div style={{ display: "flex", justifyContent: "center", width: "100%", marginTop: "16px" }}>
+          <CircularProgress />
+        </div>
+      ) : (
+        <StyledButton variant="contained" type="submit" fullWidth={true} disabled={!isDirty || !isValid}>
+          Masuk
+        </StyledButton>
+      )}
     </form>
   );
 }

@@ -4,9 +4,7 @@ import '../ProjekKami/Cards.css';
 import Slider from 'react-slick'; 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Photo from '../../images/photo.jpeg'
-{//import { AiOutlineLeftCircle, AiOutlineRightCircle } from "react-icons/ai"
-}
+import Photo from '../../assets/photo.jpeg'
 
 export default class SimpleSlider extends Component {
     render(){
