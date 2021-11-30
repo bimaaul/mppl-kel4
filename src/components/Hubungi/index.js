@@ -62,14 +62,6 @@ export default function FormHubungi()  {
     }])
 
     const [isDisabled, setIsDisabled] = useState(false);
-    // const [namaValue, setNama] = useState('')
-    // const [nohpValue, setNohp] = useState('')
-    // const [emailValue, setEmail] = useState('')
-    // const [pesanValue, setPesan] = useState('')
-    // const [namaError, setNamaError] = useState(false)
-    // const [nohpError, setNohpError] = useState(false)
-    // const [emailError, setEmailError] = useState(false)
-    // const [pesanError, setPesanError] = useState(false)
 
     const handleChangeNama = (i, e) => {
         const _nama = [...formValues];

@@ -1,7 +1,7 @@
 import "./App.css";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Home from "./pages";
-import Login from "./pages/admin/login";
+import Login from "./pages/login";
 import Admin from "./pages/admin/index";
 
 function App() {

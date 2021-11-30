@@ -1,0 +1,28 @@
+.background {
+  background-image: url("../images/bg-login.svg");
+  box-shadow: inset 0 0 0 100vh rgba(0, 0, 0, 0.7);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.content {
+  height: 100vh;
+  color: white;
+  display: flex !important  ;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  height: 250px;
+  width: 250px;
+}
+
+@media screen and (max-width: 768px) {
+  .logo {
+    height: 200px;
+    width: 200px;
+  }
+}
