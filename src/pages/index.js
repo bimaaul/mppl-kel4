@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
 import Cards from "../components/ProjekKami/Cards";
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
@@ -19,7 +18,7 @@ const Home = () => {
   };
 
   return (
-    <Router>
+    <>
       <Sidebar isOpen={isOpen} toggle={toggle} />
       <Navbar toggle={toggle} />
       <InfoSection {...homeObjOne} />
@@ -29,7 +28,7 @@ const Home = () => {
       <TestimoniCards />
       <Hubungi />
       <Footer />
-    </Router>
+    </>
   );
 };
 

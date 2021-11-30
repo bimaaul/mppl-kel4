@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import icon from "./calendar.png"
+import icon from "../../../assets/calendar.png"
 import {Paper,  Box, Grid, TextField, Button, makeStyles, Border, Table, TableHead, TableCell, TableRow, TableBody, Typography } from '@material-ui/core';
 import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
 import { useDropzone } from 'react-dropzone';

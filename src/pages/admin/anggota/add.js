@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
-import icon from "./calendar.png"
+import icon from "../../../assets/calendar.png"
 import { Box, Grid, TextField, Button, makeStyles, InputAdornment, Card, Stack } from '@material-ui/core';
 import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
 import { useDropzone } from 'react-dropzone';
 import AddPhotoAlternateOutlinedIcon from '@material-ui/icons/AddPhotoAlternateOutlined';
-// import Stack from '@mui/material/Stack';
-// import { grid } from '@mui/system';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -184,7 +182,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const EditAnggotaPage = () => {
+const AddAnggotaPage = () => {
     const classes = useStyles();
     const [image, setImage] = useState([]);
     const { getRootProps, isDragActive } = useDropzone({
@@ -741,4 +739,4 @@ const EditAnggotaPage = () => {
     );
 };
 
-export default EditAnggotaPage;
+export default AddAnggotaPage;
