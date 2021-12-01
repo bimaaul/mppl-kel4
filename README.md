@@ -1,3 +1,21 @@
+
+![Group 3 (2)](https://user-images.githubusercontent.com/60084871/144290573-fa084931-9602-488f-a30e-2015dec21718.png)
+
+<h1 align="center">
+	MPPL - Responsi 2 - Kelompok 4
+</h1>
+
+<h1 align="center">
+	<a href="https://www.figma.com/file/3lJEGSeJpyWsLOErHkdfoC/MPPL-Kel-4?node-id=23%3A5">
+	<img
+	src="https://user-images.githubusercontent.com/48080443/122107501-563f8200-ce45-11eb-8001-b31a9729faad.png"/>
+	</a>
+	<a href="https://trello.com/b/eebDhCmi/mppl-kel-4">
+    	<img
+	src="https://user-images.githubusercontent.com/48080443/122107552-63f50780-ce45-11eb-8ed1-4b7051c17ed6.png"/> 
+	</a>
+</h1>
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
