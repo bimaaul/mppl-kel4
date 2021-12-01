@@ -122,6 +122,7 @@ Kami menawarkan ide sebuah platform dimana user dapat melakukan permintaan kerja
 
 # :man_teacher: Stakeholder yang Terlibat
 [`^ kembali ke atas ^`](#)
+	
 <table>
     <thead>
         <tr>
@@ -144,7 +145,109 @@ Kami menawarkan ide sebuah platform dimana user dapat melakukan permintaan kerja
 </tbody>
 </table>
 	
+# :couple: Identifikasi Jenis User
+[`^ kembali ke atas ^`](#)
 
+<table>
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Pengguna</th>
+             <th>Task yang Dilakukan</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1.</td>
+            <td>Orang yang membutuhkan jasa developer</td>
+            <td> Melihat company profile dari Mamen Rider, Melihat profile anggota, Melihat riwayat projek, dan Mengirimkan tawaran projek</td>
+        </tr>
+	<tr>
+            <td>2.</td>
+            <td>Perusahaan yang membutuhkan developer tambahan (outsourcing)</td>
+            <td>Melihat company profile dari Mamen Rider, Melihat profile anggota, Melihat riwayat projek, Mengajukan program kerja sama</td>
+        </tr>
+	<tr>
+            <td>3.</td>
+            <td>Admin</td>
+            <td>CRUD anggota, CRUD projek, CRUD testimoni, Read Permintaan, Delete Permintaan, dan Monitoring projek yang berjalan</td>
+        </tr>
+</tbody>
+</table>
+	
+# :high_brightness: Fitur Utama yang Dikembangkan
+[`^ kembali ke atas ^`](#)
+
+<table>
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Fitur</th>
+             <th>Keguanaan dan Fungsi</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1.</td>
+            <td>Menampilkan profil dan informasi keanggotaan</td>
+            <td> Memberikan informasi tentang data diri dari tiap anggota Mamen Rider</td>
+        </tr>
+	<tr>
+            <td>2.</td>
+            <td>Menampilkan informasi portofolio setiap anggota</td>
+            <td>Memberikan informasi tentang daftar portofolio/project yang pernah dikerjakan dan kemampuan yang dikuasai setiap anggota Mamen Rider</td>
+        </tr>
+	<tr>
+            <td>3.</td>
+            <td>Informasi proyek yang dapat dikerjakan</td>
+            <td>Memberitahukan batasan proyek yang dapat ditawarkan oleh client dan dikerjakan Mamen</td>
+        </tr>
+	<tr>
+            <td>4.</td>
+            <td>Informasi narahubung setiap anggota</td>
+            <td>Memudahkan calon client untuk berkomunikasi dengan anggota Mamen secara personal melalui linkedin</td>
+        </tr>
+</tbody>
+</table>
+
+# :high_brightness: Fungsi CRUD
+[`^ kembali ke atas ^`](#)
+
+# 🚀 Hasil Implementasi
+[`^ kembali ke atas ^`](#)
+
+# :link: Link Aplikasi
+[`^ kembali ke atas ^`](#)
+
+# 👨‍🏫 Developer dan Job Desc
+[`^ kembali ke atas ^`](#)  
+
+👩 <b>Mutia Marcha Fatika | G64180085 </b> <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Role: <a>Project Manager & UI/UX Designer</a> <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Email: <a>mutia_kemala@apps.ipb.ac.id</a> <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GitHub: <a href="https://github.com/mutiamarchaa">@mutiamarchaa</a> <br>
+  
+
+👦 <b>Bima Aulia | G64180063</b> <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Role: <a>Back-End</a> <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Email: <a>@apps.ipb.ac.id</a> <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GitHub: <a href="https://github.com/bimaaul">@bimaaul</a> <br>
+
+👩 <b>Hana Salsabila | G64180051</b> <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Role: <a>Front-End</a> <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Email: <a>hana_17@apps.ipb.ac.id</a> <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GitHub: <a href="https://github.com/hanasalsaa">@hanasalsaa</a> <br>
+  
+👦 <b>Muhammad Hafiduddin | G64180017</b> <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Role: <a>Front-End</a> <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Email: <a>hafiduddin_31@apps.ipb.ac.id</a> <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GitHub: <a href="https://github.com/fid3101">@fid3101</a> <br>
+  
+👦 <b>Arya Aminata | G64180007</b> <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Role: <a>Front-End</a> <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Email: <a>arya_aminata93@apps.ipb.ac.id</a> <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GitHub: <a href="https://github.com/aryaaminata093">@aryaaminata093</a> <br>
+	
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
