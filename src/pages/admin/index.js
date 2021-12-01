@@ -2,6 +2,7 @@ import { Switch, Route, useRouteMatch, Redirect } from "react-router";
 import AboutPage from "./tentang-kami/index";
 import DetailTentangKami from "./tentang-kami/detail";
 import EditTentangKami from "./tentang-kami/edit";
+import AddTentangKami from "./tentang-kami/add";
 import ProjekPage from "./project/index";
 import AddProjekPage from "./project/add";
 import DetailProjekPage from "./project/detail";
@@ -25,6 +26,7 @@ const AdminLayout = () => {
       <Switch>
         {/* About */}
         <Route exact path={`${match.path}/tentang-kami`} component={AboutPage} />
+        <Route path={`${match.path}/tentang-kami/add`} component={AddTentangKami} />
         <Route path={`${match.path}/tentang-kami/detail`} component={DetailTentangKami} />
         <Route path={`${match.path}/tentang-kami/edit`} component={EditTentangKami} />
         {/* Project */}

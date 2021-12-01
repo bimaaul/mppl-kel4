@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Box, Grid, TextField, Button, makeStyles, InputAdornment } from "@material-ui/core";
-import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
+import { Box, Grid, TextField, Button, makeStyles } from "@material-ui/core";
 import { useDropzone } from "react-dropzone";
 import AddPhotoAlternateOutlinedIcon from "@material-ui/icons/AddPhotoAlternateOutlined";
 
@@ -44,8 +43,6 @@ const useStyles = makeStyles((theme) => ({
     "& p": {
       color: "white",
     },
-    marginTop: 5,
-    marginBottom: 5,
     display: "block",
     width: "1024px",
   },
@@ -62,11 +59,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   label: {
-    color: "#DCD4E7",
-  },
-
-  add__button: {
-    padding: "57px",
+    color: "#645E6F",
   },
 
   add__button: {
@@ -110,10 +103,6 @@ const useStyles = makeStyles((theme) => ({
 
   text__dnd: {
     color: "#645E6F",
-  },
-
-  icon: {
-    color: "#FFFFFF",
   },
 }));
 
@@ -185,28 +174,20 @@ const AddProjekPage = () => {
               <TextField
                 className={classes.field}
                 name="nama"
-                // label="Nama"
                 placeholder="Nama Projek"
                 variant="outlined"
-                display="flex"
                 size="small"
-                InputLabelProps={{ className: classes.label, required: false }}
                 InputProps={{ className: classes.input }}
                 fullWidth
                 required
                 type="text"
-                // onChange={(e) => setNama(e.target.value)}
-                //value={formValues.nama}
-                //onChange={e => handleChangeNama(e)}
                 autoFocus={true}
-                // error={namaError}
               />
             </Grid>
             <Grid item class="form-field">
               <TextField
                 className={classes.field}
                 name="nama"
-                // label="Nama"
                 placeholder="Deskripsi Projek"
                 variant="outlined"
                 display="flex"
@@ -218,11 +199,6 @@ const AddProjekPage = () => {
                 size="small"
                 required
                 type="text"
-                // onChange={(e) => setNama(e.target.value)}
-                //value={formValues.nama}
-                //onChange={e => handleChangeNama(e)}
-                autoFocus={true}
-                // error={namaError}
               />
             </Grid>
             <Grid item class="form-field">
@@ -231,51 +207,25 @@ const AddProjekPage = () => {
                   className={classes.field}
                   name="nama"
                   label="Tanggal mulai"
-                  placeholder="DD/MM/YYYY"
                   variant="outlined"
                   display="flex"
-                  InputLabelProps={{ className: classes.label, required: false, shrink: true }}
-                  InputProps={{
-                    className: classes.input,
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <CalendarTodayIcon className={classes.icon} />
-                      </InputAdornment>
-                    ),
-                  }}
+                  InputLabelProps={{ className: classes.label, required: true, shrink: true }}
+                  InputProps={{ className: classes.input }}
                   size="small"
                   required
-                  type="text"
-                  // onChange={(e) => setNama(e.target.value)}
-                  //value={formValues.nama}
-                  //onChange={e => handleChangeNama(e)}
-                  autoFocus={true}
-                  // error={namaError}
+                  type="date"
                 />
                 <TextField
                   className={classes.field}
                   name="nama"
                   label="Tanggal Selesai"
-                  placeholder="DD/MM/YYYY"
                   variant="outlined"
                   display="flex"
-                  InputLabelProps={{ className: classes.label, required: false, shrink: true }}
-                  InputProps={{
-                    className: classes.input,
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <CalendarTodayIcon className={classes.icon} />
-                      </InputAdornment>
-                    ),
-                  }}
+                  InputLabelProps={{ className: classes.label, required: true, shrink: true }}
+                  InputProps={{ className: classes.input }}
                   size="small"
                   required
-                  type="text"
-                  // onChange={(e) => setNama(e.target.value)}
-                  //value={formValues.nama}
-                  //onChange={e => handleChangeNama(e)}
-                  autoFocus={true}
-                  // error={namaError}
+                  type="date"
                 />
               </Box>
             </Grid>

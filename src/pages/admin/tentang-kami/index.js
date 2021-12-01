@@ -1,29 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   makeStyles,
   Button,
-  Box,
-  Card,
-  CardMedia,
-  CardContent,
-  Table,
   TableContainer,
+  Table,
   TableHead,
+  TableBody,
   TableRow,
   TableCell,
-  TableBody,
-  Grid,
-  Modal,
+  CircularProgress,
 } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import { useHistory } from "react-router-dom";
-import DeleteOutlineOutlinedIcon from "@material-ui/icons/DeleteOutlineOutlined";
-
-function createSkill(icon, title, desc) {
-  return { icon, title, desc };
-}
-
-const dataSkill = [createSkill("link", "Mobile Developer", "Lorem ipsum dolor sit amet, consectetur adipiscing elit.")];
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -67,23 +56,17 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     padding: "20px",
   },
+  add__button: {
+    padding: "57px",
+  },
   button: {
-    backgroundColor: "#644EEC",
-    color: "white",
-    height: "60px",
-    width: "60px",
-    borderRadius: "5px",
-    marginTop: "25%",
-    "&:hover": {
-      backgroundColor: "#1D1C21",
-      color: "#644EEC",
-    },
+    height: "56px",
+    width: "56px",
   },
   helperText: {
     color: "#645E6F",
   },
   tableAbout: {
-    // width: 'max-content',
     background: "#111113",
     marginBottom: "20px",
     marginLeft: "auto",
@@ -91,8 +74,6 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "50px",
   },
   cell: {
-    // borderBottom: "true",
-    // width: '500px',
     color: "white",
   },
   gridwrap: {
@@ -204,26 +185,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function createData(namatim, aksi) {
-  return { namatim, aksi };
-}
-
-const rows = [createData("Mamen Rider", "")];
-
 export default function AboutPage(props) {
+  const [loading, setLoading] = useState(false);
+  const [about, setAbout] = useState(null);
   const classes = useStyles();
   const history = useHistory();
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
 
-  const data = [
-    { skill: "Mobile Developer", desc: "Lorem ipsum" },
-    { skill: "Front End Developer", desc: "Lorem ipsum" },
-    { skill: "Back End Developer", desc: "Lorem ipsum" },
-    { skill: "Project Manager", desc: "Lorem ipsum" },
-    { skill: "FullStuck Developer", desc: "Lorem ipsum" },
-  ];
+  useEffect(() => {
+    if (about === null) {
+      setLoading(true);
+      axios.get("https://be-mppl.herokuapp.com/api/about").then((res) => {
+        setLoading(false);
+        setAbout(res.data.about);
+      });
+    }
+  }, [about]);
 
   return (
     <div className={classes.root}>
@@ -237,23 +213,27 @@ export default function AboutPage(props) {
         </div>
         <h4 className={classes.h4}>Informasi Kami</h4>
         <hr style={{ color: "#645E6F", height: 0.5 }} />
-        <TableContainer>
-          <Table className={classes.tableAbout} style={{ tableLayout: "auto" }} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell style={{ color: "white", fontWeight: "bold", width: "50%" }} align="left">
-                  Nama Tim
-                </TableCell>
-                <TableCell style={{ color: "white", fontWeight: "bold", width: "50%" }} align="left">
-                  Aksi
-                </TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows.map((row) => (
-                <TableRow key={row.namatim}>
+        {loading ? (
+          <div style={{ display: "flex", justifyContent: "center", width: "100%", marginTop: "16px" }}>
+            <CircularProgress />
+          </div>
+        ) : about ? (
+          <TableContainer>
+            <Table className={classes.tableAbout} style={{ tableLayout: "auto" }} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell style={{ color: "white", fontWeight: "bold", width: "50%" }} align="left">
+                    Nama Tim
+                  </TableCell>
+                  <TableCell style={{ color: "white", fontWeight: "bold", width: "50%" }} align="left">
+                    Aksi
+                  </TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <TableRow key={about._id}>
                   <TableCell className={classes.cell} align="left" style={{ width: "50%" }}>
-                    {row.namatim}
+                    {about.name}
                   </TableCell>
                   <TableCell className={classes.cell} align="left" style={{ width: "50%" }}>
                     <Button
@@ -280,10 +260,24 @@ export default function AboutPage(props) {
                     </Button>
                   </TableCell>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+              </TableBody>
+            </Table>
+          </TableContainer>
+        ) : (
+          <div className={classes.add__button} align="center">
+            <Button
+              className={classes.button}
+              variant="contained"
+              color="primary"
+              onClick={() => history.push("/admin/tentang-kami/add")}
+            >
+              <AddIcon />
+            </Button>
+            <p className={classes.p} align="center">
+              Isi detail informasi
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
