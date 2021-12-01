@@ -20,12 +20,58 @@
 
 
 
-[Back-End](#back-end) | [latar Belakang](#latar-belakang) | [Tujuan](#tujuan) | [Ruang Lingkup](#ruang-lingkup) | [Deskripsi](#deskripsi) | [User Analisis](#user-analisis) | [Spesifikasi](#spesifikasi-lingkup-pengembangan) | [Metode Pengembangan](#metode-pengembangan) | [Hasil dan Pembahasan](#hasil-dan-pembahasan) | [Stakeholders](#stakeholders) | [Identifikasi User](#identifikasi-user) | [Fitur Utama](#fitur-utama) | [Fungsi CRUD](#fungsi-crud) | [Implementasi](#implementasi) | [Link Aplikasi](#stakeholders) | [Developer dan Jobdesk](#developer-dan-jobdesk)
+[Back-End](#back-end) | [Latar Belakang](#latar-belakang) | [Tujuan](#tujuan) | [Ruang Lingkup](#ruang-lingkup) | [Deskripsi](#deskripsi) | [User Analisis](#user-analisis) | [Spesifikasi](#spesifikasi-lingkup-pengembangan) | [Metode Pengembangan](#metode-pengembangan) | [Hasil dan Pembahasan](#hasil-dan-pembahasan) | [Stakeholders](#stakeholders) | [Identifikasi User](#identifikasi-user) | [Fitur Utama](#fitur-utama) | [Fungsi CRUD](#fungsi-crud) | [Implementasi](#implementasi) | [Link Aplikasi](#stakeholders) | [Developer dan Jobdesk](#developer-dan-jobdesk)
 :---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:
 
-# 🖥 Back-End
+# :link: Back-End
 [`^ kembali ke atas ^`](#)  
 https://app.swaggerhub.com/apis-docs/bimaaul/mppl/1.0
+
+# 📖 Latar Belakang
+[`^ kembali ke atas ^`](#)  
+Di masa teknologi ini, jasa pengembangan sistem informasi semakin diperlukan. Namun tidak sedikit orang yang kesulitan mendapat informasi jasa software developer yang terpercaya dan profesional. Begitu juga sebaliknya. Tidak jarang software developer juga kesulitan untuk mencari client karena jasanya belum dikenali banyak orang. Salah satu software developer yang merasakan hal tersebut adalah Mamen Rider. 
+
+Mamen Rider merupakan salah satu kumpulan mahasiswa Ilmu Komputer IPB yang juga merupakan software developer dan sudah dikenal oleh teman-temannya. Selama perkuliahan, mereka sudah melakukan beberapa proyek yang dikerjakan bersamaan oleh setiap anggotanya. Setelah melakukan beberapa proyek bersama, mereka merasa hal tersebut merupakan suatu peluang yang besar bagi mereka terutama dalam bidang software development. 
+
+Kedepannya Mamen Rider akan mengembangkan usaha jasa software development bernama Mamen Project dan menawarkannya kepada orang lain. Namun karena keterbatasan jejaring informasi, Mamen Rider kesulitan untuk menjangkau target clientnya dan tidak memiliki wadah untuk mempromosikan skill dan kemampuan mereka.
+
+# :pushpin: Tujuan
+[`^ kembali ke atas ^`](#) 
+- Media untuk memperkenalkan Mamen Project dan profil Mamen Rider
+- Memperluas jangkauan target client
+
+# :ledger: Ruang Lingkup
+[`^ kembali ke atas ^`](#) 
+- Sistem yang dibuat berdasarkan kebutuhan dan permasalahan dari pihak client yaitu Mamen Rider
+- Secara garis besar, sistem yang kami buat menyediakan informasi seputar profile dari pihak client, portofolio setiap anggota client, narahubung setiap anggota, dan informasi daftar proyek yang dapat dilakukan.
+- Sistem berfungsi sebagai penghubung pihak client dan juga user yang hendak mencari pihak software developer yang dapat mengerjakan proyek bisnis mereka
+- Aplikasi berbasis website sebagai client-side
+- Pembuatan dan pengembangan program menggunakan PHP dengan framework React JS dan database menggunakan MySQL
+- Dapat diakses dimana saja dengan koneksi internet
+
+# 🖥 Deskripsi
+[`^ kembali ke atas ^`](#) 
+Mamen project adalah sebuah aplikasi berbasis website yang menyediakan informasi seputar profile pihak Mamen Rider, portofolio setiap anggota mereka, track record untuk setiap proyek yang berhasil mereka kerjakan, narahubung untuk melakukan kolaborasi, dan informasi review proyek yang telah berhasil dibuat. Tujuan dari dibuatnya aplikasi ini yaitu sebagai penghubung antara pihak Mamen Rider dan juga user yang hendak mencari software developer untuk mengembangkan produk bisnis mereka.
+
+# :people_holding_hands: User Analisis
+[`^ kembali ke atas ^`](#)
+
+# ⚙️ Spesifikasi Lingkungan Pengembangan
+[`^ kembali ke atas ^`](#)
+### Software
+<h1 align="center">
+	<img
+	src="https://user-images.githubusercontent.com/60166539/122099522-496a6080-ce3c-11eb-9109-1c7d38699a94.png"/>
+</h1>
+
+### Hardware
+Perangkat keras yang dibutuhkan dalam pembuatan aplikasi ini adalah Laptop dengan spesifikasi minimal sebagai berikut.
+- Prosesor Intel Core i5 gen 2.8 GHz  
+- RAM 8 GB
+- HDD 320 GB
+- GPU Nvidia GeForce 920MX
+
+
 
 # Getting Started with Create React App
 
