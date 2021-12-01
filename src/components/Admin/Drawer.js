@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { UserContext } from "../../context/UserContext";
 import { List, ListItem, Drawer, Box, Button } from "@material-ui/core";
@@ -51,16 +51,17 @@ const useStyles = makeStyles((theme) => ({
     padding: "12px 0 12px 25px",
     fontFamily: "Poppins",
     fontSize: "14px",
-    "&:active": {
-      background: "#120781",
-    },
     "&:hover": {
       background: "#644EEC",
     },
   },
+  active: {
+    background: "#644EEC",
+  },
 }));
 
 const CustomDrawer = (props) => {
+  const { pathname } = useLocation();
   const classes = useStyles();
   const history = useHistory();
   const [, setUser] = useContext(UserContext);
@@ -75,26 +76,31 @@ const CustomDrawer = (props) => {
     {
       icon: <DashboardOutlinedIcon style={{ color: "white" }} />,
       text: "Tentang Kami",
+      path: "/admin/tentang-kami",
       onClick: () => history.push("/admin"),
     },
     {
       icon: <AssessmentOutlinedIcon style={{ color: "white" }} />,
       text: "Projek Kami",
+      path: "/admin/projek",
       onClick: () => history.push("/admin/projek"),
     },
     {
       icon: <SupervisorAccountOutlinedIcon style={{ color: "white" }} />,
       text: "Anggota",
+      path: "/admin/anggota",
       onClick: () => history.push("/admin/anggota"),
     },
     {
       icon: <DescriptionOutlinedIcon style={{ color: "white" }} />,
       text: "Testimoni",
+      path: "/admin/testimoni",
       onClick: () => history.push("/admin/testimoni"),
     },
     {
       icon: <SpeakerNotesOutlinedIcon style={{ color: "white" }} />,
       text: "Permintaan",
+      path: "/admin/permintaan",
       onClick: () => history.push("/admin/permintaan"),
     },
   ];
@@ -107,9 +113,14 @@ const CustomDrawer = (props) => {
       </div>
       <Box display="flex" flexDirection="column" justifyContent="space-between" className={classes.menu}>
         <List style={{ padding: "0" }}>
-          {menuList.map(({ text, icon, onClick }, index) => (
+          {menuList.map(({ text, icon, path, onClick }, index) => (
             <ListItem key={text}>
-              <Button variant="contained" onClick={onClick} className={classes.item} startIcon={icon}>
+              <Button
+                variant="contained"
+                onClick={onClick}
+                className={`${classes.item} ${pathname.includes(path) && classes.active}`}
+                startIcon={icon}
+              >
                 {text}
               </Button>
             </ListItem>

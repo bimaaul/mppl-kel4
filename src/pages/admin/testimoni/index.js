@@ -161,7 +161,7 @@ export default function TestimoniPage(props) {
             className={classes.button}
             variant="contained"
             color="primary"
-            onClick={() => history.push("/admin/add_testimoni")}
+            onClick={() => history.push("/admin/testimoni/add")}
           >
             <AddIcon />
           </Button>
@@ -196,7 +196,7 @@ export default function TestimoniPage(props) {
                       }}
                       variant="contained"
                       color="primary"
-                      onClick={() => history.push("/admin/detail_testimoni")}
+                      onClick={() => history.push("/admin/testimoni/detail")}
                     >
                       Lihat Detail
                     </Button>
@@ -207,7 +207,7 @@ export default function TestimoniPage(props) {
                       }}
                       variant="contained"
                       color="primary"
-                      onClick={() => history.push("/admin/edit_testimoni")}
+                      onClick={() => history.push("/admin/testimoni/edit")}
                     >
                       Edit
                     </Button>

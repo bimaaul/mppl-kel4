@@ -197,21 +197,10 @@ export default function PermintaanPage(props) {
                       }}
                       variant="contained"
                       color="primary"
-                      onClick={() => history.push("/admin/detail_permintaan")}
+                      onClick={() => history.push("/admin/permintaan/detail")}
                     >
                       Lihat Detail
                     </Button>
-                    {/* <Button
-                      style={{
-                        textTransform: 'initial',
-                        marginRight: '20px'
-                      }}
-                      variant="contained"
-                      color="primary"
-                      onClick={() => history.push("/admin/edit_testimoni")}
-                    >
-                      Edit
-                    </Button> */}
                     <Button
                       style={{
                         background: "#ff0000",

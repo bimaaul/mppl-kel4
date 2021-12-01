@@ -10,7 +10,7 @@ const drawerWidth = 250;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
-    background: "#0D0C0F"
+    background: "#0D0C0F",
   },
   drawer: {
     [theme.breakpoints.up("sm")]: {
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
       width: `calc(100% - ${drawerWidth}px)`,
       height: "94.61px",
       marginLeft: drawerWidth,
-      background: "#0D0C0F"
+      background: "#0D0C0F",
     },
   },
   menuButton: {
@@ -31,7 +31,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("sm")]: {
       display: "none",
     },
-    
   },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
@@ -41,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
-    height: "100%",
+    minHeight: "100vh",
     background: "#0D0C0F",
   },
 }));
@@ -76,7 +75,7 @@ function Layout(props) {
           <UserMenu />
         </Toolbar>
       </AppBar>
-      <hr style={{background: "#1D1C21", border: '0', margin: "0", height: "1px"}}/>
+      <hr style={{ background: "#1D1C21", border: "0", margin: "0", height: "1px" }} />
       <nav className={classes.drawer} aria-label="mailbox folders">
         <Hidden smUp implementation="css">
           <Drawer

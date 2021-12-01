@@ -158,7 +158,7 @@ export default function ProjectPage(props) {
             className={classes.button}
             variant="contained"
             color="primary"
-            onClick={() => history.push("/admin/add_projek")}
+            onClick={() => history.push("/admin/projek/add")}
           >
             <AddIcon />
           </Button>
@@ -193,7 +193,7 @@ export default function ProjectPage(props) {
                       }}
                       variant="contained"
                       color="primary"
-                      onClick={() => history.push("/admin/detail_projek")}
+                      onClick={() => history.push("/admin/projek/detail")}
                     >
                       Lihat Detail
                     </Button>
@@ -204,7 +204,7 @@ export default function ProjectPage(props) {
                       }}
                       variant="contained"
                       color="primary"
-                      onClick={() => history.push("/admin/edit_projek")}
+                      onClick={() => history.push("/admin/projek/edit")}
                     >
                       Edit
                     </Button>
