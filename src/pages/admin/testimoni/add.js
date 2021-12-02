@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import axios from "axios";
+import { Controller, useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
 import { nanoid } from 'nanoid';
-import { Grid, TextField, Button, makeStyles, InputAdornment } from '@material-ui/core';
+import { Grid, TextField, Button, makeStyles, InputAdornment, CircularProgress  } from '@material-ui/core';
 import { useDropzone } from 'react-dropzone';
 import AddPhotoAlternateOutlinedIcon from '@material-ui/icons/AddPhotoAlternateOutlined';
 
@@ -110,7 +113,8 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const AddTestimoniPage = () => {
+export default function AddTestimoniPage() {
+    const history = useHistory();
     const classes = useStyles();
     const [image, setImage] = useState([]);
     const { getRootProps, isDragActive } = useDropzone({
@@ -124,6 +128,8 @@ const AddTestimoniPage = () => {
         }
     })
 
+    console.log(image);
+
     const [formValues, setFormValues] = useState([{
         name: '', 
         job: '', 
@@ -132,6 +138,7 @@ const AddTestimoniPage = () => {
     }])
 
     const handleFormChange = (e) => {
+
         e.preventDefault();
 
         const fieldName = e.target.getAttribute("name");
@@ -141,18 +148,33 @@ const AddTestimoniPage = () => {
         newFormValue[fieldName] = fieldValue;
 
         setFormValues(newFormValue);
+        console.log(newFormValue);
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        const newTestimoni = {
-            id: nanoid(),
-            name: formValues.name,
-            job: formValues.job,
-            testimoni: formValues.testimoni,
-            profile: formValues.profile
-        }
+    const handleSubmit = () => {
+        const accessToken = JSON.parse(localStorage.getItem('user'))['token'];
+        //console.log(accessToken);
+        let formdata = new FormData();
+        formdata.append("name", formValues.name);
+        formdata.append("job", formValues.job);
+        formdata.append("testimoni", formValues.testimoni);
+        formdata.append("profile", image[0]);        
+    
+        axios
+          .post("https://be-mppl.herokuapp.com/api/clients", 
+            formdata, {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`
+                }
+            })
+          .then((res) => {
+            console.log(res);
+            history.push("/admin/testimoni");
+          })
+          .catch((error) => {
+            alert(error.response.data.message);
+          });
+    };
 
         //setNamaError(false)
         //setNohpError(false)
@@ -182,7 +204,7 @@ const AddTestimoniPage = () => {
         // }
 
         //console.log(formValues);
-    }
+    
 
     return (
         <div className={classes.root}>
@@ -206,7 +228,7 @@ const AddTestimoniPage = () => {
                                 required
                                 type="text"
                                 onChange={handleFormChange}
-                                //value={formValues.nama}
+                                value={formValues.name}
                                 autoFocus={true}
                             // error={namaError}
                             />
@@ -225,7 +247,7 @@ const AddTestimoniPage = () => {
                                 size="small"
                                 required
                                 type="text"
-                                //value={formValues.nama}
+                                value={formValues.job}
                                 onChange={handleFormChange}
                                 autoFocus={true}
                             // error={namaError}
@@ -247,7 +269,7 @@ const AddTestimoniPage = () => {
                                 size="small"
                                 required
                                 type="text"
-                                //value={formValues.nama}
+                                value={formValues.testimoni}
                                 onChange={handleFormChange}
                                 autoFocus={true}
                             // error={namaError}
@@ -295,5 +317,3 @@ const AddTestimoniPage = () => {
         </div>
     );
 };
-
-export default AddTestimoniPage;
