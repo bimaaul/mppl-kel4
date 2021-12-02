@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
-import { useHistory } from "react-router-dom";
-import { Box, Grid, TextField, Button, makeStyles, InputAdornment } from '@material-ui/core';
+import React, { useState, useContext, useEffect } from 'react';
+import { UserContext } from "../../../context/UserContext";
+import { useHistory, useParams } from "react-router-dom";
+import { Grid, TextField, Button, makeStyles} from '@material-ui/core';
 import { useDropzone } from 'react-dropzone';
+import { Controller, useForm } from "react-hook-form";
 import AddPhotoAlternateOutlinedIcon from '@material-ui/icons/AddPhotoAlternateOutlined';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -122,7 +125,23 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const EditTestimoniPage = () => {
+export default function EditTestimoniPage() {
+    const [user] = useContext(UserContext);
+    const [loading, setLoading] = useState(false);
+    const [testi, setTesti] = useState(null);
+    const {
+        control,
+        handleSubmit,
+        setValue,
+        formState: {isSubmitting, isValid, isDirty},
+    } = useForm({
+        defaultValues: {
+            name: "",
+
+        },
+        mode: "onChange",
+    });
+    const id = useParams();
     const classes = useStyles();
     const [image, setImage] = useState([]);
     const history = useHistory();
@@ -137,6 +156,20 @@ const EditTestimoniPage = () => {
         }
     })
 
+    useEffect(() =>{
+        setLoading(true);
+        axios
+            .get("https://be-mppl.herokuapp.com/api/about/clients")
+            .then((res) => {
+                setLoading(false);
+                if (res.data) setTesti(res.data);
+                else history.push("/admin/tentang-kami/add");
+            })
+            .catch((err) => console.log(err.response.data));
+    }, [testi]);
+
+    
+
     const [formValues, setFormValues] = useState([{
         //nama: '', 
         //nomorhp: '', 
@@ -144,37 +177,10 @@ const EditTestimoniPage = () => {
         //pesan: ''
     }])
 
-    const handleSubmit = (e) => {
-        // e.preventDefault();
-        // setNamaError(false)
-        // setNohpError(false)
-        // setEmailError(false)
-        // setPesanError(false)
+    // const handleSubmit = (e) => {
 
-        // if(namaValue == ''){
-        //     setNamaError(true)
-        // }
-        // if(nohpValue == ''){
-        //     setNohpError(true)
-        // }
-        // if(emailValue == ''){
-        //     setEmailError(true)
-        // }
-        // if(pesanValue == ''){
-        //     setPesanError(true)
-        // }
-        // if(namaValue && nohpValue && emailValue && pesanValue){
-        //     console.log(formValues);
-        // }
-        
-        // setIsDisabled(false);
-
-        // if(formValues.nama == '' && formValues.nomorhp = '' && formValues.email = '' && formValues.pesan = ''){
-        //     setIsDisabled(true)
-        // }
-
-        console.log(formValues);
-    }
+    //     console.log(formValues);
+    // }
 
     return (
         <div className={classes.root}>
@@ -300,4 +306,4 @@ const EditTestimoniPage = () => {
     );
 };
 
-export default EditTestimoniPage;
+

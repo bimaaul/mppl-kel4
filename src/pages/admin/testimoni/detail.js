@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
-import { Box, Grid, TextField, Button, makeStyles, InputAdornment } from '@material-ui/core';
-import { useDropzone } from 'react-dropzone';
-import AddPhotoAlternateOutlinedIcon from '@material-ui/icons/AddPhotoAlternateOutlined';
+import React, { useState,  useContext, useEffect} from 'react';
+import axios from 'axios';
+import { UserContext } from "../../../context/UserContext";
+import { useHistory } from 'react-router';
+import { Grid, TextField, Button, makeStyles, InputAdornment, circularProgress } from '@material-ui/core';
+import { useParams } from "react-router-dom"
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -110,64 +112,28 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const DetailTestimoniPage = () => {
+    const [user] = useContext(UserContext);
+    const [loading, setLoading] = useState(false);
+    const [testi, setTesti] = useState(null)
     const classes = useStyles();
-    const [image, setImage] = useState([]);
-    const { getRootProps, isDragActive } = useDropzone({
-        accept: "image/*",
-        onDrop: (acceptedFiles) => {
-            setImage(
-                acceptedFiles.map((upFile) => Object.assign(upFile, {
-                    preview: URL.createObjectURL(upFile)
-                }))
-            )
-        }
-    })
+    const { id } = useParams()
 
-    const [formValues, setFormValues] = useState([{
-        //nama: '', 
-        //nomorhp: '', 
-        //email: '', 
-        //pesan: ''
-    }])
+    useEffect(() => {
+        setLoading(true);
+        axios.get("https://be-mppl.herokuapp.com/api/clients").then((res) => {
+            setLoading(false);
+            setTesti(res.data);     
+        });
+    }, [testi]);
 
-    const handleSubmit = (e) => {
-        // e.preventDefault();
-        // setNamaError(false)
-        // setNohpError(false)
-        // setEmailError(false)
-        // setPesanError(false)
-
-        // if(namaValue == ''){
-        //     setNamaError(true)
-        // }
-        // if(nohpValue == ''){
-        //     setNohpError(true)
-        // }
-        // if(emailValue == ''){
-        //     setEmailError(true)
-        // }
-        // if(pesanValue == ''){
-        //     setPesanError(true)
-        // }
-        // if(namaValue && nohpValue && emailValue && pesanValue){
-        //     console.log(formValues);
-        // }
-        
-        // setIsDisabled(false);
-
-        // if(formValues.nama == '' && formValues.nomorhp = '' && formValues.email = '' && formValues.pesan = ''){
-        //     setIsDisabled(true)
-        // }
-
-        console.log(formValues);
-    }
+    
 
     return (
         <div className={classes.root}>
             <div className={classes.add__testi}>
                 <h3 className={classes.h3}>Detail Testimoni</h3>
                 <hr style={{ color: '#fff', height: 1 }} />
-                <form onSubmit={handleSubmit} className={classes.form} noValidate autoComplete="off">
+                <form className={classes.form} noValidate autoComplete="off">
                     <Grid container alignItems="center" justify="center" direction="column">
                         <Grid item class="form-field">
                             <TextField
@@ -183,9 +149,8 @@ const DetailTestimoniPage = () => {
                                 fullWidth
                                 required
                                 type="text"
-                                // onChange={(e) => setNama(e.target.value)}
+                                //defaultValue={testi.name}
                                 //value={formValues.nama}
-                                //onChange={e => handleChangeNama(e)}
                                 autoFocus={true}
                             // error={namaError}
                             />
@@ -204,9 +169,7 @@ const DetailTestimoniPage = () => {
                                 size="small"
                                 required
                                 type="text"
-                                // onChange={(e) => setNama(e.target.value)}
                                 //value={formValues.nama}
-                                //onChange={e => handleChangeNama(e)}
                                 autoFocus={true}
                             // error={namaError}
                             />
@@ -227,27 +190,17 @@ const DetailTestimoniPage = () => {
                                 size="small"
                                 required
                                 type="text"
-                                // onChange={(e) => setNama(e.target.value)}
                                 //value={formValues.nama}
-                                //onChange={e => handleChangeNama(e)}
                                 autoFocus={true}
                             // error={namaError}
                             />
                         </Grid>
                         <Grid item class="form-field">
-                            <div {...getRootProps()}>
                                 <div className={classes.dnd__image}>
                                     <div style={{ position: 'absolute', align: 'center', }}>
-                                        {image.map((upFile) => {
-                                            return (
-                                                <div>
-                                                    <img src={upFile.preview} className={classes.preview} alt="preview" />
-                                                </div>
-                                            )
-                                        })}
+                                        
                                     </div>
                                 </div>
-                            </div>
                         </Grid>
                     </Grid>
                 </form>
