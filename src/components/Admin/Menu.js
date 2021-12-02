@@ -1,16 +1,7 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
+import { UserContext } from "../../context/UserContext";
 import NotificationsIcon from "@material-ui/icons/Notifications";
-import {
-  Button,
-  Avatar,
-  IconButton,
-  Popper,
-  Grow,
-  Paper,
-  ClickAwayListener,
-  MenuList,
-  MenuItem,
-} from "@material-ui/core";
+import { Button, Avatar, Popper, Grow, Paper, ClickAwayListener, MenuList, MenuItem } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -43,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "10px",
     "&:hover": {
       background: "white",
-    } 
+    },
   },
   acc_btn: {
     color: "white",
@@ -55,11 +46,12 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "10px",
     "&:hover": {
       background: "primary",
-    }
-  }
+    },
+  },
 }));
 
 const UserMenu = () => {
+  const [user] = useContext(UserContext);
   const anchorRef = useRef(null);
   const classes = useStyles();
   const [open, setOpen] = useState(false);
@@ -80,9 +72,9 @@ const UserMenu = () => {
       <Button className={classes.acc_btn}>
         <Avatar className={classes.small}></Avatar>
         <span style={{ padding: "0 20px 0 12px" }} className={classes.adminName}>
-          Ali Naufal Ammarullah
+          {user.name}
         </span>
-      </Button>      
+      </Button>
       <Button
         className={classes.button}
         variant="contained"

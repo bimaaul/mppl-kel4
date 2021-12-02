@@ -225,7 +225,7 @@ export default function AnggotaPage(props) {
                   className={classes.button}
                   variant="contained"
                   color="primary"
-                  onClick={() => history.push("/admin/add_anggota")}
+                  onClick={() => history.push("/admin/anggota/add")}
                 >
                   <AddIcon />
                 </Button>
@@ -248,7 +248,7 @@ export default function AnggotaPage(props) {
                   className={classes.edit_button}
                   variant="contained"
                   color="primary"
-                  onClick={() => history.push("/admin/edit_anggota")}
+                  onClick={() => history.push("/admin/anggpta/edit")}
                 >
                   Edit
                 </Button>

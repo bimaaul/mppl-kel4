@@ -158,7 +158,7 @@ export default function TestimoniPage(props) {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {  
-    if(testi === []){ //MASIH ADA BUG DI LOGIC IF
+    if(testi === []){    //MASIH ADA BUG DI LOGIC IF
       setLoading(true);
       axios.get("https://be-mppl.herokuapp.com/api/clients").then((response) => {
         console.log(response);
@@ -180,7 +180,7 @@ export default function TestimoniPage(props) {
             className={classes.button}
             variant="contained"
             color="primary"
-            onClick={() => history.push("/admin/add_testimoni")}
+            onClick={() => history.push("/admin/testimoni/add")}
           >
             <AddIcon />
           </Button>
