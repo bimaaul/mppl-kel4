@@ -230,7 +230,7 @@ Kami menawarkan ide sebuah platform dimana user dapat melakukan permintaan kerja
 
 👦 <b>Bima Aulia | G64180063</b> <br>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Role: <a>Back-End</a> <br>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Email: <a>@apps.ipb.ac.id</a> <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Email: <a>bimaaulia.15@gmail.com</a> <br>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GitHub: <a href="https://github.com/bimaaul">@bimaaul</a> <br>
 
 👩 <b>Hana Salsabila | G64180051</b> <br>
