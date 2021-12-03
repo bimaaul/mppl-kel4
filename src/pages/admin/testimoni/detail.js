@@ -111,7 +111,7 @@ const useStyles = makeStyles((theme) => ({
 
 const DetailTestimoniPage = () => {
     const [loading, setLoading] = useState(false);
-    const [testi, setTesti] = useState({})
+    const [testi, setTesti] = useState({});
     const classes = useStyles();
     const { id } = useParams();
     //console.log(testi);
