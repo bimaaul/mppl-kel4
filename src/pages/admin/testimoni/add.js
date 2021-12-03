@@ -1,9 +1,8 @@
 import React, { useState, useContext } from 'react';
 import axios from "axios";
-import { Controller, useForm } from "react-hook-form";
+import { UserContext } from "../../../context/UserContext";
 import { useHistory } from "react-router-dom";
-import { nanoid } from 'nanoid';
-import { Grid, TextField, Button, makeStyles, InputAdornment, CircularProgress  } from '@material-ui/core';
+import { Grid, TextField, Button, makeStyles, CircularProgress  } from '@material-ui/core';
 import { useDropzone } from 'react-dropzone';
 import AddPhotoAlternateOutlinedIcon from '@material-ui/icons/AddPhotoAlternateOutlined';
 
@@ -114,6 +113,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function AddTestimoniPage() {
+    const [user] = useContext(UserContext);
     const history = useHistory();
     const classes = useStyles();
     const [image, setImage] = useState([]);
@@ -152,8 +152,6 @@ export default function AddTestimoniPage() {
     }
 
     const handleSubmit = () => {
-        const accessToken = JSON.parse(localStorage.getItem('user'))['token'];
-        //console.log(accessToken);
         let formdata = new FormData();
         formdata.append("name", formValues.name);
         formdata.append("job", formValues.job);
@@ -164,7 +162,7 @@ export default function AddTestimoniPage() {
           .post("https://be-mppl.herokuapp.com/api/clients", 
             formdata, {
                 headers: {
-                    Authorization: `Bearer ${accessToken}`
+                    Authorization: `Bearer ${user.token}`
                 }
             })
           .then((res) => {
@@ -175,35 +173,6 @@ export default function AddTestimoniPage() {
             alert(error.response.data.message);
           });
     };
-
-        //setNamaError(false)
-        //setNohpError(false)
-        //setEmailError(false)
-        //setPesanError(false)
-
-        // if(namaValue == ''){
-        //     setNamaError(true)
-        // }
-        // if(nohpValue == ''){
-        //     setNohpError(true)
-        // }
-        // if(emailValue == ''){
-        //     setEmailError(true)
-        // }
-        // if(pesanValue == ''){
-        //     setPesanError(true)
-        // }
-        // if(namaValue && nohpValue && emailValue && pesanValue){
-        //     console.log(formValues);
-        // }
-        
-        // setIsDisabled(false);
-
-        // if(formValues.nama == '' && formValues.nomorhp = '' && formValues.email = '' && formValues.pesan = ''){
-        //     setIsDisabled(true)
-        // }
-
-        //console.log(formValues);
     
 
     return (

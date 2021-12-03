@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { useHistory } from "react-router-dom";
+import React, { useState, useContext, useEffect } from 'react';
+import { useHistory, useParams } from "react-router-dom";
+import { UserContext } from "../../../context/UserContext";
 import { makeStyles } from '@material-ui/styles';
 import Box from '@material-ui/core/box';
 import Modal from '@material-ui/core/Modal';
@@ -135,7 +136,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const accessToken = JSON.parse(localStorage.getItem('user'))['token'];
+
 
 // function createData(no, name, job) {
 //   return { no, name, job};
@@ -149,16 +150,45 @@ const accessToken = JSON.parse(localStorage.getItem('user'))['token'];
 // ];
 
 export default function TestimoniPage(props) {
+  const [user] = useContext(UserContext);
   const classes = useStyles();
   const history = useHistory();
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [testi, setTesti] = useState([]);
+  const [testi, setTesti] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [id, setId] = useState(null);
 
+  function handlePopup(id){
+    handleOpen();
+    //console.log(id);
+    setId(id);
+  }
+
+  console.log(id);
+
+  const handleDelete = () => {
+      setLoading(true);
+      
+      axios.delete("https://be-mppl.herokuapp.com/api/clients/" + id , {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },     
+      }).then((response) => {
+        setLoading(false);
+        axios.get("https://be-mppl.herokuapp.com/api/clients").then((response) => {
+          console.log(response);
+          setTesti(response.data);
+          //setLoading(false);
+        });
+      });
+
+      handleClose();
+  }
+  
   useEffect(() => {  
-    if(testi === []){    //MASIH ADA BUG DI LOGIC IF
+    if(testi === null){
       setLoading(true);
       axios.get("https://be-mppl.herokuapp.com/api/clients").then((response) => {
         console.log(response);
@@ -166,9 +196,9 @@ export default function TestimoniPage(props) {
         setLoading(false);
       });
     }      
-  });
+  }, [testi]);
   
-  console.log(testi);
+  //console.log(testi);
 
   return (
     <div className={classes.root}>
@@ -218,7 +248,7 @@ export default function TestimoniPage(props) {
                         }}
                         variant="contained"
                         color="primary"
-                        onClick={() => history.push("/admin/detail_testimoni")}
+                        onClick={() => history.push("/admin/testimoni/detail/"+ testi._id)}
                       >
                         Lihat Detail
                       </Button>
@@ -229,7 +259,7 @@ export default function TestimoniPage(props) {
                         }}
                         variant="contained"
                         color="primary"
-                        onClick={() => history.push("/admin/edit_testimoni")}
+                        onClick={() => history.push("/admin/testimoni/detail/"+ testi._id)}
                       >
                         Edit
                       </Button>
@@ -240,7 +270,7 @@ export default function TestimoniPage(props) {
                           textTransform: 'initial',
                         }}
                         variant="contained"
-                        onClick={handleOpen}
+                        onClick={() => handlePopup(testi._id)}
                       >
                         Hapus
                       </Button>
@@ -275,7 +305,7 @@ export default function TestimoniPage(props) {
                       marginLeft: '298px'
                     }}
                     variant="contained"
-                    onClick= {handleClose}
+                    onClick= {handleDelete}
                   >
                     Hapus
                 </Button>
