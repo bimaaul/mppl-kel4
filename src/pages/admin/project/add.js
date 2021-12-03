@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext} from "react";
 import { Box, Grid, TextField, Button, makeStyles } from "@material-ui/core";
 import { useDropzone } from "react-dropzone";
 import AddPhotoAlternateOutlinedIcon from "@material-ui/icons/AddPhotoAlternateOutlined";
+import { Controller, useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
+import { UserContext } from "../../../context/UserContext";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -106,8 +110,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AddProjekPage = () => {
+export default function AddProjekPage() {
   const classes = useStyles();
+  const history = useHistory();
+  const [user] = useContext(UserContext);
+
   const [image, setImage] = useState([]);
   const { getRootProps, isDragActive } = useDropzone({
     accept: "image/*",
@@ -122,83 +129,110 @@ const AddProjekPage = () => {
     },
   });
 
-  const [formValues, setFormValues] = useState([
-    {
-      //nama: '',
-      //nomorhp: '',
-      //email: '',
-      //pesan: ''
+  console.log(image);
+
+  const {
+    control,
+    handleSubmit,
+    formState: { isSubmitting, isDirty, isValid },
+  } = useForm({
+    defaultValues: {
+      name: "", 
+      desription: "", 
+      startDate: "", 
+      endDate: "",
+      img: "",
     },
-  ]);
+    mode: "onChange",
+  });
 
-  const handleSubmit = (e) => {
-    // e.preventDefault();
-    // setNamaError(false)
-    // setNohpError(false)
-    // setEmailError(false)
-    // setPesanError(false)
-
-    // if(namaValue == ''){
-    //     setNamaError(true)
-    // }
-    // if(nohpValue == ''){
-    //     setNohpError(true)
-    // }
-    // if(emailValue == ''){
-    //     setEmailError(true)
-    // }
-    // if(pesanValue == ''){
-    //     setPesanError(true)
-    // }
-    // if(namaValue && nohpValue && emailValue && pesanValue){
-    //     console.log(formValues);
-    // }
-
-    // setIsDisabled(false);
-
-    // if(formValues.nama == '' && formValues.nomorhp = '' && formValues.email = '' && formValues.pesan = ''){
-    //     setIsDisabled(true)
-    // }
-
-    console.log(formValues);
+  const onSubmit = ({ name, description, startDate, endDate, img }) => {
+    axios
+      .post(
+        "https://be-mppl.herokuapp.com/api/projects",
+        {
+          name,
+          description,
+          startDate,
+          endDate,
+          img,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      )
+      .then((response) => {
+        history.push("/admin/projek");
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+      });
   };
+
+  // const handleFormChange = (e) => {
+  //   e.preventDefault();
+  //   const fieldName = e.target.getAttribute("name");
+  //   const fieldValue = e.target.value;
+  //   const newFormValue = {...formValues};
+  //   newFormValue[fieldName] = fieldValue;
+  //   setFormValues(newFormValue);
+  //   console.log(newFormValue);
+  // }
+  // const handleSubmit = (e) => {
+  // };
 
   return (
     <div className={classes.root}>
       <div className={classes.add__testi}>
         <h3 className={classes.h3}>Tambahkan Projek</h3>
         <hr style={{ color: "#fff", height: 1 }} />
-        <form onSubmit={handleSubmit} className={classes.form} noValidate autoComplete="off">
+        <form onSubmit={handleSubmit(onSubmit)} className={classes.form} noValidate autoComplete="off">
           <Grid container alignItems="center" justify="center" direction="column">
             <Grid item class="form-field">
-              <TextField
-                className={classes.field}
-                name="nama"
-                placeholder="Nama Projek"
-                variant="outlined"
-                size="small"
-                InputProps={{ className: classes.input }}
-                fullWidth
-                required
-                type="text"
-                autoFocus={true}
+              <Controller
+                name="name"
+                control={control}
+                rules={{required: "Nama proyek harus diisi"}}
+                render={({ field, fieldState: { error }}) => (
+                  <TextField
+                    className={`${classes.field}`}
+                    placeholder="Nama Projek"
+                    variant="outlined"
+                    size="small"
+                    InputProps={{ className: classes.input }}
+                    fullWidth
+                    required
+                    type="text"
+                    autoFocus={true}
+                    {...field}
+                  />
+                )}
               />
             </Grid>
             <Grid item class="form-field">
-              <TextField
-                className={classes.field}
-                name="nama"
-                placeholder="Deskripsi Projek"
-                variant="outlined"
-                display="flex"
-                InputLabelProps={{ className: classes.label, required: false }}
-                InputProps={{ className: classes.input }}
-                multiline
-                rows={5}
-                fullWidth
-                size="small"
-                required
-                type="text"
+              <Controller
+                name="description"
+                control={control}
+                rules={{required: "Deskripsi proyek harus diisi"}}
+                render={({ field, fieldState: { error }}) => (
+                  <TextField
+                    className={`${classes.field}`}
+                    placeholder="Deskripsi Projek"
+                    variant="outlined"
+                    display="flex"
+                    InputLabelProps={{ className: classes.label, required: false }}
+                    InputProps={{ className: classes.input }}
+                    multiline
+                    rows={5}
+                    fullWidth
+                    size="small"
+                    required
+                    type="text"
+                    {...field}
+                  />
+                )}
               />
             </Grid>
             <Grid item class="form-field">
@@ -277,6 +311,6 @@ const AddProjekPage = () => {
       </div>
     </div>
   );
-};
+}
 
-export default AddProjekPage;
+

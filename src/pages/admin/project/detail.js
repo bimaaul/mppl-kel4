@@ -1,8 +1,10 @@
-import React, { useState } from "react";
-import { Box, Grid, TextField, Button, makeStyles, InputAdornment } from "@material-ui/core";
+import React, { useState, useEffect } from "react";
+import { Box, Grid, TextField, Button, makeStyles, CircularProgress, InputAdornment } from "@material-ui/core";
 import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
 import { useDropzone } from "react-dropzone";
 import AddPhotoAlternateOutlinedIcon from "@material-ui/icons/AddPhotoAlternateOutlined";
+import { useHistory } from "react-router-dom";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -113,8 +115,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const DetailProjekPage = () => {
+export default function DetailProjekPage() {
+  const [loading, setLoading] = useState(false);
+  const [projek, setProjek] = useState({});
   const classes = useStyles();
+  const history = useHistory();
+
   const [image, setImage] = useState([]);
   const { getRootProps, isDragActive } = useDropzone({
     accept: "image/*",
@@ -169,6 +175,15 @@ const DetailProjekPage = () => {
 
     console.log(formValues);
   };
+
+  useEffect(() => {
+    setLoading(true);
+    axios.get("https://be-mppl.herokuapp.com/api/projects").then((res) => {
+      setLoading(false);
+      if (res.data.project) setProjek(res.data.project);
+      else history.push("/admin/projek/add");
+    });
+  }, [history]);
 
   return (
     <div className={classes.root}>
@@ -309,6 +324,4 @@ const DetailProjekPage = () => {
       </div>
     </div>
   );
-};
-
-export default DetailProjekPage;
+}

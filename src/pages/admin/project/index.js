@@ -14,6 +14,7 @@ import TableRow from "@material-ui/core/TableRow";
 import DeleteOutlineOutlinedIcon from "@material-ui/icons/DeleteOutlineOutlined";
 import { UserContext } from "../../../context/UserContext";
 import axios from "axios";
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -128,34 +129,45 @@ const useStyles = makeStyles((theme) => ({
     transitionDuration: "0.4s",
     cursor: "pointer",
   },
+
+  empty_list:{
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  },
 }));
 
-function createData(no, judul, durasi_pengerjaan, aksi) {
-  return { no, judul, durasi_pengerjaan, aksi };
-}
+// function createData(no, judul, durasi_pengerjaan, aksi) {
+//   return { no, judul, durasi_pengerjaan, aksi };
+// }
 
-const rows = [
-  createData(1, "Botani Quest", "14 Agustus 2021 - 24 September 2021", ""),
-  createData(2, "Mamen Project", "14 Agustus 2021 - 24 September 2021", ""),
-];
+// const rows = [
+//   createData(1, "Botani Quest", "14 Agustus 2021 - 24 September 2021", ""),
+//   createData(2, "Mamen Project", "14 Agustus 2021 - 24 September 2021", ""),
+// ];
 
 export default function ProjectPage(props) {
   const classes = useStyles();
   const history = useHistory();
   const [user] = useContext(UserContext);
-  const [project, setProject] = useState(null);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  
+  const [project, setProject] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (project === null) {
       axios
-        .get("https://be-mppl.herokuapp.com/api/projects", {
+        .get("https://be-mppl.herokuapp.com/api/about", {
           headers: { Authorization: `Bearer ${user.token}` },
         })
-        .then((res) => {
-          setProject(res.data);
+        .then((response) => {
+          // console.log(response);
+          setProject(response.data.about);
+          setLoading(false);
         });
     }
   }, [project, user]);
@@ -179,80 +191,90 @@ export default function ProjectPage(props) {
           </p>
         </div>
       </div>
+
       <div className={classes.list__testi}>
         <h3 className={classes.h3}>Daftar Project Kami</h3>
         <hr style={{ color: "#fff", height: 1 }} />
-        <TableContainer>
-          <Table className={classes.table} aria-label="list__project__table">
-            <TableHead>
-              <TableRow>
-                <TableCell style={{ color: "white" }} align="center">
-                  No
-                </TableCell>
-                <TableCell style={{ color: "white" }} align="left">
-                  Judul
-                </TableCell>
-                <TableCell style={{ color: "white" }} align="left">
-                  Durasi Pengerjaan
-                </TableCell>
-                <TableCell style={{ color: "white" }} align="left">
-                  Aksi
-                </TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {/* {project &&
-                project.map((data, index) => (
-                  <TableRow key={data.id}>
-                    <TableCell className={classes.cell} align="center">
-                      {data.no}
-                    </TableCell>
-                    <TableCell className={classes.cell} align="left">
-                      {data.judul}
-                    </TableCell>
-                    <TableCell className={classes.cell} align="left">
-                      {data.durasi_pengerjaan}
-                    </TableCell>
-                    <TableCell className={classes.cell} align="left">
-                      <Button
-                        style={{
-                          textTransform: "initial",
-                          marginRight: "20px",
-                        }}
-                        variant="contained"
-                        color="primary"
-                        onClick={() => history.push("/admin/projek/detail")}
-                      >
-                        Lihat Detail
-                      </Button>
-                      <Button
-                        style={{
-                          textTransform: "initial",
-                          marginRight: "20px",
-                        }}
-                        variant="contained"
-                        color="primary"
-                        onClick={() => history.push("/admin/projek/edit")}
-                      >
-                        Edit
-                      </Button>
-                      <Button
-                        style={{
-                          background: "#ff0000",
-                          color: "#fff",
-                          textTransform: "initial",
-                        }}
-                        variant="contained"
-                        onClick={handleOpen}
-                      >
-                        Hapus
-                      </Button>
-                    </TableCell>
-                  </TableRow>
-                ))} */}
-            </TableBody>
-          </Table>
-        </TableContainer>
+        {loading ? (
+          <div style={{ display: "flex", justifyContent: "center", width: "100%", marginTop: "16px" }}>
+            <CircularProgress />
+          </div>
+        ) : project ?(
+          <TableContainer>
+            <Table className={classes.table} aria-label="list__project__table">
+              <TableHead>
+                <TableRow>
+                  {/* <TableCell style={{ color: "white" }} align="center">
+                    No
+                  </TableCell> */}
+                  <TableCell style={{ color: "white", fontWeight: "bold", width: "30%" }} align="left">
+                    Judul
+                  </TableCell>
+                  <TableCell style={{ color: "white", fontWeight: "bold", width: "40%" }} align="left">
+                    Durasi Pengerjaan
+                  </TableCell>
+                  <TableCell style={{ color: "white", fontWeight: "bold", width: "30%" }} align="left">
+                    Aksi
+                  </TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                    <TableRow key={project._id}>
+                      {/* <TableCell className={classes.cell} align="center">
+                        {project.no}
+                      </TableCell> */}
+                      <TableCell className={classes.cell} align="left">
+                        {project.name}
+                      </TableCell>
+                      <TableCell className={classes.cell} align="left">
+                        {/* {project.startDate} - {project.endDate} */}
+                        {project.description}
+                      </TableCell>
+                      <TableCell className={classes.cell} align="left">
+                        <Button
+                          style={{
+                            textTransform: "initial",
+                            marginRight: "20px",
+                          }}
+                          variant="contained"
+                          color="primary"
+                          onClick={() => history.push("/admin/projek/detail")}
+                        >
+                          Lihat Detail
+                        </Button>
+                        <Button
+                          style={{
+                            textTransform: "initial",
+                            marginRight: "20px",
+                          }}
+                          variant="contained"
+                          color="primary"
+                          onClick={() => history.push("/admin/projek/edit")}
+                        >
+                          Edit
+                        </Button>
+                        <Button
+                          style={{
+                            background: "#ff0000",
+                            color: "#fff",
+                            textTransform: "initial",
+                          }}
+                          variant="contained"
+                          onClick={handleOpen}
+                        >
+                          Hapus
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
+        ) : (
+          <div className="empty_list">
+            Catatan proyek masih kosong
+          </div>
+        )}
+
         <Modal className={classes.popup} open={open} onClose={handleClose}>
           <Box className={classes.popup_box}>
             <div className={classes.top_row}>
