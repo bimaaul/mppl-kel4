@@ -277,7 +277,7 @@ Metode komunikasi yang digunakan sebagai berikut :
 ### Use Case Diagram
 <h1 align="center">
 	<img
-	src="https://user-images.githubusercontent.com/60084871/144302266-f2a180e9-1406-448c-b064-7540ff46d60e.png"/>
+	src="https://user-images.githubusercontent.com/60084871/144603528-77431cad-05e6-48a9-b357-e339e092f61e.png"/>
 </h1>
 
 Kami menawarkan ide sebuah platform dimana user dapat melakukan permintaan kerjasama dengan pihak Mamen sebagai software engineer dalam pengembangan bisnis atau proyek mereka. User dapat melihat profile Mamen secara lengkap, daftar keahlian, profile anggota, riwayat projek, testimoni, serta melakukan pengajuan kerjasama. User dapat melakukan pengajuan untuk kerjasama dengan mengisikan form yang terdapat pada aplikasi dan mengirimkan data form tersebut. Kemudian pengajuan itu akan masuk ke dalam daftar permintaan pada aplikasi admin Mamen yang nantinya pengajuan tersebut dapat dilakukan tindakan lebih lanjut oleh admin untuk disetujui dan diterima.
