@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext} from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Box, Grid, TextField, Button, makeStyles } from "@material-ui/core";
 import { useDropzone } from "react-dropzone";
 import AddPhotoAlternateOutlinedIcon from "@material-ui/icons/AddPhotoAlternateOutlined";
@@ -86,8 +86,8 @@ const useStyles = makeStyles((theme) => ({
   dnd__image: {
     borderRadius: "5px",
     border: "1px solid #645E6F",
-    width: "193px",
-    height: "170px",
+    width: "200px",
+    height: "180px",
     margin: "5px 0 5px 0",
   },
 
@@ -100,9 +100,10 @@ const useStyles = makeStyles((theme) => ({
   },
 
   preview: {
-    margin: `calc(calc(160px - 100%)/2)`,
+    // margin: `calc(calc(160px - 100%)/2)`,
     height: "160px",
     maxWidth: "180px",
+    margin: "5% 5%",
   },
 
   text__dnd: {
@@ -130,30 +131,32 @@ export default function AddProjekPage() {
   });
   console.log(image);
 
-  const [formValues, setFormValues] = useState([{
-    name: '', 
-    desription: '', 
-    startDate: '', 
-    endDate: '',
-    cover: '',
-  }])
-  
-  const handleFormChange = (e) => {
+  const [formValues, setFormValues] = useState([
+    {
+      name: "",
+      desription: "",
+      startDate: "",
+      endDate: "",
+      cover: "",
+    },
+  ]);
 
+  const handleFormChange = (e) => {
     e.preventDefault();
 
     const fieldName = e.target.getAttribute("name");
     const fieldValue = e.target.value;
 
-    const newFormValue = {...formValues};
+    const newFormValue = { ...formValues };
     newFormValue[fieldName] = fieldValue;
 
     setFormValues(newFormValue);
     console.log(newFormValue);
-  }
+  };
 
   const handleSubmit = () => {
     let formdata = new FormData();
+    console.log(formValues);
     formdata.append("name", formValues.name);
     formdata.append("description", formValues.description);
     formdata.append("startDate", formValues.startDate);
@@ -164,7 +167,7 @@ export default function AddProjekPage() {
       .post(
         "https://be-mppl.herokuapp.com/api/projects",
           formdata, {
-            header: {
+            headers: {
               Authorization: `Bearer ${user.token}`,
             }
         })
@@ -173,21 +176,22 @@ export default function AddProjekPage() {
         history.push("/admin/projek");
       })
       .catch((error) => {
-        alert(error.response.message);
+        console.log(error.response.data.message);
       });
   };
 
   return (
     <div className={classes.root}>
       <div className={classes.add__testi}>
-        <h3 className={classes.h3}>Tambahkan Projek</h3>
+        <h3 className={classes.h3}>Tambahkan Project</h3>
         <hr style={{ color: "#fff", height: 1 }} />
         <form onSubmit={handleSubmit} className={classes.form} noValidate autoComplete="off">
           <Grid container alignItems="center" justify="center" direction="column">
             <Grid item class="form-field">
               <TextField
                 className={`${classes.field}`}
-                placeholder="Nama Projek"
+                name="name"
+                placeholder="Nama Project"
                 variant="outlined"
                 size="small"
                 InputProps={{ className: classes.input }}
@@ -202,7 +206,8 @@ export default function AddProjekPage() {
             <Grid item class="form-field">
               <TextField
                 className={`${classes.field}`}
-                placeholder="Deskripsi Projek"
+                name="description"
+                placeholder="Deskripsi Project"
                 variant="outlined"
                 display="flex"
                 InputLabelProps={{ className: classes.label, required: false }}
@@ -222,7 +227,7 @@ export default function AddProjekPage() {
               <Box display="flex">
                 <TextField
                   className={classes.field}
-                  name="nama"
+                  name="startDate"
                   label="Tanggal mulai"
                   variant="outlined"
                   display="flex"
@@ -237,7 +242,7 @@ export default function AddProjekPage() {
                 />
                 <TextField
                   className={classes.field}
-                  name="nama"
+                  name="endDate"
                   label="Tanggal Selesai"
                   variant="outlined"
                   display="flex"
@@ -285,13 +290,7 @@ export default function AddProjekPage() {
         </form>
         <Grid container alignItems="center" justify="center" direction="column">
           <Grid item class="form-field">
-            <Button
-              onClick={handleSubmit}
-              className={classes.btn}
-              variant="contained"
-              type="submit"
-              fullWidth
-            >
+            <Button onClick={handleSubmit} className={classes.btn} variant="contained" type="submit" fullWidth>
               Tambah
             </Button>
           </Grid>
@@ -300,5 +299,3 @@ export default function AddProjekPage() {
     </div>
   );
 }
-
-

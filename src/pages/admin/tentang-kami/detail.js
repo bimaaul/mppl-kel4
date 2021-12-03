@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { Grid, TextField, CircularProgress } from "@material-ui/core";
+import { Grid, TextField } from "@material-ui/core";
 import { makeStyles, withStyles } from "@material-ui/styles";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import Loading from "../../../components/Loading";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -103,9 +104,7 @@ export default function DetailTentangKami() {
         <h4 className={classes.h4}>Informasi Kami</h4>
         <hr style={{ color: "#645E6F", height: 0.5 }} />
         {loading ? (
-          <div style={{ display: "flex", justifyContent: "center", width: "100%", marginTop: "16px" }}>
-            <CircularProgress />
-          </div>
+          <Loading />
         ) : (
           <Grid container xs={12} spacing={2} className={classes.container} fullWidth>
             <Grid item xs={12}>

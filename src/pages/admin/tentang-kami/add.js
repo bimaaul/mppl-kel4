@@ -1,10 +1,11 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../../../context/UserContext";
-import { Grid, TextField, Button, CircularProgress } from "@material-ui/core";
+import { Grid, TextField, Button } from "@material-ui/core";
 import { makeStyles, withStyles } from "@material-ui/styles";
 import { useHistory } from "react-router-dom";
 import { Controller, useForm } from "react-hook-form";
 import axios from "axios";
+import Loading from "../../../components/Loading";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -264,9 +265,7 @@ export default function AddTentangKami() {
             </Grid>
             <Grid item xs={12}>
               {isSubmitting ? (
-                <div style={{ display: "flex", justifyContent: "center", width: "100%", marginTop: "16px" }}>
-                  <CircularProgress />
-                </div>
+                <Loading />
               ) : (
                 <StyledButton
                   type="submit"

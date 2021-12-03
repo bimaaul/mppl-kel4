@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Box, Grid, TextField, Button, makeStyles, CircularProgress, InputAdornment } from "@material-ui/core";
 import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
 import { useDropzone } from "react-dropzone";
 import AddPhotoAlternateOutlinedIcon from "@material-ui/icons/AddPhotoAlternateOutlined";
 import { useHistory } from "react-router-dom";
+import { UserContext } from "../../../context/UserContext";
 import axios from "axios";
+import { useParams } from "react-router-dom"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,13 +43,11 @@ const useStyles = makeStyles((theme) => ({
       borderColor: "#645E6F",
     },
     "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline ": {
-      borderColor: "#644EEC",
+      borderColor: "#645E6F",
     },
     "& p": {
       color: "white",
     },
-    marginTop: 5,
-    marginBottom: 5,
     display: "block",
     width: "1024px",
   },
@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   label: {
-    color: "#DCD4E7",
+    color: "#645E6F",
   },
 
   add__button: {
@@ -87,8 +87,8 @@ const useStyles = makeStyles((theme) => ({
   dnd__image: {
     borderRadius: "5px",
     border: "1px solid #645E6F",
-    width: "193px",
-    height: "170px",
+    width: "200px",
+    height: "180px",
     margin: "5px 0 5px 0",
   },
 
@@ -101,151 +101,78 @@ const useStyles = makeStyles((theme) => ({
   },
 
   preview: {
-    margin: `calc(calc(160px - 100%)/2)`,
+    // margin: `calc(calc(160px - 100%)/2)`,
     height: "160px",
     maxWidth: "180px",
+    margin: "5% 5%",
   },
 
   text__dnd: {
     color: "#645E6F",
   },
-
-  icon: {
-    color: "#FFFFFF",
-  },
 }));
 
 export default function DetailProjekPage() {
-  const [loading, setLoading] = useState(false);
   const [projek, setProjek] = useState({});
+  const [loading, setLoading] = useState(false);
   const classes = useStyles();
-  const history = useHistory();
-
-  const [image, setImage] = useState([]);
-  const { getRootProps, isDragActive } = useDropzone({
-    accept: "image/*",
-    onDrop: (acceptedFiles) => {
-      setImage(
-        acceptedFiles.map((upFile) =>
-          Object.assign(upFile, {
-            preview: URL.createObjectURL(upFile),
-          })
-        )
-      );
-    },
-  });
-
-  const [formValues, setFormValues] = useState([
-    {
-      //nama: '',
-      //nomorhp: '',
-      //email: '',
-      //pesan: ''
-    },
-  ]);
-
-  const handleSubmit = (e) => {
-    // e.preventDefault();
-    // setNamaError(false)
-    // setNohpError(false)
-    // setEmailError(false)
-    // setPesanError(false)
-
-    // if(namaValue == ''){
-    //     setNamaError(true)
-    // }
-    // if(nohpValue == ''){
-    //     setNohpError(true)
-    // }
-    // if(emailValue == ''){
-    //     setEmailError(true)
-    // }
-    // if(pesanValue == ''){
-    //     setPesanError(true)
-    // }
-    // if(namaValue && nohpValue && emailValue && pesanValue){
-    //     console.log(formValues);
-    // }
-
-    // setIsDisabled(false);
-
-    // if(formValues.nama == '' && formValues.nomorhp = '' && formValues.email = '' && formValues.pesan = ''){
-    //     setIsDisabled(true)
-    // }
-
-    console.log(formValues);
-  };
+  const { id } = useParams();
 
   useEffect(() => {
     setLoading(true);
-    axios.get("https://be-mppl.herokuapp.com/api/projects").then((res) => {
-      setLoading(false);
-      if (res.data.project) setProjek(res.data.project);
-      else history.push("/admin/projek/add");
-    });
-  }, [history]);
+    axios
+      .get("https://be-mppl.herokuapp.com/api/projects/"+ id,)
+      .then((response) => {
+        setLoading(false);
+        setProjek(response.data.project);
+      });
+  }, [projek]);
+
+  // decode JSON startDate, endDate
+  function formatDate(string){
+    var options = { day: 'numeric', month: 'long', year: 'numeric' };
+    return new Date(string).toLocaleDateString('en-GB', options);
+  }
 
   return (
     <div className={classes.root}>
       <div className={classes.add__testi}>
-        <h3 className={classes.h3}>Detail Projek</h3>
+        <h3 className={classes.h3}>Detail Project</h3>
         <hr style={{ color: "#fff", height: 1 }} />
-        <form onSubmit={handleSubmit} className={classes.form} noValidate autoComplete="off">
+        <form className={classes.form} noValidate autoComplete="off">
           <Grid container alignItems="center" justify="center" direction="column">
             <Grid item class="form-field">
               <TextField
                 className={classes.field}
-                name="nama"
-                // label="Nama"
-                placeholder="Nama Projek"
                 variant="outlined"
                 display="flex"
                 size="small"
-                InputLabelProps={{ className: classes.label, required: false }}
-                InputProps={{ className: classes.input }}
+                InputProps={{ className: classes.input, readOnly: true }}
                 fullWidth
-                required
-                type="text"
-                // onChange={(e) => setNama(e.target.value)}
-                //value={formValues.nama}
-                //onChange={e => handleChangeNama(e)}
-                autoFocus={true}
-                // error={namaError}
+                value={projek.name}
               />
             </Grid>
             <Grid item class="form-field">
               <TextField
                 className={classes.field}
-                name="nama"
-                // label="Nama"
-                placeholder="Deskripsi Projek"
                 variant="outlined"
                 display="flex"
-                InputLabelProps={{ className: classes.label, required: false }}
-                InputProps={{ className: classes.input }}
+                InputProps={{ className: classes.input, readOnly: true }}
                 multiline
                 rows={5}
                 fullWidth
                 size="small"
-                required
-                type="text"
-                // onChange={(e) => setNama(e.target.value)}
-                //value={formValues.nama}
-                //onChange={e => handleChangeNama(e)}
-                autoFocus={true}
-                // error={namaError}
+                value={projek.description}
               />
             </Grid>
             <Grid item class="form-field">
               <Box display="flex">
                 <TextField
+                  label="Tanggal Mulai"
                   className={classes.field}
-                  name="nama"
-                  label="Tanggal mulai"
-                  placeholder="DD/MM/YYYY"
                   variant="outlined"
                   display="flex"
-                  InputLabelProps={{ className: classes.label, required: false, shrink: true }}
+                  InputLabelProps={{ className: classes.label, shrink: true }}
                   InputProps={{
                     className: classes.input,
                     endAdornment: (
@@ -253,24 +180,18 @@ export default function DetailProjekPage() {
                         <CalendarTodayIcon className={classes.icon} />
                       </InputAdornment>
                     ),
+                    readOnly: true,
                   }}
                   size="small"
-                  required
-                  type="text"
-                  // onChange={(e) => setNama(e.target.value)}
-                  //value={formValues.nama}
-                  //onChange={e => handleChangeNama(e)}
-                  autoFocus={true}
-                  // error={namaError}
+                  marginRight="50px"
+                  value={formatDate(projek.startDate)}
                 />
                 <TextField
-                  className={classes.field}
-                  name="nama"
                   label="Tanggal Selesai"
-                  placeholder="DD/MM/YYYY"
+                  className={classes.field}
                   variant="outlined"
                   display="flex"
-                  InputLabelProps={{ className: classes.label, required: false, shrink: true }}
+                  InputLabelProps={{ className: classes.label, shrink: true }}
                   InputProps={{
                     className: classes.input,
                     endAdornment: (
@@ -278,45 +199,19 @@ export default function DetailProjekPage() {
                         <CalendarTodayIcon className={classes.icon} />
                       </InputAdornment>
                     ),
+                    readOnly: true,
                   }}
                   size="small"
-                  required
-                  type="text"
-                  // onChange={(e) => setNama(e.target.value)}
-                  //value={formValues.nama}
-                  //onChange={e => handleChangeNama(e)}
-                  autoFocus={true}
-                  // error={namaError}
+                  marginRight="50px"
+                  value={formatDate(projek.endDate)}
                 />
               </Box>
             </Grid>
             <Grid item class="form-field">
-              <div {...getRootProps()}>
-                <div className={classes.dnd__image}>
-                  <div style={{ position: "absolute", align: "center" }}>
-                    {image.map((upFile) => {
-                      return (
-                        <div>
-                          <img src={upFile.preview} className={classes.preview} alt="preview" />
-                        </div>
-                      );
-                    })}
+              <div className={classes.dnd__image}>
+                  <div style={{ position: 'absolute', align: 'center', }}>
+                      <img src={"http://be-mppl.herokuapp.com/" + projek.coverPath}></img>                                   
                   </div>
-                  <AddPhotoAlternateOutlinedIcon className={classes.dnd__icon} />
-                  {isDragActive ? (
-                    <p className={classes.text__dnd} align="center">
-                      Drop foto
-                      <br />
-                      di sini...
-                    </p>
-                  ) : (
-                    <p className={classes.text__dnd} align="center">
-                      Drag dan drop
-                      <br />
-                      foto di sini
-                    </p>
-                  )}
-                </div>
               </div>
             </Grid>
           </Grid>
