@@ -58,6 +58,16 @@ Mamen project adalah sebuah aplikasi berbasis website yang menyediakan informasi
 # :people_holding_hands: User Analisis
 [`^ kembali ke atas ^`](#)
 
+### User Story
+“Sebagai seorang pembisnis yang ingin membuat startup, saya ingin dengan mudah mendapatkan informasi jasa di bidang software engineer agar saya dapat bekerja sama dengan mereka dan mewujudkan pembuatan software start up saya.”
+
+“Sebagai seorang pembisnis yang ingin mencari jasa developer, saya ingin mengetahui testimoni dari beberapa developer yang saya temui agar saya dapat memperoleh developer terbaik untuk bekerjasama dengan saya nantinya.”
+
+“Sebagai seorang pembisnis yang ingin mencari jasa developer, saya ingin mengetahui daftar keahlian apa saja yang dimiliki oleh developer tersebut agar saya dapat menyesuaikan dengan jenis keahlian yang dibutuhkan dengan project saya.”
+
+“Sebagai seorang pembisnis yang ingin mencari jasa developer, saya ingin mengetahui track record dari developer tersebut agar saya dapat memperoleh developer terbaik untuk bekerjasama dengan saya nantinya.”
+
+
 # ⚙️ Spesifikasi Lingkungan Pengembangan
 [`^ kembali ke atas ^`](#)
 ### Software
@@ -72,6 +82,43 @@ Perangkat keras yang dibutuhkan dalam pembuatan aplikasi ini adalah Laptop denga
 - RAM 8 GB
 - HDD 320 GB
 - GPU Nvidia GeForce 920MX
+
+### Tech Stack
+<h1 align="center">
+	<img
+	src="https://user-images.githubusercontent.com/48080443/122120605-d28d9180-ce54-11eb-8c42-5cd51112f20d.png"/>
+</h1>
+
+MERN adalah singkatan dari MongoDB, Express, React, Node yang merupakan tech stack yang digunakan pada pengembangan aplikasi kali ini.
+
+<table>
+    <thead>
+        <tr>
+            <th>Nama</th>
+            <th>Fungsi</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>MongoDB</td>
+            <td>Database</td>
+        </tr>
+         <tr>
+            <td>ExpressJS</td>
+            <td>NodeJS Web Framework</td>
+        </tr>
+        <tr>
+            <td>NodeJS</td>
+            <td>JavaScript Web Server</td>
+        </tr>
+       <tr>
+            <td>React JS</td>
+            <td>Client-side JavaScript framework (Front-End)</td>
+        </tr>
+</tbody>
+</table>
+
+MERN adalah salah satu dari beberapa variasi stack MEAN (MongoDB, Express, Angular, Node), di mana Angular sebagai framework front-end tradisional digantikan dengan React.js. Variasi lainnya adalah MEVN (MongoDB, Express, Vue, Node) dan framework front end dengan bahasa pemrograman JavaScript apapun dapat digunakan.
 
 # :rocket: Metode Pengembangan Desain
 [`^ kembali ke atas ^`](#)
@@ -396,74 +443,3 @@ Menurut kelompok kami, metode yang direkomendasikan adalah Use Case Point. Alasa
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Role: <a>Front-End</a> <br>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Email: <a>arya_aminata93@apps.ipb.ac.id</a> <br>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GitHub: <a href="https://github.com/aryaaminata093">@aryaaminata093</a> <br>
-	
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
