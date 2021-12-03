@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { Box, Grid, TextField, Button, makeStyles, InputAdornment } from "@material-ui/core";
+import { Box, Grid, TextField, Button, makeStyles, InputAdornment, CircularProgress } from "@material-ui/core";
 import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
 import { useDropzone } from "react-dropzone";
 import AddPhotoAlternateOutlinedIcon from "@material-ui/icons/AddPhotoAlternateOutlined";
+import { UserContext } from "../../../context/UserContext";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -98,8 +100,8 @@ const useStyles = makeStyles((theme) => ({
   dnd__image: {
     borderRadius: "5px",
     border: "1px solid #645E6F",
-    width: "193px",
-    height: "170px",
+    width: "200px",
+    height: "180px",
     margin: "5px 0 5px 0",
   },
 
@@ -112,9 +114,10 @@ const useStyles = makeStyles((theme) => ({
   },
 
   preview: {
-    margin: `calc(calc(160px - 100%)/2)`,
+    // margin: `calc(calc(160px - 100%)/2)`,
     height: "160px",
     maxWidth: "180px",
+    margin: "5% 5%",
   },
 
   text__dnd: {
@@ -126,9 +129,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const EditProjekPage = () => {
+export default function EditProjekPage() {
   const classes = useStyles();
   const [image, setImage] = useState([]);
+  const [user] = useContext(UserContext);
+  const [loading, setLoading] = useState(false);
   const history = useHistory();
   const { getRootProps, isDragActive } = useDropzone({
     accept: "image/*",
@@ -142,46 +147,53 @@ const EditProjekPage = () => {
       );
     },
   });
+  console.log(image);
 
-  const [formValues, setFormValues] = useState([
-    {
-      //nama: '',
-      //nomorhp: '',
-      //email: '',
-      //pesan: ''
-    },
-  ]);
+  const [formValues, setFormValues] = useState([{
+    name: '', 
+    desription: '', 
+    startDate: '', 
+    endDate: '',
+    cover: '',
+  }])
+  
+  const handleFormChange = (e) => {
 
-  const handleSubmit = (e) => {
-    // e.preventDefault();
-    // setNamaError(false)
-    // setNohpError(false)
-    // setEmailError(false)
-    // setPesanError(false)
+    e.preventDefault();
 
-    // if(namaValue == ''){
-    //     setNamaError(true)
-    // }
-    // if(nohpValue == ''){
-    //     setNohpError(true)
-    // }
-    // if(emailValue == ''){
-    //     setEmailError(true)
-    // }
-    // if(pesanValue == ''){
-    //     setPesanError(true)
-    // }
-    // if(namaValue && nohpValue && emailValue && pesanValue){
-    //     console.log(formValues);
-    // }
+    const fieldName = e.target.getAttribute("name");
+    const fieldValue = e.target.value;
 
-    // setIsDisabled(false);
+    const newFormValue = {...formValues};
+    newFormValue[fieldName] = fieldValue;
 
-    // if(formValues.nama == '' && formValues.nomorhp = '' && formValues.email = '' && formValues.pesan = ''){
-    //     setIsDisabled(true)
-    // }
+    setFormValues(newFormValue);
+    console.log(newFormValue);
+  }
 
-    console.log(formValues);
+  const handleSubmit = () => {
+    let formdata = new FormData();
+    formdata.append("name", formValues.name);
+    formdata.append("description", formValues.description);
+    formdata.append("startDate", formValues.startDate);
+    formdata.append("endDate", formValues.endDate);
+    formdata.append("cover", image[0]);
+
+    axios
+      .post(
+        "https://be-mppl.herokuapp.com/api/projects",
+          formdata, {
+            header: {
+              Authorization: `Bearer ${user.token}`,
+            }
+        })
+      .then((response) => {
+        console.log(response);
+        history.push("/admin/projek");
+      })
+      .catch((error) => {
+        alert(error.response.message);
+      });
   };
 
   return (
@@ -193,30 +205,22 @@ const EditProjekPage = () => {
           <Grid container alignItems="center" justify="center" direction="column">
             <Grid item class="form-field">
               <TextField
-                className={classes.field}
-                name="nama"
-                // label="Nama"
+                className={`${classes.field}`}
                 placeholder="Nama Projek"
                 variant="outlined"
-                display="flex"
                 size="small"
-                InputLabelProps={{ className: classes.label, required: false }}
                 InputProps={{ className: classes.input }}
                 fullWidth
                 required
                 type="text"
-                // onChange={(e) => setNama(e.target.value)}
-                //value={formValues.nama}
-                //onChange={e => handleChangeNama(e)}
                 autoFocus={true}
-                // error={namaError}
+                onChange={handleFormChange}
+                value={formValues.name}
               />
             </Grid>
             <Grid item class="form-field">
               <TextField
-                className={classes.field}
-                name="nama"
-                // label="Nama"
+                className={`${classes.field}`}
                 placeholder="Deskripsi Projek"
                 variant="outlined"
                 display="flex"
@@ -228,11 +232,9 @@ const EditProjekPage = () => {
                 size="small"
                 required
                 type="text"
-                // onChange={(e) => setNama(e.target.value)}
-                //value={formValues.nama}
-                //onChange={e => handleChangeNama(e)}
                 autoFocus={true}
-                // error={namaError}
+                onChange={handleFormChange}
+                value={formValues.description}
               />
             </Grid>
             <Grid item class="form-field">
@@ -241,51 +243,31 @@ const EditProjekPage = () => {
                   className={classes.field}
                   name="nama"
                   label="Tanggal mulai"
-                  placeholder="DD/MM/YYYY"
                   variant="outlined"
                   display="flex"
-                  InputLabelProps={{ className: classes.label, required: false, shrink: true }}
-                  InputProps={{
-                    className: classes.input,
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <CalendarTodayIcon className={classes.icon} />
-                      </InputAdornment>
-                    ),
-                  }}
+                  InputLabelProps={{ className: classes.label, required: true, shrink: true }}
+                  InputProps={{ className: classes.input }}
                   size="small"
                   required
-                  type="text"
-                  // onChange={(e) => setNama(e.target.value)}
-                  //value={formValues.nama}
-                  //onChange={e => handleChangeNama(e)}
+                  type="date"
                   autoFocus={true}
-                  // error={namaError}
+                  onChange={handleFormChange}
+                  value={formValues.startDate}
                 />
                 <TextField
                   className={classes.field}
                   name="nama"
                   label="Tanggal Selesai"
-                  placeholder="DD/MM/YYYY"
                   variant="outlined"
                   display="flex"
-                  InputLabelProps={{ className: classes.label, required: false, shrink: true }}
-                  InputProps={{
-                    className: classes.input,
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <CalendarTodayIcon className={classes.icon} />
-                      </InputAdornment>
-                    ),
-                  }}
+                  InputLabelProps={{ className: classes.label, required: true, shrink: true }}
+                  InputProps={{ className: classes.input }}
                   size="small"
                   required
-                  type="text"
-                  // onChange={(e) => setNama(e.target.value)}
-                  //value={formValues.nama}
-                  //onChange={e => handleChangeNama(e)}
+                  type="date"
                   autoFocus={true}
-                  // error={namaError}
+                  onChange={handleFormChange}
+                  value={formValues.endDate}
                 />
               </Box>
             </Grid>
@@ -348,4 +330,4 @@ const EditProjekPage = () => {
   );
 };
 
-export default EditProjekPage;
+

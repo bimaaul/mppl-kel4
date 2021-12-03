@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Box, Grid, TextField, Button, makeStyles, CircularProgress, InputAdornment } from "@material-ui/core";
 import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
 import { useDropzone } from "react-dropzone";
 import AddPhotoAlternateOutlinedIcon from "@material-ui/icons/AddPhotoAlternateOutlined";
 import { useHistory } from "react-router-dom";
+import { UserContext } from "../../../context/UserContext";
 import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
@@ -41,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
       borderColor: "#645E6F",
     },
     "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline ": {
-      borderColor: "#644EEC",
+      borderColor: "#645E6F",
     },
     "& p": {
       color: "white",
@@ -87,8 +88,8 @@ const useStyles = makeStyles((theme) => ({
   dnd__image: {
     borderRadius: "5px",
     border: "1px solid #645E6F",
-    width: "193px",
-    height: "170px",
+    width: "200px",
+    height: "180px",
     margin: "5px 0 5px 0",
   },
 
@@ -101,9 +102,10 @@ const useStyles = makeStyles((theme) => ({
   },
 
   preview: {
-    margin: `calc(calc(160px - 100%)/2)`,
+    // margin: `calc(calc(160px - 100%)/2)`,
     height: "160px",
     maxWidth: "180px",
+    margin: "5% 5%",
   },
 
   text__dnd: {
@@ -116,11 +118,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function DetailProjekPage() {
+  const [project, setProject] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [projek, setProjek] = useState({});
   const classes = useStyles();
   const history = useHistory();
-
+  const [user] = useContext(UserContext);
+  const [id, setId] = useState(null);
+  // image data
   const [image, setImage] = useState([]);
   const { getRootProps, isDragActive } = useDropzone({
     accept: "image/*",
@@ -135,117 +139,61 @@ export default function DetailProjekPage() {
     },
   });
 
-  const [formValues, setFormValues] = useState([
-    {
-      //nama: '',
-      //nomorhp: '',
-      //email: '',
-      //pesan: ''
-    },
-  ]);
-
-  const handleSubmit = (e) => {
-    // e.preventDefault();
-    // setNamaError(false)
-    // setNohpError(false)
-    // setEmailError(false)
-    // setPesanError(false)
-
-    // if(namaValue == ''){
-    //     setNamaError(true)
-    // }
-    // if(nohpValue == ''){
-    //     setNohpError(true)
-    // }
-    // if(emailValue == ''){
-    //     setEmailError(true)
-    // }
-    // if(pesanValue == ''){
-    //     setPesanError(true)
-    // }
-    // if(namaValue && nohpValue && emailValue && pesanValue){
-    //     console.log(formValues);
-    // }
-
-    // setIsDisabled(false);
-
-    // if(formValues.nama == '' && formValues.nomorhp = '' && formValues.email = '' && formValues.pesan = ''){
-    //     setIsDisabled(true)
-    // }
-
-    console.log(formValues);
-  };
-
   useEffect(() => {
     setLoading(true);
-    axios.get("https://be-mppl.herokuapp.com/api/projects").then((res) => {
-      setLoading(false);
-      if (res.data.project) setProjek(res.data.project);
-      else history.push("/admin/projek/add");
-    });
-  }, [history]);
+    axios
+      .get("https://be-mppl.herokuapp.com/api/projects/"+ id, {
+        headers: { Authorization: `Bearer ${user.token}` },
+      })
+      .then((response) => {
+        // console.log(response);
+        setLoading(false);
+        if (response.data) setProject(response.data);
+        else history.push("/admin/projek/add");
+      });
+  }, [project]);
 
   return (
     <div className={classes.root}>
       <div className={classes.add__testi}>
         <h3 className={classes.h3}>Detail Projek</h3>
         <hr style={{ color: "#fff", height: 1 }} />
-        <form onSubmit={handleSubmit} className={classes.form} noValidate autoComplete="off">
-          <Grid container alignItems="center" justify="center" direction="column">
+        {loading ? (
+          <div style={{ display: "flex", justifyContent: "center", width: "100%", marginTop: "16px" }}>
+            <CircularProgress />
+          </div>
+        ) : (
+          <Grid key={project._id} container alignItems="center" justify="center" direction="column">
             <Grid item class="form-field">
               <TextField
                 className={classes.field}
-                name="nama"
-                // label="Nama"
-                placeholder="Nama Projek"
                 variant="outlined"
                 display="flex"
                 size="small"
-                InputLabelProps={{ className: classes.label, required: false }}
-                InputProps={{ className: classes.input }}
+                InputProps={{ className: classes.input, readOnly: true }}
                 fullWidth
-                required
-                type="text"
-                // onChange={(e) => setNama(e.target.value)}
-                //value={formValues.nama}
-                //onChange={e => handleChangeNama(e)}
-                autoFocus={true}
-                // error={namaError}
+                value={project.name}
               />
             </Grid>
             <Grid item class="form-field">
               <TextField
                 className={classes.field}
-                name="nama"
-                // label="Nama"
-                placeholder="Deskripsi Projek"
                 variant="outlined"
                 display="flex"
-                InputLabelProps={{ className: classes.label, required: false }}
-                InputProps={{ className: classes.input }}
+                InputProps={{ className: classes.input, readOnly: true }}
                 multiline
                 rows={5}
                 fullWidth
                 size="small"
-                required
-                type="text"
-                // onChange={(e) => setNama(e.target.value)}
-                //value={formValues.nama}
-                //onChange={e => handleChangeNama(e)}
-                autoFocus={true}
-                // error={namaError}
+                value={project.description}
               />
             </Grid>
             <Grid item class="form-field">
               <Box display="flex">
                 <TextField
                   className={classes.field}
-                  name="nama"
-                  label="Tanggal mulai"
-                  placeholder="DD/MM/YYYY"
                   variant="outlined"
                   display="flex"
-                  InputLabelProps={{ className: classes.label, required: false, shrink: true }}
                   InputProps={{
                     className: classes.input,
                     endAdornment: (
@@ -253,24 +201,15 @@ export default function DetailProjekPage() {
                         <CalendarTodayIcon className={classes.icon} />
                       </InputAdornment>
                     ),
+                    readOnly: true,
                   }}
                   size="small"
-                  required
-                  type="text"
-                  // onChange={(e) => setNama(e.target.value)}
-                  //value={formValues.nama}
-                  //onChange={e => handleChangeNama(e)}
-                  autoFocus={true}
-                  // error={namaError}
+                  value={project.startDate}
                 />
                 <TextField
                   className={classes.field}
-                  name="nama"
-                  label="Tanggal Selesai"
-                  placeholder="DD/MM/YYYY"
                   variant="outlined"
                   display="flex"
-                  InputLabelProps={{ className: classes.label, required: false, shrink: true }}
                   InputProps={{
                     className: classes.input,
                     endAdornment: (
@@ -278,15 +217,10 @@ export default function DetailProjekPage() {
                         <CalendarTodayIcon className={classes.icon} />
                       </InputAdornment>
                     ),
+                    readOnly: true,
                   }}
                   size="small"
-                  required
-                  type="text"
-                  // onChange={(e) => setNama(e.target.value)}
-                  //value={formValues.nama}
-                  //onChange={e => handleChangeNama(e)}
-                  autoFocus={true}
-                  // error={namaError}
+                  value={project.endDate}
                 />
               </Box>
             </Grid>
@@ -320,7 +254,7 @@ export default function DetailProjekPage() {
               </div>
             </Grid>
           </Grid>
-        </form>
+        )}
       </div>
     </div>
   );

@@ -138,15 +138,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// function createData(no, judul, durasi_pengerjaan, aksi) {
-//   return { no, judul, durasi_pengerjaan, aksi };
-// }
-
-// const rows = [
-//   createData(1, "Botani Quest", "14 Agustus 2021 - 24 September 2021", ""),
-//   createData(2, "Mamen Project", "14 Agustus 2021 - 24 September 2021", ""),
-// ];
-
 export default function ProjectPage(props) {
   const classes = useStyles();
   const history = useHistory();
@@ -157,20 +148,52 @@ export default function ProjectPage(props) {
   
   const [project, setProject] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [id, setId] = useState(null);
 
   useEffect(() => {
     if (project === null) {
+      setLoading(true);
       axios
         .get("https://be-mppl.herokuapp.com/api/projects", {
           headers: { Authorization: `Bearer ${user.token}` },
         })
         .then((response) => {
           console.log(response);
-          setProject(response.data.project);
+          setProject(response.data);
           setLoading(false);
         });
     }
-  }, [project, user]);
+  }, [project]);
+
+  function handlePopup(id){
+    handleOpen();
+    setId(id);
+  }
+
+  // decode JSON startDate, endDate
+  function formatDate(string){
+    var options = { day: 'numeric', month: 'long', year: 'numeric' };
+    return new Date(string).toLocaleDateString('en-GB', options);
+  }
+
+  const handleDelete = () => {
+    setLoading(true);
+    
+    axios.delete("https://be-mppl.herokuapp.com/api/projects/" + id , {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },     
+    }).then((response) => {
+      setLoading(false);
+      axios.get("https://be-mppl.herokuapp.com/api/projects").then((response) => {
+        console.log(response);
+        setProject(response.data);
+        //setLoading(false);
+      });
+    });
+
+    handleClose();
+  }
 
   return (
     <div className={classes.root}>
@@ -199,7 +222,7 @@ export default function ProjectPage(props) {
           <div style={{ display: "flex", justifyContent: "center", width: "100%", marginTop: "16px" }}>
             <CircularProgress />
           </div>
-        ) : project ?(
+        ) : project ? (
           <TableContainer>
             <Table className={classes.table} aria-label="list__project__table">
               <TableHead>
@@ -207,18 +230,19 @@ export default function ProjectPage(props) {
                   {/* <TableCell style={{ color: "white" }} align="center">
                     No
                   </TableCell> */}
-                  <TableCell style={{ color: "white", fontWeight: "bold", width: "30%" }} align="left">
+                  <TableCell style={{ color: "white", fontWeight: "bold", width: "20%" }} align="left">
                     Judul
                   </TableCell>
                   <TableCell style={{ color: "white", fontWeight: "bold", width: "40%" }} align="left">
                     Durasi Pengerjaan
                   </TableCell>
-                  <TableCell style={{ color: "white", fontWeight: "bold", width: "30%" }} align="left">
+                  <TableCell style={{ color: "white", fontWeight: "bold", width: "40%" }} align="left">
                     Aksi
                   </TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
+                {project.map((project) => (
                     <TableRow key={project._id}>
                       {/* <TableCell className={classes.cell} align="center">
                         {project.no}
@@ -227,7 +251,7 @@ export default function ProjectPage(props) {
                         {project.name}
                       </TableCell>
                       <TableCell className={classes.cell} align="left">
-                        {project.startDate} - {project.endDate}
+                        {formatDate(project.startDate)} - {formatDate(project.endDate)}
                         {/* {project.description} */}
                       </TableCell>
                       <TableCell className={classes.cell} align="left">
@@ -238,7 +262,7 @@ export default function ProjectPage(props) {
                           }}
                           variant="contained"
                           color="primary"
-                          onClick={() => history.push("/admin/projek/detail")}
+                          onClick={() => history.push("/admin/projek/detail/"+ project._id)}
                         >
                           Lihat Detail
                         </Button>
@@ -249,7 +273,7 @@ export default function ProjectPage(props) {
                           }}
                           variant="contained"
                           color="primary"
-                          onClick={() => history.push("/admin/projek/edit")}
+                          onClick={() => history.push("/admin/projek/edit/"+ project._id)}
                         >
                           Edit
                         </Button>
@@ -260,12 +284,13 @@ export default function ProjectPage(props) {
                             textTransform: "initial",
                           }}
                           variant="contained"
-                          onClick={handleOpen}
+                          onClick={() => handlePopup(project._id)}
                         >
                           Hapus
                         </Button>
                       </TableCell>
                     </TableRow>
+                ))}
               </TableBody>
             </Table>
           </TableContainer>
@@ -293,7 +318,7 @@ export default function ProjectPage(props) {
                     marginLeft: "298px",
                   }}
                   variant="contained"
-                  onClick={handleClose}
+                  onClick={handleDelete}
                 >
                   Hapus
                 </Button>
