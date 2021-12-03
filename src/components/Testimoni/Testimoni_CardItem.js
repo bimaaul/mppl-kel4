@@ -19,7 +19,7 @@ function CardItem(props) {
                            {props.name}
                        </h5>
                        <p class="testi__item__position">
-                           {props.desc}
+                           {props.job}
                        </p>
                        <p class="testi__item__desc">
                             "{props.desc}"
