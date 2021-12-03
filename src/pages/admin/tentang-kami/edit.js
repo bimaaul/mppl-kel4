@@ -5,6 +5,7 @@ import { Controller, useForm } from "react-hook-form";
 import { Grid, TextField, Button, CircularProgress } from "@material-ui/core";
 import { makeStyles, withStyles } from "@material-ui/styles";
 import axios from "axios";
+import Loading from "../../../components/Loading";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -108,9 +109,6 @@ export default function EditTentangKami() {
     setValue,
     formState: { isSubmitting, isValid, isDirty },
   } = useForm({
-    defaultValues: {
-      name: "",
-    },
     mode: "onChange",
   });
   const classes = useStyles();
@@ -168,9 +166,7 @@ export default function EditTentangKami() {
         <hr style={{ color: "#645E6F", height: 0.5 }} />
 
         {loading ? (
-          <div style={{ display: "flex", justifyContent: "center", width: "100%", marginTop: "16px" }}>
-            <CircularProgress />
-          </div>
+          <Loading />
         ) : (
           <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
             <Grid container spacing={2} className={classes.container}>

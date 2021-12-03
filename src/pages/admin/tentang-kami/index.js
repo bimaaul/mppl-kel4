@@ -8,11 +8,11 @@ import {
   TableBody,
   TableRow,
   TableCell,
-  CircularProgress,
 } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import Loading from "../../../components/Loading";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -185,11 +185,77 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const AboutTable = ({ about }) => {
+  const classes = useStyles();
+  const history = useHistory();
+
+  return about ? (
+    <TableContainer>
+      <Table className={classes.tableAbout} style={{ tableLayout: "auto" }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell style={{ color: "white", fontWeight: "bold", width: "50%" }} align="left">
+              Nama Tim
+            </TableCell>
+            <TableCell style={{ color: "white", fontWeight: "bold", width: "50%" }} align="left">
+              Aksi
+            </TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow key={about._id}>
+            <TableCell className={classes.cell} align="left" style={{ width: "50%" }}>
+              {about.name}
+            </TableCell>
+            <TableCell className={classes.cell} align="left" style={{ width: "50%" }}>
+              <Button
+                style={{
+                  textTransform: "initial",
+                  marginRight: "20px",
+                }}
+                variant="contained"
+                color="primary"
+                onClick={() => history.push("/admin/tentang-kami/detail")}
+              >
+                Lihat Detail
+              </Button>
+              <Button
+                style={{
+                  textTransform: "initial",
+                  marginRight: "20px",
+                }}
+                variant="contained"
+                color="primary"
+                onClick={() => history.push("/admin/tentang-kami/edit")}
+              >
+                Edit
+              </Button>
+            </TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </TableContainer>
+  ) : (
+    <div className={classes.add__button} align="center">
+      <Button
+        className={classes.button}
+        variant="contained"
+        color="primary"
+        onClick={() => history.push("/admin/tentang-kami/add")}
+      >
+        <AddIcon />
+      </Button>
+      <p className={classes.p} align="center">
+        Isi detail informasi
+      </p>
+    </div>
+  );
+};
+
 export default function AboutPage(props) {
   const [loading, setLoading] = useState(false);
   const [about, setAbout] = useState(null);
   const classes = useStyles();
-  const history = useHistory();
 
   useEffect(() => {
     if (about === null) {
@@ -213,71 +279,7 @@ export default function AboutPage(props) {
         </div>
         <h4 className={classes.h4}>Informasi Kami</h4>
         <hr style={{ color: "#645E6F", height: 0.5 }} />
-        {loading ? (
-          <div style={{ display: "flex", justifyContent: "center", width: "100%", marginTop: "16px" }}>
-            <CircularProgress />
-          </div>
-        ) : about ? (
-          <TableContainer>
-            <Table className={classes.tableAbout} style={{ tableLayout: "auto" }} aria-label="simple table">
-              <TableHead>
-                <TableRow>
-                  <TableCell style={{ color: "white", fontWeight: "bold", width: "50%" }} align="left">
-                    Nama Tim
-                  </TableCell>
-                  <TableCell style={{ color: "white", fontWeight: "bold", width: "50%" }} align="left">
-                    Aksi
-                  </TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                <TableRow key={about._id}>
-                  <TableCell className={classes.cell} align="left" style={{ width: "50%" }}>
-                    {about.name}
-                  </TableCell>
-                  <TableCell className={classes.cell} align="left" style={{ width: "50%" }}>
-                    <Button
-                      style={{
-                        textTransform: "initial",
-                        marginRight: "20px",
-                      }}
-                      variant="contained"
-                      color="primary"
-                      onClick={() => history.push("/admin/tentang-kami/detail")}
-                    >
-                      Lihat Detail
-                    </Button>
-                    <Button
-                      style={{
-                        textTransform: "initial",
-                        marginRight: "20px",
-                      }}
-                      variant="contained"
-                      color="primary"
-                      onClick={() => history.push("/admin/tentang-kami/edit")}
-                    >
-                      Edit
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </TableContainer>
-        ) : (
-          <div className={classes.add__button} align="center">
-            <Button
-              className={classes.button}
-              variant="contained"
-              color="primary"
-              onClick={() => history.push("/admin/tentang-kami/add")}
-            >
-              <AddIcon />
-            </Button>
-            <p className={classes.p} align="center">
-              Isi detail informasi
-            </p>
-          </div>
-        )}
+        {loading ? <Loading /> : <AboutTable about={about} />}
       </div>
     </div>
   );
