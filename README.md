@@ -419,30 +419,42 @@ Menurut kelompok kami, metode yang direkomendasikan adalah Use Case Point. Alasa
     <tbody>
         <tr>
 	<td>Tentang Kami</td>
-            <td>	Create : Admin dapat memasukkan informasi profile Mamen Rider
-			Read : User dapat melihat detail informasi Mamen Rider
-			Update : Admin dapat mengedit informasi tentang kami yang telah dibuat
+            <td>	
+		    	Create : Admin dapat memasukkan informasi profile Mamen Rider
+			
+		    	Read : User dapat melihat detail informasi Mamen Rider
+			
+		    	Update : Admin dapat mengedit informasi tentang kami yang telah dibuat
 </td>
 		 </tr>
 	    <tr>
 	<td>Project Kami</td>
-            <td>	Create : Admin dapat memasukkan daftar project yang berhasil dikerjakan
-			Read : User dapat melihat daftar project Mamen Rider
-			Update : Admin dapat mengedit informasi project yang telah dibuat
-			Delete :  Admin dapat menghapus project yang telah dibuat
+            <td>	
+		    	Create : Admin dapat memasukkan daftar project yang berhasil dikerjakan
+			
+		    	Read : User dapat melihat daftar project Mamen Rider
+			
+		    	Update : Admin dapat mengedit informasi project yang telah dibuat
+			
+		    	Delete :  Admin dapat menghapus project yang telah dibuat
 </td>
 	     </tr>
 	    <tr>
 	<td>Anggota</td>
-            <td>	Create : Admin dapat memasukkan daftar anggota Mamen Rider
-			Read : User dapat melihat daftar anggota Mamen Rider
-			Update : Admin dapat mengedit informasi anggota yang telah dibuat
-			Delete :  Admin dapat menghapus daftar anggota yang telah dibuat
+            <td>	
+		    	Create : Admin dapat memasukkan daftar anggota Mamen Rider
+			
+		    	Read : User dapat melihat daftar anggota Mamen Rider
+			
+		    	Update : Admin dapat mengedit informasi anggota yang telah dibuat
+			
+		    	Delete :  Admin dapat menghapus daftar anggota yang telah dibuat
 </td>
 		    </tr>
 		    <tr>
             <td>Testimoni</td>
-            <td>	Create : Admin dapat memasukkan daftar testimoni client mereka
+            <td>	
+		    	Create : Admin dapat memasukkan daftar testimoni client mereka
 			
 		    	Read : User dapat melihat daftar testimoni client
 
@@ -453,9 +465,12 @@ Menurut kelompok kami, metode yang direkomendasikan adalah Use Case Point. Alasa
 			    </tr>
 	    <tr>
             <td>Permintaan</td>
-            <td>	Create : User dapat membuat permintaan kerjasama
-			Read : Admin dapat melihat daftar permintaan yang masuk
-			Delete :  Admin dapat menghapus daftar permintaan yang masuk
+            <td>	
+		    	Create : User dapat membuat permintaan kerjasama
+		    	
+		    	Read : Admin dapat melihat daftar permintaan yang masuk
+		    	
+		    	Delete :  Admin dapat menghapus daftar permintaan yang masuk
 </td>
         </tr>
 </tbody>
@@ -474,33 +489,45 @@ Menurut kelompok kami, metode yang direkomendasikan adalah Use Case Point. Alasa
     </thead>
     <tbody>
         <tr>
-            <td>	Tipe : Desain 
-			Requestor : Front-end
-			Status : Denied
+            <td>	
+		    	Tipe : Desain
+		    	
+		    	Requestor : Front-end
+		    	
+		    	Status : Denied
 </td>
 		<td>Pada website user, di halaman "Tentang Kami" menu pop-up untuk melihat data lebih lengkap ditiadakan karena implementasi yang cukup sulit </td>
 		<td>Perubahan untuk meniadakan pop-up pada "Tentang Kami"  akhirnya tidak direalisasikan karena pada prosesnya pop up berhasil diimplementasikan dan memakai material UI </td>
 		</tr>
 	   <tr>
-            <td>	Tipe : Desain 
-			Requestor : PM & UI/UX Designer
-			Status : Approved
+            <td>	
+		    	Tipe : Desain
+		    	
+		    	Requestor : PM & UI/UX Designer
+		    	
+		    	Status : Approved
 </td>
 		<td>Fitur chat pada desain aplikasi ditiadakan karena implementasi yang sulit dan konfirmasi dari pihak client yang belum membutuhkan fitur tersebut </td>
 		<td>Perubahan untuk meniadakan implementasi fitur chat diterima karena dari pihak client pun ternyata tidak begitu membutuhkan fitur itu di web mereka </td>
 		</tr>
 	 <tr>
-            <td>	Tipe : Tech Stack
-			Requestor : Back-end
-			Status : Approved
+            <td>	
+		    	Tipe : Tech Stack
+		    	
+		    	Requestor : Back-end
+		    	
+		    	Status : Approved
 </td>
 		<td>Database yang digunakan diganti dari mysql menjadi mongo </td>
 		<td>Implementasi dapat lebih sederhana dan lebih familiar dengan developer </td>
 		</tr>
 	    <tr>
-            <td>	Tipe : Schedule 
-			Requestor : Front-End
-			Status : Approved
+            <td>	
+		    	Tipe : Schedule
+		    	
+		    	Requestor : Front-End
+		    	
+		    	Status : Approved
 </td>
 		<td>Perubahan jadwal implementasi dilakukan dengan menyesuaikan pelaksanaan implementasi yang dilakukan  </td>
 		<td>Dibuatnya perubahan pembaruan jadwal pengerjaan projek baru untuk menyesuaikan dengan pelaksanaan implementasi dari pihak front end developer </td>
