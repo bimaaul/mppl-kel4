@@ -50,7 +50,7 @@ Kedepannya Mamen Rider akan mengembangkan usaha jasa software development bernam
 - Pembuatan dan pengembangan program menggunakan PHP dengan framework React JS dan database menggunakan MySQL
 - Dapat diakses dimana saja dengan koneksi internet
 
-# 🖥 Deskripsi
+# 🖥 Deskripsi Aplikasi
 [`^ kembali ke atas ^`](#) 
 
 Mamen project adalah sebuah aplikasi berbasis website yang menyediakan informasi seputar profile pihak Mamen Rider, portofolio setiap anggota mereka, track record untuk setiap proyek yang berhasil mereka kerjakan, narahubung untuk melakukan kolaborasi, dan informasi review proyek yang telah berhasil dibuat. Tujuan dari dibuatnya aplikasi ini yaitu sebagai penghubung antara pihak Mamen Rider dan juga user yang hendak mencari software developer untuk mengembangkan produk bisnis mereka.
@@ -409,6 +409,27 @@ Menurut kelompok kami, metode yang direkomendasikan adalah Use Case Point. Alasa
 # :high_brightness: Fungsi CRUD
 [`^ kembali ke atas ^`](#)
 
+<table>
+    <thead>
+        <tr>
+            <th>Nama Fitur</th>
+            <th>Fungsi CRUD</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Testimoni</td>
+            <td>Create : Admin dapat memasukkan daftar testimoni client mereka
+Read : User dapat melihat daftar testimoni client
+Update : Admin dapat mengedit testimoni yang telah dibuat
+Delete :  Admin dapat menghapus testimoni yang telah dibuat
+</td>
+            
+        </tr>
+</tbody>
+</table>
+	
+	
 # 🚀 Hasil Implementasi
 [`^ kembali ke atas ^`](#)
 
