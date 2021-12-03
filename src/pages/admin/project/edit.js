@@ -1,10 +1,11 @@
 import React, { useState, useContext, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { Box, Grid, TextField, Button, makeStyles, InputAdornment, CircularProgress } from "@material-ui/core";
 import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
 import { useDropzone } from "react-dropzone";
 import AddPhotoAlternateOutlinedIcon from "@material-ui/icons/AddPhotoAlternateOutlined";
 import { UserContext } from "../../../context/UserContext";
+import { Controller, useForm } from "react-hook-form";
 import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
@@ -131,10 +132,15 @@ const useStyles = makeStyles((theme) => ({
 
 export default function EditProjekPage() {
   const classes = useStyles();
-  const [image, setImage] = useState([]);
+  const [projek, setProjek] = useState({});
   const [user] = useContext(UserContext);
   const [loading, setLoading] = useState(false);
+  const [formValues, setFormValues] = useState(false)
   const history = useHistory();
+  const { id } = useParams();
+  // const date = new Date(2021-11-30T00:00:00.000Z) date.getFullYear() + date.getMonth() + date.getDate()
+  
+  const [image, setImage] = useState([]);
   const { getRootProps, isDragActive } = useDropzone({
     accept: "image/*",
     onDrop: (acceptedFiles) => {
@@ -148,15 +154,20 @@ export default function EditProjekPage() {
     },
   });
   console.log(image);
+  console.log(formValues);
 
-  const [formValues, setFormValues] = useState([{
-    name: '', 
-    desription: '', 
-    startDate: '', 
-    endDate: '',
-    cover: '',
-  }])
-  
+  useEffect(() =>{
+    if(formValues === false){
+        setLoading(true);
+        axios
+            .get("https://be-mppl.herokuapp.com/api/projects/"+ id)
+            .then((response) => {
+                setLoading(false);
+                setProjek(response.data.project); 
+            });
+    }
+  }, [projek]);
+
   const handleFormChange = (e) => {
 
     e.preventDefault();
@@ -173,6 +184,7 @@ export default function EditProjekPage() {
 
   const handleSubmit = () => {
     let formdata = new FormData();
+    formdata.append("_id", id);
     formdata.append("name", formValues.name);
     formdata.append("description", formValues.description);
     formdata.append("startDate", formValues.startDate);
@@ -180,10 +192,10 @@ export default function EditProjekPage() {
     formdata.append("cover", image[0]);
 
     axios
-      .post(
+      .put(
         "https://be-mppl.herokuapp.com/api/projects",
           formdata, {
-            header: {
+            headers: {
               Authorization: `Bearer ${user.token}`,
             }
         })
@@ -192,9 +204,15 @@ export default function EditProjekPage() {
         history.push("/admin/projek");
       })
       .catch((error) => {
-        alert(error.response.message);
+        alert(error.response.data.message);
       });
   };
+
+  // decode JSON startDate, endDate
+  function formatDate(string){
+    var options = { day: 'numeric', month: 'numeric', year: 'numeric' };
+    return new Date(string).toLocaleDateString([], options);
+  }
 
   return (
     <div className={classes.root}>
@@ -205,6 +223,7 @@ export default function EditProjekPage() {
           <Grid container alignItems="center" justify="center" direction="column">
             <Grid item class="form-field">
               <TextField
+                name="name"
                 className={`${classes.field}`}
                 placeholder="Nama Projek"
                 variant="outlined"
@@ -215,11 +234,12 @@ export default function EditProjekPage() {
                 type="text"
                 autoFocus={true}
                 onChange={handleFormChange}
-                value={formValues.name}
+                value={formValues.name ? (formValues.name) : (projek.name)}
               />
             </Grid>
             <Grid item class="form-field">
               <TextField
+                name="description"
                 className={`${classes.field}`}
                 placeholder="Deskripsi Projek"
                 variant="outlined"
@@ -234,15 +254,16 @@ export default function EditProjekPage() {
                 type="text"
                 autoFocus={true}
                 onChange={handleFormChange}
-                value={formValues.description}
+                value={formValues.description ? (formValues.description) : (projek.description)}
               />
             </Grid>
             <Grid item class="form-field">
               <Box display="flex">
                 <TextField
+                  name="startDate"
                   className={classes.field}
-                  name="nama"
                   label="Tanggal mulai"
+                  placeholder="MM/DD/YYYY"
                   variant="outlined"
                   display="flex"
                   InputLabelProps={{ className: classes.label, required: true, shrink: true }}
@@ -252,12 +273,13 @@ export default function EditProjekPage() {
                   type="date"
                   autoFocus={true}
                   onChange={handleFormChange}
-                  value={formValues.startDate}
+                  value={formValues.startDate ? (formValues.startDate) : (projek.startDate)}
                 />
                 <TextField
+                  name="endDate"
                   className={classes.field}
-                  name="nama"
                   label="Tanggal Selesai"
+                  placeholder="MM/DD/YYYY"
                   variant="outlined"
                   display="flex"
                   InputLabelProps={{ className: classes.label, required: true, shrink: true }}
@@ -267,7 +289,7 @@ export default function EditProjekPage() {
                   type="date"
                   autoFocus={true}
                   onChange={handleFormChange}
-                  value={formValues.endDate}
+                  value={formatDate(formValues.endDate) ? (formValues.endDate) : (projek.endDate)}
                 />
               </Box>
             </Grid>
@@ -310,7 +332,6 @@ export default function EditProjekPage() {
               className={classes.btn_cancel}
               variant="contained"
               type="submit"
-              // disabled={!formValues.nama & !formValues.nomorhp && !formValues.email && !formValues.pesan}
             >
               Batal
             </Button>
@@ -319,7 +340,6 @@ export default function EditProjekPage() {
               className={classes.btn}
               variant="contained"
               type="submit"
-              // disabled={!formValues.nama && !formValues.nomorhp && !formValues.email && !formValues.pesan}
             >
               Simpan
             </Button>

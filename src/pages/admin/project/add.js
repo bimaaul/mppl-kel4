@@ -174,7 +174,7 @@ export default function AddProjekPage() {
         history.push("/admin/projek");
       })
       .catch((error) => {
-        console.log(error.response.data);
+        console.log(error.response.data.message);
       });
   };
 

@@ -6,6 +6,7 @@ import AddPhotoAlternateOutlinedIcon from "@material-ui/icons/AddPhotoAlternateO
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../../../context/UserContext";
 import axios from "axios";
+import { useParams } from "react-router-dom"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -47,8 +48,6 @@ const useStyles = makeStyles((theme) => ({
     "& p": {
       color: "white",
     },
-    marginTop: 5,
-    marginBottom: 5,
     display: "block",
     width: "1024px",
   },
@@ -65,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   label: {
-    color: "#DCD4E7",
+    color: "#645E6F",
   },
 
   add__button: {
@@ -111,59 +110,37 @@ const useStyles = makeStyles((theme) => ({
   text__dnd: {
     color: "#645E6F",
   },
-
-  icon: {
-    color: "#FFFFFF",
-  },
 }));
 
 export default function DetailProjekPage() {
-  const [project, setProject] = useState(null);
+  const [projek, setProjek] = useState({});
   const [loading, setLoading] = useState(false);
   const classes = useStyles();
-  const history = useHistory();
-  const [user] = useContext(UserContext);
-  const [id, setId] = useState(null);
-  // image data
-  const [image, setImage] = useState([]);
-  const { getRootProps, isDragActive } = useDropzone({
-    accept: "image/*",
-    onDrop: (acceptedFiles) => {
-      setImage(
-        acceptedFiles.map((upFile) =>
-          Object.assign(upFile, {
-            preview: URL.createObjectURL(upFile),
-          })
-        )
-      );
-    },
-  });
+  const { id } = useParams();
 
   useEffect(() => {
     setLoading(true);
     axios
-      .get("https://be-mppl.herokuapp.com/api/projects/"+ id, {
-        headers: { Authorization: `Bearer ${user.token}` },
-      })
+      .get("https://be-mppl.herokuapp.com/api/projects/"+ id,)
       .then((response) => {
-        // console.log(response);
         setLoading(false);
-        if (response.data) setProject(response.data);
-        else history.push("/admin/projek/add");
+        setProjek(response.data.project);
       });
-  }, [project]);
+  }, [projek]);
+
+  // decode JSON startDate, endDate
+  function formatDate(string){
+    var options = { day: 'numeric', month: 'long', year: 'numeric' };
+    return new Date(string).toLocaleDateString('en-GB', options);
+  }
 
   return (
     <div className={classes.root}>
       <div className={classes.add__testi}>
-        <h3 className={classes.h3}>Detail Projek</h3>
+        <h3 className={classes.h3}>Detail Project</h3>
         <hr style={{ color: "#fff", height: 1 }} />
-        {loading ? (
-          <div style={{ display: "flex", justifyContent: "center", width: "100%", marginTop: "16px" }}>
-            <CircularProgress />
-          </div>
-        ) : (
-          <Grid key={project._id} container alignItems="center" justify="center" direction="column">
+        <form className={classes.form} noValidate autoComplete="off">
+          <Grid container alignItems="center" justify="center" direction="column">
             <Grid item class="form-field">
               <TextField
                 className={classes.field}
@@ -172,7 +149,7 @@ export default function DetailProjekPage() {
                 size="small"
                 InputProps={{ className: classes.input, readOnly: true }}
                 fullWidth
-                value={project.name}
+                value={projek.name}
               />
             </Grid>
             <Grid item class="form-field">
@@ -185,15 +162,17 @@ export default function DetailProjekPage() {
                 rows={5}
                 fullWidth
                 size="small"
-                value={project.description}
+                value={projek.description}
               />
             </Grid>
             <Grid item class="form-field">
               <Box display="flex">
                 <TextField
+                  label="Tanggal Mulai"
                   className={classes.field}
                   variant="outlined"
                   display="flex"
+                  InputLabelProps={{ className: classes.label, shrink: true }}
                   InputProps={{
                     className: classes.input,
                     endAdornment: (
@@ -204,12 +183,15 @@ export default function DetailProjekPage() {
                     readOnly: true,
                   }}
                   size="small"
-                  value={project.startDate}
+                  marginRight="50px"
+                  value={formatDate(projek.startDate)}
                 />
                 <TextField
+                  label="Tanggal Selesai"
                   className={classes.field}
                   variant="outlined"
                   display="flex"
+                  InputLabelProps={{ className: classes.label, shrink: true }}
                   InputProps={{
                     className: classes.input,
                     endAdornment: (
@@ -220,41 +202,20 @@ export default function DetailProjekPage() {
                     readOnly: true,
                   }}
                   size="small"
-                  value={project.endDate}
+                  marginRight="50px"
+                  value={formatDate(projek.endDate)}
                 />
               </Box>
             </Grid>
             <Grid item class="form-field">
-              <div {...getRootProps()}>
-                <div className={classes.dnd__image}>
-                  <div style={{ position: "absolute", align: "center" }}>
-                    {image.map((upFile) => {
-                      return (
-                        <div>
-                          <img src={upFile.preview} className={classes.preview} alt="preview" />
-                        </div>
-                      );
-                    })}
+              <div className={classes.dnd__image}>
+                  <div style={{ position: 'absolute', align: 'center', }}>
+                      <img src={"http://be-mppl.herokuapp.com/" + projek.coverPath}></img>                                   
                   </div>
-                  <AddPhotoAlternateOutlinedIcon className={classes.dnd__icon} />
-                  {isDragActive ? (
-                    <p className={classes.text__dnd} align="center">
-                      Drop foto
-                      <br />
-                      di sini...
-                    </p>
-                  ) : (
-                    <p className={classes.text__dnd} align="center">
-                      Drag dan drop
-                      <br />
-                      foto di sini
-                    </p>
-                  )}
-                </div>
               </div>
             </Grid>
           </Grid>
-        )}
+        </form>
       </div>
     </div>
   );

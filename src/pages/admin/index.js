@@ -32,8 +32,8 @@ const AdminLayout = () => {
         {/* Project */}
         <Route exact path={`${match.path}/projek`} component={ProjekPage} />
         <Route path={`${match.path}/projek/add`} component={AddProjekPage} />
-        <Route path={`${match.path}/projek/detail`} component={DetailProjekPage} />
-        <Route path={`${match.path}/projek/edit`} component={EditProjekPage} />
+        <Route path={`${match.path}/projek/detail/:id`} component={DetailProjekPage} />
+        <Route path={`${match.path}/projek/edit/:id`} component={EditProjekPage} />
         {/* Anggota */}
         <Route exact path={`${match.path}/anggota`} component={AnggotaPage} />
         <Route path={`${match.path}/anggota/add`} component={AddAnggotaPage} />
