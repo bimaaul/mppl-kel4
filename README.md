@@ -50,13 +50,23 @@ Kedepannya Mamen Rider akan mengembangkan usaha jasa software development bernam
 - Pembuatan dan pengembangan program menggunakan PHP dengan framework React JS dan database menggunakan MySQL
 - Dapat diakses dimana saja dengan koneksi internet
 
-# 🖥 Deskripsi
+# 🖥 Deskripsi Aplikasi
 [`^ kembali ke atas ^`](#) 
 
 Mamen project adalah sebuah aplikasi berbasis website yang menyediakan informasi seputar profile pihak Mamen Rider, portofolio setiap anggota mereka, track record untuk setiap proyek yang berhasil mereka kerjakan, narahubung untuk melakukan kolaborasi, dan informasi review proyek yang telah berhasil dibuat. Tujuan dari dibuatnya aplikasi ini yaitu sebagai penghubung antara pihak Mamen Rider dan juga user yang hendak mencari software developer untuk mengembangkan produk bisnis mereka.
 
 # :people_holding_hands: User Analisis
 [`^ kembali ke atas ^`](#)
+
+### User Story
+“Sebagai seorang pembisnis yang ingin membuat startup, saya ingin dengan mudah mendapatkan informasi jasa di bidang software engineer agar saya dapat bekerja sama dengan mereka dan mewujudkan pembuatan software start up saya.”
+
+“Sebagai seorang pembisnis yang ingin mencari jasa developer, saya ingin mengetahui testimoni dari beberapa developer yang saya temui agar saya dapat memperoleh developer terbaik untuk bekerjasama dengan saya nantinya.”
+
+“Sebagai seorang pembisnis yang ingin mencari jasa developer, saya ingin mengetahui daftar keahlian apa saja yang dimiliki oleh developer tersebut agar saya dapat menyesuaikan dengan jenis keahlian yang dibutuhkan dengan project saya.”
+
+“Sebagai seorang pembisnis yang ingin mencari jasa developer, saya ingin mengetahui track record dari developer tersebut agar saya dapat memperoleh developer terbaik untuk bekerjasama dengan saya nantinya.”
+
 
 # ⚙️ Spesifikasi Lingkungan Pengembangan
 [`^ kembali ke atas ^`](#)
@@ -72,6 +82,43 @@ Perangkat keras yang dibutuhkan dalam pembuatan aplikasi ini adalah Laptop denga
 - RAM 8 GB
 - HDD 320 GB
 - GPU Nvidia GeForce 920MX
+
+### Tech Stack
+<h1 align="center">
+	<img
+	src="https://user-images.githubusercontent.com/48080443/122120605-d28d9180-ce54-11eb-8c42-5cd51112f20d.png"/>
+</h1>
+
+MERN adalah singkatan dari MongoDB, Express, React, Node yang merupakan tech stack yang digunakan pada pengembangan aplikasi kali ini.
+
+<table>
+    <thead>
+        <tr>
+            <th>Nama</th>
+            <th>Fungsi</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>MongoDB</td>
+            <td>Database</td>
+        </tr>
+         <tr>
+            <td>ExpressJS</td>
+            <td>NodeJS Web Framework</td>
+        </tr>
+        <tr>
+            <td>NodeJS</td>
+            <td>JavaScript Web Server</td>
+        </tr>
+       <tr>
+            <td>React JS</td>
+            <td>Client-side JavaScript framework (Front-End)</td>
+        </tr>
+</tbody>
+</table>
+
+MERN adalah salah satu dari beberapa variasi stack MEAN (MongoDB, Express, Angular, Node), di mana Angular sebagai framework front-end tradisional digantikan dengan React.js. Variasi lainnya adalah MEVN (MongoDB, Express, Vue, Node) dan framework front end dengan bahasa pemrograman JavaScript apapun dapat digunakan.
 
 # :rocket: Metode Pengembangan Desain
 [`^ kembali ke atas ^`](#)
@@ -91,6 +138,140 @@ Tahapan penting dalam metode Scrum dapat diuraikan menjadi beberapa poin, yakni:
 6. Review pekerjaan Scrum Team (review product).
 7. Proyek dianggap selesai. Baik karena kualitas produk telah sesuai permintaan, atau karena pekerjaan sudah berada pada batas waktu yang ditentukan.
 
+
+## Kick-off Meeting
+
+<table>
+    <thead>
+        <tr>
+            <th>Project Milestone</th>
+		<th>Target Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>First meet bersama client</td>
+            <td>Minggu, 29/08/21</td>
+        </tr>
+	<tr>
+            <td>Membuat perancangan awal sesuai dengan kebutuhan client</td>
+            <td>Minggu, 29/08/21</td>
+        </tr>
+	<tr>
+            <td>Membuat Use Case Diagram, Activity Diagram, ERD, Arsitektur Diagram</td>
+            <td>Minggu, 29/08/21 - Minggu, 05/09/21</td>
+        </tr>
+	<tr>
+            <td>Membuat Desain Tampilan Sistem</td>
+            <td>Minggu, 5/09/21 - Minggu, 12/09/21</td>
+        </tr>
+	<tr>
+            <td>Melakukan meeting bersama client terkait desain yang telah dibuat</td>
+            <td>Senin, 13/09/21</td>
+        </tr>
+	<tr>
+            <td>Melakukan revisi terkait desain jika ada</td>
+            <td>Selasa, 14/09/21 - Sabtu, 18/09/21</td>
+        </tr>
+	<tr>
+            <td>Melakukan meet untuk fiksasi desain bersama client</td>
+            <td>Minggu, 19/09/21</td>
+        </tr>
+	<tr>
+            <td>Design database dan Backend</td>
+            <td>Senin, 20/09/21 - Sabtu, 27/11/21</td>
+        </tr>
+	<tr>
+            <td>Memulai pengerjaan implementasi desain (Front-end)</td>
+            <td>Senin, 20/09/21 - Sabtu, 27/11/21</td>
+        </tr>
+	<tr>
+            <td>Connect Front-end to Back-end</td>
+            <td>Minggu, 28/11/21 - Kamis, 02/12/21</td>
+        </tr>
+	<tr>
+            <td>Testing internal</td>
+            <td>Kamis, 02/12/21</td>
+        </tr>
+	<tr>
+            <td>Bug Fixing</td>
+            <td>Kamis, 02/12/21 - Jum’at, 03/12/21</td>
+        </tr>
+	<tr>
+            <td>User Acceptance Testing</td>
+            <td>Sabtu, 04/12/21</td>
+        </tr>
+</tbody>
+</table>
+
+
+## Major Known Risks (including significant Assumptions) 
+
+<table>
+    <thead>
+        <tr>
+            <th>Risk</th>
+		<th>Risk Rating (Hi, Med, Low)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Kesulitan mengimplementasikan fitur chat pada teknologi yang dipilih</td>
+            <td>Medium</td>
+        </tr>
+	<tr>
+            <td>Tidak adanya milestone pada proyek yang sedang dikerjakan</td>
+            <td>Medium</td>
+        </tr>
+	<tr>
+            <td>Kurangnya dokumentasi terkait perancangan dan pengembangan sistem</td>
+            <td>Medium</td>
+        </tr>
+	<tr>
+            <td>Pembuatan program yang terhambat waktunya karena programmer perlu belajar framework yang digunakan </td>
+            <td>High</td>
+        </tr>
+</tbody>
+</table>
+
+## Communication Strategy
+
+Metode komunikasi yang digunakan sebagai berikut :
+1. Melakukan rapat rutin setiap minggu malam untuk mengerjakan LKP setiap minggunya, kemudian membahas task atau pun pekerjaan di setiap progres role yang dikerjakan
+2. Melalui Trello, kami menggunakan list di setiap pekerjaan yang akan, sedang, ataupun telah diselesaikan oleh setiap anggota tim. List ini nantinya berupa catatan tanggal-tanggal penting, backlog, to-do, bugs, dan completed.
+3. Melalui Github, kami melakukan dokumentasi terhadap sistem yang kami buat baik dari segi laporan maupun hasil kodingan file dari sistem kami yang sudah dikerjakan nantinya akan disatukan pada github kelompok kami. 
+
+
+## Project Budget
+
+<table>
+    <thead>
+        <tr>
+            <th>Budget Name</th>
+		<th>Budget Cost</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Landing Page ( Email form submission, Static View, Konten projects dan testimoni )</td>
+            <td>Rp. 1.200.000,00</td>
+        </tr>
+	<tr>
+            <td>Authentication ( Admin )</td>
+            <td>Rp. 250.000,00</td>
+        </tr>
+	<tr>
+            <td>Admin ( CRUD Content Landing Page, CRUD Anggota Mamen, CRUD Projek Mamen, CRUD Testimoni )</td>
+            <td>Rp. 800.000,00</td>
+        </tr>
+	<tr>
+            <td>Total Cost</td>
+            <td>Total = Rp. 2.250.000,00</td>
+        </tr>
+</tbody>
+</table>
+	    
+	    
 # 🎊 Hasil dan Pembahasan
 [`^ kembali ke atas ^`](#)  
 ### Use Case Diagram
@@ -100,6 +281,21 @@ Tahapan penting dalam metode Scrum dapat diuraikan menjadi beberapa poin, yakni:
 </h1>
 
 Kami menawarkan ide sebuah platform dimana user dapat melakukan permintaan kerjasama dengan pihak Mamen sebagai software engineer dalam pengembangan bisnis atau proyek mereka. User dapat melihat profile Mamen secara lengkap, daftar keahlian, profile anggota, riwayat projek, testimoni, serta melakukan pengajuan kerjasama. User dapat melakukan pengajuan untuk kerjasama dengan mengisikan form yang terdapat pada aplikasi dan mengirimkan data form tersebut. Kemudian pengajuan itu akan masuk ke dalam daftar permintaan pada aplikasi admin Mamen yang nantinya pengajuan tersebut dapat dilakukan tindakan lebih lanjut oleh admin untuk disetujui dan diterima.
+
+Estimasi effort dan biaya dari use case diagram tersebut yang dihitung menggunakan metode Use Case Point (UCP) yaitu sebagai berikut
+
+<h1 align="center">
+	<img
+	src="https://user-images.githubusercontent.com/60084871/144569577-a8b15b76-6a10-409f-be00-bfbece133193.png"/>
+</h1>
+
+<h1 align="center">
+	<img
+	src="https://user-images.githubusercontent.com/60084871/144569655-ae3b62c2-5fff-4259-83c1-6b6c9bc0ea1d.png"/>
+</h1>
+
+Menurut kelompok kami, metode yang direkomendasikan adalah Use Case Point. Alasannya karena pada use case point dihitung berdasarkan model dan jumlah use case sistem. Dalam perhitungannya, diperhitungkan juga faktor kompleksitas teknis dan lingkungan. Sehingga perkiraan biaya yang dihasilkan lebih menyeluruh karena tidak hanya faktor teknis saja yang diperhitungkan tetapi juga kondisi dan kemampuan internal tim pengembang. Sedangkang metode Function Point hanya mepertimbangkan faktor teknis saja, tanpa memperhitungkan faktor lingkungan tim pengembang.
+
 
 ### Activity Diagram
 <h1 align="center">
@@ -213,6 +409,132 @@ Kami menawarkan ide sebuah platform dimana user dapat melakukan permintaan kerja
 # :high_brightness: Fungsi CRUD
 [`^ kembali ke atas ^`](#)
 
+<table>
+    <thead>
+        <tr>
+            <th>Nama Fitur</th>
+            <th>Fungsi CRUD</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+	<td>Tentang Kami</td>
+            <td>	
+		    	Create : Admin dapat memasukkan informasi profile Mamen Rider
+			
+		    	Read : User dapat melihat detail informasi Mamen Rider
+			
+		    	Update : Admin dapat mengedit informasi tentang kami yang telah dibuat
+</td>
+		 </tr>
+	    <tr>
+	<td>Project Kami</td>
+            <td>	
+		    	Create : Admin dapat memasukkan daftar project yang berhasil dikerjakan
+			
+		    	Read : User dapat melihat daftar project Mamen Rider
+			
+		    	Update : Admin dapat mengedit informasi project yang telah dibuat
+			
+		    	Delete :  Admin dapat menghapus project yang telah dibuat
+</td>
+	     </tr>
+	    <tr>
+	<td>Anggota</td>
+            <td>	
+		    	Create : Admin dapat memasukkan daftar anggota Mamen Rider
+			
+		    	Read : User dapat melihat daftar anggota Mamen Rider
+			
+		    	Update : Admin dapat mengedit informasi anggota yang telah dibuat
+			
+		    	Delete :  Admin dapat menghapus daftar anggota yang telah dibuat
+</td>
+		    </tr>
+		    <tr>
+            <td>Testimoni</td>
+            <td>	
+		    	Create : Admin dapat memasukkan daftar testimoni client mereka
+			
+		    	Read : User dapat melihat daftar testimoni client
+
+		   	Update : Admin dapat mengedit testimoni yang telah dibuat
+
+		    	Delete :  Admin dapat menghapus testimoni yang telah dibuat
+</td>
+			    </tr>
+	    <tr>
+            <td>Permintaan</td>
+            <td>	
+		    	Create : User dapat membuat permintaan kerjasama
+		    	
+		    	Read : Admin dapat melihat daftar permintaan yang masuk
+		    	
+		    	Delete :  Admin dapat menghapus daftar permintaan yang masuk
+</td>
+        </tr>
+</tbody>
+</table>
+	
+	
+## Change Log (catatan perubahan)
+	
+<table>
+    <thead>
+        <tr>
+            <th>Change Type</th>
+            <th>Description of Change</th>
+		<th>Comments</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>	
+		    	Tipe : Desain
+		    	
+		    	Requestor : Front-end
+		    	
+		    	Status : Denied
+</td>
+		<td>Pada website user, di halaman "Tentang Kami" menu pop-up untuk melihat data lebih lengkap ditiadakan karena implementasi yang cukup sulit </td>
+		<td>Perubahan untuk meniadakan pop-up pada "Tentang Kami"  akhirnya tidak direalisasikan karena pada prosesnya pop up berhasil diimplementasikan dan memakai material UI </td>
+		</tr>
+	   <tr>
+            <td>	
+		    	Tipe : Desain
+		    	
+		    	Requestor : PM & UI/UX Designer
+		    	
+		    	Status : Approved
+</td>
+		<td>Fitur chat pada desain aplikasi ditiadakan karena implementasi yang sulit dan konfirmasi dari pihak client yang belum membutuhkan fitur tersebut </td>
+		<td>Perubahan untuk meniadakan implementasi fitur chat diterima karena dari pihak client pun ternyata tidak begitu membutuhkan fitur itu di web mereka </td>
+		</tr>
+	 <tr>
+            <td>	
+		    	Tipe : Tech Stack
+		    	
+		    	Requestor : Back-end
+		    	
+		    	Status : Approved
+</td>
+		<td>Database yang digunakan diganti dari mysql menjadi mongo </td>
+		<td>Implementasi dapat lebih sederhana dan lebih familiar dengan developer </td>
+		</tr>
+	    <tr>
+            <td>	
+		    	Tipe : Schedule
+		    	
+		    	Requestor : Front-End
+		    	
+		    	Status : Approved
+</td>
+		<td>Perubahan jadwal implementasi dilakukan dengan menyesuaikan pelaksanaan implementasi yang dilakukan  </td>
+		<td>Dibuatnya perubahan pembaruan jadwal pengerjaan projek baru untuk menyesuaikan dengan pelaksanaan implementasi dari pihak front end developer </td>
+		</tr>
+</tbody>
+</table>
+	
 # 🚀 Hasil Implementasi
 [`^ kembali ke atas ^`](#)
 
@@ -247,74 +569,3 @@ Kami menawarkan ide sebuah platform dimana user dapat melakukan permintaan kerja
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Role: <a>Front-End</a> <br>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Email: <a>arya_aminata93@apps.ipb.ac.id</a> <br>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GitHub: <a href="https://github.com/aryaaminata093">@aryaaminata093</a> <br>
-	
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

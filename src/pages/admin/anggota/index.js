@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { UserContext } from "../../../context/UserContext";
 import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/styles";
 import Box from "@material-ui/core/box";
@@ -8,6 +9,7 @@ import AddIcon from "@material-ui/icons/Add";
 import DeleteOutlineOutlinedIcon from "@material-ui/icons/DeleteOutlineOutlined";
 import { Grid, Card, CardContent, CardMedia } from "@material-ui/core/";
 import img1 from "../../../assets/profil.svg";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -188,20 +190,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function createData(no, nama, jabatan, aksi) {
-  return { no, nama, jabatan, aksi };
-}
-
-const rows = [
-  createData(1, "Ali Naufal Ammarullah", "CTO Mamen", ""),
-  createData(2, "Ali Naufal Ammarullah", "CTO Mamen", ""),
-  createData(3, "Ali Naufal Ammarullah", "CTO Mamen", ""),
-  createData(4, "Ali Naufal Ammarullah", "CTO Mamen", ""),
-];
+// function createData(no, nama, jabatan, aksi) {
+//   return { no, nama, jabatan, aksi };
+// }
 
 export default function AnggotaPage(props) {
+  const [user] = useContext(UserContext);
   const classes = useStyles();
   const history = useHistory();
+  const [loading, setLoading] = useState(false);
+  const [member, setMember] = useState(null);
+  const [id, setId] = useState(null);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -211,6 +210,16 @@ export default function AnggotaPage(props) {
     { nama: "Bima Aulia", job: "Mobile Developer & QA" },
     { nama: "Arya Arminata", job: "Mobile Developer & QA" },
   ];
+
+  useEffect(() => {
+    if (member === null) {
+      setLoading(true);
+      axios.get("https://be-mppl.herokuapp.com/api/member").then((res) => {
+        setMember(res.data.member);
+        setLoading(false);        
+      });
+    }
+  }, [member]);
 
   return (
     <div className={classes.root}>
@@ -248,7 +257,7 @@ export default function AnggotaPage(props) {
                   className={classes.edit_button}
                   variant="contained"
                   color="primary"
-                  onClick={() => history.push("/admin/anggpta/edit")}
+                  onClick={() => history.push("/admin/anggota/edit")}
                 >
                   Edit
                 </Button>
@@ -259,6 +268,7 @@ export default function AnggotaPage(props) {
             </Card>
           </Grid>
         ))}
+
         <Modal className={classes.popup} open={open} onClose={handleClose}>
           <Box className={classes.popup_box}>
             <div className={classes.top_row}>

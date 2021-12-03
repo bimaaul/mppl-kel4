@@ -183,7 +183,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const EditAnggotaPage = () => {
+export default function EditAnggotaPage() {
     const classes = useStyles();
     const [image, setImage] = useState([]);
     const { getRootProps, isDragActive } = useDropzone({
@@ -720,8 +720,8 @@ const EditAnggotaPage = () => {
                     </Grid>
 
                 </Grid>
-            </form>
-            <Grid container alignItems="center" justify="center" direction="column">
+
+                <Grid container alignItems="center" justify="center" direction="column">
                     <Grid item class="form-field">
                         <Button
                             onClick={handleSubmit}
@@ -736,8 +736,7 @@ const EditAnggotaPage = () => {
                         </Button>
                     </Grid>
                 </Grid>
+            </form>
         </Card>
-    );
-};
-
-export default EditAnggotaPage;
+    );  
+}
