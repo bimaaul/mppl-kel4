@@ -313,7 +313,7 @@ Menurut kelompok kami, metode yang direkomendasikan adalah Use Case Point. Alasa
 ### Arsitektur Diagram
 <h1 align="center">
 	<img
-	src="https://user-images.githubusercontent.com/57734498/144532235-a98659fb-7f4b-44e5-b3f6-f6bcff18c926.jpg"/>
+	src="https://user-images.githubusercontent.com/60083962/144602444-82d23499-30da-4667-be17-0864622a2bf3.png"/>
 </h1>
 
 # :man_teacher: Stakeholder yang Terlibat
