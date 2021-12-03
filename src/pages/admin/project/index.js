@@ -161,12 +161,12 @@ export default function ProjectPage(props) {
   useEffect(() => {
     if (project === null) {
       axios
-        .get("https://be-mppl.herokuapp.com/api/about", {
+        .get("https://be-mppl.herokuapp.com/api/projects", {
           headers: { Authorization: `Bearer ${user.token}` },
         })
         .then((response) => {
-          // console.log(response);
-          setProject(response.data.about);
+          console.log(response);
+          setProject(response.data.project);
           setLoading(false);
         });
     }
@@ -227,8 +227,8 @@ export default function ProjectPage(props) {
                         {project.name}
                       </TableCell>
                       <TableCell className={classes.cell} align="left">
-                        {/* {project.startDate} - {project.endDate} */}
-                        {project.description}
+                        {project.startDate} - {project.endDate}
+                        {/* {project.description} */}
                       </TableCell>
                       <TableCell className={classes.cell} align="left">
                         <Button
