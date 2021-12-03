@@ -92,7 +92,7 @@ Tahapan penting dalam metode Scrum dapat diuraikan menjadi beberapa poin, yakni:
 7. Proyek dianggap selesai. Baik karena kualitas produk telah sesuai permintaan, atau karena pekerjaan sudah berada pada batas waktu yang ditentukan.
 
 
-### Kick-off Meeting
+## Kick-off Meeting
 
 <table>
     <thead>
@@ -187,8 +187,7 @@ Tahapan penting dalam metode Scrum dapat diuraikan menjadi beberapa poin, yakni:
 </tbody>
 </table>
 
-
-##Communication Strategy
+## Communication Strategy
 
 Metode komunikasi yang digunakan sebagai berikut :
 1. Melakukan rapat rutin setiap minggu malam untuk mengerjakan LKP setiap minggunya, kemudian membahas task atau pun pekerjaan di setiap progres role yang dikerjakan
@@ -196,7 +195,7 @@ Metode komunikasi yang digunakan sebagai berikut :
 3. Melalui Github, kami melakukan dokumentasi terhadap sistem yang kami buat baik dari segi laporan maupun hasil kodingan file dari sistem kami yang sudah dikerjakan nantinya akan disatukan pada github kelompok kami. 
 
 
-##Project Budget
+## Project Budget
 
 <table>
     <thead>
@@ -219,7 +218,8 @@ Metode komunikasi yang digunakan sebagai berikut :
             <td>Rp. 800.000,00</td>
         </tr>
 	<tr>
-            <td>Total Cost: Rp. 2.250.000,00</td>
+            <td>Total Cost</td>
+            <td>Total = Rp. 2.250.000,00</td>
         </tr>
 </tbody>
 </table>
@@ -234,6 +234,21 @@ Metode komunikasi yang digunakan sebagai berikut :
 </h1>
 
 Kami menawarkan ide sebuah platform dimana user dapat melakukan permintaan kerjasama dengan pihak Mamen sebagai software engineer dalam pengembangan bisnis atau proyek mereka. User dapat melihat profile Mamen secara lengkap, daftar keahlian, profile anggota, riwayat projek, testimoni, serta melakukan pengajuan kerjasama. User dapat melakukan pengajuan untuk kerjasama dengan mengisikan form yang terdapat pada aplikasi dan mengirimkan data form tersebut. Kemudian pengajuan itu akan masuk ke dalam daftar permintaan pada aplikasi admin Mamen yang nantinya pengajuan tersebut dapat dilakukan tindakan lebih lanjut oleh admin untuk disetujui dan diterima.
+
+Estimasi effort dan biaya dari use case diagram tersebut yang dihitung menggunakan metode Use Case Point (UCP) yaitu sebagai berikut
+
+<h1 align="center">
+	<img
+	src="https://user-images.githubusercontent.com/60084871/144569577-a8b15b76-6a10-409f-be00-bfbece133193.png"/>
+</h1>
+
+<h1 align="center">
+	<img
+	src="https://user-images.githubusercontent.com/60084871/144569655-ae3b62c2-5fff-4259-83c1-6b6c9bc0ea1d.png"/>
+</h1>
+
+Menurut kelompok kami, metode yang direkomendasikan adalah Use Case Point. Alasannya karena pada use case point dihitung berdasarkan model dan jumlah use case sistem. Dalam perhitungannya, diperhitungkan juga faktor kompleksitas teknis dan lingkungan. Sehingga perkiraan biaya yang dihasilkan lebih menyeluruh karena tidak hanya faktor teknis saja yang diperhitungkan tetapi juga kondisi dan kemampuan internal tim pengembang. Sedangkang metode Function Point hanya mepertimbangkan faktor teknis saja, tanpa memperhitungkan faktor lingkungan tim pengembang.
+
 
 ### Activity Diagram
 <h1 align="center">
