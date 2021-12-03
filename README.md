@@ -420,9 +420,12 @@ Menurut kelompok kami, metode yang direkomendasikan adalah Use Case Point. Alasa
         <tr>
             <td>Testimoni</td>
             <td>Create : Admin dapat memasukkan daftar testimoni client mereka
-Read : User dapat melihat daftar testimoni client
-Update : Admin dapat mengedit testimoni yang telah dibuat
-Delete :  Admin dapat menghapus testimoni yang telah dibuat
+			
+		    Read : User dapat melihat daftar testimoni client
+
+		    Update : Admin dapat mengedit testimoni yang telah dibuat
+
+		    Delete :  Admin dapat menghapus testimoni yang telah dibuat
 </td>
             
         </tr>
