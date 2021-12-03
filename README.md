@@ -117,7 +117,7 @@ Kami menawarkan ide sebuah platform dimana user dapat melakukan permintaan kerja
 ### Arsitektur Diagram
 <h1 align="center">
 	<img
-	src="https://user-images.githubusercontent.com/60084871/144304081-ae067e9d-f807-4717-bb24-50a19df43e55.png"/>
+	src="https://user-images.githubusercontent.com/57734498/144532235-a98659fb-7f4b-44e5-b3f6-f6bcff18c926.jpg"/>
 </h1>
 
 # :man_teacher: Stakeholder yang Terlibat
