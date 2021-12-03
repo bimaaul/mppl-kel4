@@ -91,6 +91,7 @@ Tahapan penting dalam metode Scrum dapat diuraikan menjadi beberapa poin, yakni:
 6. Review pekerjaan Scrum Team (review product).
 7. Proyek dianggap selesai. Baik karena kualitas produk telah sesuai permintaan, atau karena pekerjaan sudah berada pada batas waktu yang ditentukan.
 
+
 ### Kick-off Meeting
 
 <table>
@@ -117,9 +118,113 @@ Tahapan penting dalam metode Scrum dapat diuraikan menjadi beberapa poin, yakni:
             <td>Membuat Desain Tampilan Sistem</td>
             <td>Minggu, 5/09/21 - Minggu, 12/09/21</td>
         </tr>
+	<tr>
+            <td>Melakukan meeting bersama client terkait desain yang telah dibuat</td>
+            <td>Senin, 13/09/21</td>
+        </tr>
+	<tr>
+            <td>Melakukan revisi terkait desain jika ada</td>
+            <td>Selasa, 14/09/21 - Sabtu, 18/09/21</td>
+        </tr>
+	<tr>
+            <td>Melakukan meet untuk fiksasi desain bersama client</td>
+            <td>Minggu, 19/09/21</td>
+        </tr>
+	<tr>
+            <td>Design database dan Backend</td>
+            <td>Senin, 20/09/21 - Sabtu, 27/11/21</td>
+        </tr>
+	<tr>
+            <td>Memulai pengerjaan implementasi desain (Front-end)</td>
+            <td>Senin, 20/09/21 - Sabtu, 27/11/21</td>
+        </tr>
+	<tr>
+            <td>Connect Front-end to Back-end</td>
+            <td>Minggu, 28/11/21 - Kamis, 02/12/21</td>
+        </tr>
+	<tr>
+            <td>Testing internal</td>
+            <td>Kamis, 02/12/21</td>
+        </tr>
+	<tr>
+            <td>Bug Fixing</td>
+            <td>Kamis, 02/12/21 - Jum’at, 03/12/21</td>
+        </tr>
+	<tr>
+            <td>User Acceptance Testing</td>
+            <td>Sabtu, 04/12/21</td>
+        </tr>
 </tbody>
 </table>
 
+
+## Major Known Risks (including significant Assumptions) 
+
+<table>
+    <thead>
+        <tr>
+            <th>Risk</th>
+		<th>Risk Rating (Hi, Med, Low)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Kesulitan mengimplementasikan fitur chat pada teknologi yang dipilih</td>
+            <td>Medium</td>
+        </tr>
+	<tr>
+            <td>Tidak adanya milestone pada proyek yang sedang dikerjakan</td>
+            <td>Medium</td>
+        </tr>
+	<tr>
+            <td>Kurangnya dokumentasi terkait perancangan dan pengembangan sistem</td>
+            <td>Medium</td>
+        </tr>
+	<tr>
+            <td>Pembuatan program yang terhambat waktunya karena programmer perlu belajar framework yang digunakan </td>
+            <td>High</td>
+        </tr>
+</tbody>
+</table>
+
+
+##Communication Strategy
+
+Metode komunikasi yang digunakan sebagai berikut :
+1. Melakukan rapat rutin setiap minggu malam untuk mengerjakan LKP setiap minggunya, kemudian membahas task atau pun pekerjaan di setiap progres role yang dikerjakan
+2. Melalui Trello, kami menggunakan list di setiap pekerjaan yang akan, sedang, ataupun telah diselesaikan oleh setiap anggota tim. List ini nantinya berupa catatan tanggal-tanggal penting, backlog, to-do, bugs, dan completed.
+3. Melalui Github, kami melakukan dokumentasi terhadap sistem yang kami buat baik dari segi laporan maupun hasil kodingan file dari sistem kami yang sudah dikerjakan nantinya akan disatukan pada github kelompok kami. 
+
+
+##Project Budget
+
+<table>
+    <thead>
+        <tr>
+            <th>Budget Name</th>
+		<th>Budget Cost</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Landing Page ( Email form submission, Static View, Konten projects dan testimoni )</td>
+            <td>Rp. 1.200.000,00</td>
+        </tr>
+	<tr>
+            <td>Authentication ( Admin )</td>
+            <td>Rp. 250.000,00</td>
+        </tr>
+	<tr>
+            <td>Admin ( CRUD Content Landing Page, CRUD Anggota Mamen, CRUD Projek Mamen, CRUD Testimoni )</td>
+            <td>Rp. 800.000,00</td>
+        </tr>
+	<tr>
+            <td>Total Cost: Rp. 2.250.000,00</td>
+        </tr>
+</tbody>
+</table>
+	    
+	    
 # 🎊 Hasil dan Pembahasan
 [`^ kembali ke atas ^`](#)  
 ### Use Case Diagram
