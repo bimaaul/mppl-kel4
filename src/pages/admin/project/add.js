@@ -164,7 +164,6 @@ export default function AddProjekPage() {
     formdata.append("cover", image[0]);
 
     axios
-<<<<<<< HEAD
       .post(
         "https://be-mppl.herokuapp.com/api/projects",
           formdata, {
@@ -172,13 +171,6 @@ export default function AddProjekPage() {
               Authorization: `Bearer ${user.token}`,
             }
         })
-=======
-      .post("https://be-mppl.herokuapp.com/api/projects", formdata, {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      })
->>>>>>> 9ee4b2aaeb00bc5ef3c7a50684afa5c51b3cb612
       .then((response) => {
         console.log(response);
         history.push("/admin/projek");
