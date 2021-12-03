@@ -300,7 +300,7 @@ Menurut kelompok kami, metode yang direkomendasikan adalah Use Case Point. Alasa
 ### Activity Diagram
 <h1 align="center">
 	<img
-	src="https://user-images.githubusercontent.com/60084871/144303469-0294ca8d-be09-4c32-b965-c6aa8a06c935.png"/>
+	src="https://user-images.githubusercontent.com/60083962/144602444-82d23499-30da-4667-be17-0864622a2bf3.png"/>
 	<img
 </h1>
 
@@ -313,7 +313,7 @@ Menurut kelompok kami, metode yang direkomendasikan adalah Use Case Point. Alasa
 ### Arsitektur Diagram
 <h1 align="center">
 	<img
-	src="https://user-images.githubusercontent.com/60083962/144602444-82d23499-30da-4667-be17-0864622a2bf3.png"/>
+	src="https://user-images.githubusercontent.com/60083962/144602837-03e82377-728d-4252-a27a-06397e2ab0e6.png"/>
 </h1>
 
 # :man_teacher: Stakeholder yang Terlibat
