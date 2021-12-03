@@ -1,8 +1,6 @@
 import React, { useState,  useContext, useEffect} from 'react';
 import axios from 'axios';
-import { UserContext } from "../../../context/UserContext";
-import { useHistory } from 'react-router';
-import { Grid, TextField, Button, makeStyles, InputAdornment, circularProgress } from '@material-ui/core';
+import { Grid, TextField, makeStyles, InputAdornment, circularProgress } from '@material-ui/core';
 import { useParams } from "react-router-dom"
 
 const useStyles = makeStyles((theme) => ({
@@ -112,21 +110,21 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const DetailTestimoniPage = () => {
-    const [user] = useContext(UserContext);
     const [loading, setLoading] = useState(false);
-    const [testi, setTesti] = useState(null)
+    const [testi, setTesti] = useState({})
     const classes = useStyles();
-    const { id } = useParams()
+    const { id } = useParams();
+    //console.log(testi);
 
     useEffect(() => {
         setLoading(true);
-        axios.get("https://be-mppl.herokuapp.com/api/clients").then((res) => {
+        axios.get("https://be-mppl.herokuapp.com/api/clients/" + id).then((res) => {
             setLoading(false);
-            setTesti(res.data);     
+            setTesti(res.data.client);    
         });
-    }, [testi]);
-
+    }, [testi]); 
     
+    //console.log(testi.name);
 
     return (
         <div className={classes.root}>
@@ -147,10 +145,11 @@ const DetailTestimoniPage = () => {
                                 InputLabelProps={{ className: classes.label, required: false }}
                                 InputProps={{ className: classes.input }}
                                 fullWidth
+                                uneditable="true"
                                 required
                                 type="text"
                                 //defaultValue={testi.name}
-                                //value={formValues.nama}
+                                value={testi.name}
                                 autoFocus={true}
                             // error={namaError}
                             />
@@ -167,9 +166,10 @@ const DetailTestimoniPage = () => {
                                 InputProps={{ className: classes.input }}
                                 fullWidth
                                 size="small"
+                                uneditable="true"
                                 required
                                 type="text"
-                                //value={formValues.nama}
+                                value={testi.job}
                                 autoFocus={true}
                             // error={namaError}
                             />
@@ -187,10 +187,11 @@ const DetailTestimoniPage = () => {
                                 multiline
                                 rows={5}
                                 fullWidth
+                                uneditable="true"
                                 size="small"
                                 required
                                 type="text"
-                                //value={formValues.nama}
+                                value={testi.testimoni}
                                 autoFocus={true}
                             // error={namaError}
                             />
@@ -198,7 +199,7 @@ const DetailTestimoniPage = () => {
                         <Grid item class="form-field">
                                 <div className={classes.dnd__image}>
                                     <div style={{ position: 'absolute', align: 'center', }}>
-                                        
+                                        <img src={"http://be-mppl.herokuapp.com/" + testi.profilePath}></img>                                   
                                     </div>
                                 </div>
                         </Grid>

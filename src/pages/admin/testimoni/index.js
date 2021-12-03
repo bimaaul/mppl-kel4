@@ -259,7 +259,7 @@ export default function TestimoniPage(props) {
                         }}
                         variant="contained"
                         color="primary"
-                        onClick={() => history.push("/admin/testimoni/detail/"+ testi._id)}
+                        onClick={() => history.push("/admin/testimoni/edit/"+ testi._id)}
                       >
                         Edit
                       </Button>

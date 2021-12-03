@@ -128,23 +128,13 @@ const useStyles = makeStyles((theme) => ({
 export default function EditTestimoniPage() {
     const [user] = useContext(UserContext);
     const [loading, setLoading] = useState(false);
-    const [testi, setTesti] = useState(null);
-    const {
-        control,
-        handleSubmit,
-        setValue,
-        formState: {isSubmitting, isValid, isDirty},
-    } = useForm({
-        defaultValues: {
-            name: "",
-
-        },
-        mode: "onChange",
-    });
-    const id = useParams();
+    const { id } = useParams();
     const classes = useStyles();
     const [image, setImage] = useState([]);
     const history = useHistory();
+    const [testi, setTesti] = useState({});
+    const [formValues, setFormValues] = useState(false)
+    
     const { getRootProps, isDragActive } = useDropzone({
         accept: "image/*",
         onDrop: (acceptedFiles) => {
@@ -156,31 +146,63 @@ export default function EditTestimoniPage() {
         }
     })
 
+    
+        
+    
     useEffect(() =>{
-        setLoading(true);
-        axios
-            .get("https://be-mppl.herokuapp.com/api/about/clients")
-            .then((res) => {
-                setLoading(false);
-                if (res.data) setTesti(res.data);
-                else history.push("/admin/tentang-kami/add");
-            })
-            .catch((err) => console.log(err.response.data));
+        if(formValues === false){
+            setLoading(true);
+            axios
+                .get("https://be-mppl.herokuapp.com/api/clients/"+ id)
+                .then((res) => {
+                    setLoading(false);
+                    setTesti(res.data.client); 
+                });
+        }
     }, [testi]);
 
-    
+    const handleFormChange = (e) => {
 
-    const [formValues, setFormValues] = useState([{
-        //nama: '', 
-        //nomorhp: '', 
-        //email: '', 
-        //pesan: ''
-    }])
+        e.preventDefault();
 
-    // const handleSubmit = (e) => {
+        const fieldName = e.target.getAttribute("name");
+        const fieldValue = e.target.value;
 
-    //     console.log(formValues);
-    // }
+        const newFormValue = {...formValues};
+        newFormValue[fieldName] = fieldValue;
+
+        setFormValues(newFormValue);
+        console.log(newFormValue);
+    }
+
+    console.log(formValues);
+    console.log(image);
+
+    const handleSubmit = () => {
+        let formdata = new FormData();
+        formdata.append("name", formValues.name);
+        formdata.append("job", formValues.job);
+        formdata.append("testimoni", formValues.testimoni);
+        formdata.append("_id", id);
+        formdata.append("profile", image[0]);
+
+        axios
+          .put(
+            "https://be-mppl.herokuapp.com/api/clients",
+            formdata,
+            {
+              headers: {
+                Authorization: `Bearer ${user.token}`,
+              },
+            }
+          )
+          .then((res) => {
+            history.push("/admin/testimoni");
+          })
+          .catch((err) => {
+            alert(err.response.data.message);
+          });
+    };
 
     return (
         <div className={classes.root}>
@@ -192,7 +214,7 @@ export default function EditTestimoniPage() {
                         <Grid item class="form-field">
                             <TextField
                                 className={classes.field}
-                                name="nama"
+                                name="name"
                                 // label="Nama"
                                 placeholder="Nama Lengkap"
                                 variant="outlined"
@@ -203,8 +225,8 @@ export default function EditTestimoniPage() {
                                 fullWidth
                                 required
                                 type="text"
-                                // onChange={(e) => setNama(e.target.value)}
-                                //value={formValues.nama}
+                                onChange={handleFormChange}
+                                value={formValues.name ? (formValues.name) : (testi.name)}
                                 //onChange={e => handleChangeNama(e)}
                                 autoFocus={true}
                             // error={namaError}
@@ -213,7 +235,7 @@ export default function EditTestimoniPage() {
                         <Grid item class="form-field">
                             <TextField
                                 className={classes.field}
-                                name="nama"
+                                name="job"
                                 // label="Nama"
                                 placeholder="Jabatan"
                                 variant="outlined"
@@ -224,8 +246,8 @@ export default function EditTestimoniPage() {
                                 size="small"
                                 required
                                 type="text"
-                                // onChange={(e) => setNama(e.target.value)}
-                                //value={formValues.nama}
+                                onChange={handleFormChange}
+                                value={formValues.job ? (formValues.job) : (testi.job)}
                                 //onChange={e => handleChangeNama(e)}
                                 autoFocus={true}
                             // error={namaError}
@@ -234,7 +256,7 @@ export default function EditTestimoniPage() {
                         <Grid item class="form-field">
                             <TextField
                                 className={classes.field}
-                                name="nama"
+                                name="testimoni"
                                 // label="Nama"
                                 placeholder="Testimoni"
                                 variant="outlined"
@@ -247,8 +269,8 @@ export default function EditTestimoniPage() {
                                 size="small"
                                 required
                                 type="text"
-                                // onChange={(e) => setNama(e.target.value)}
-                                //value={formValues.nama}
+                                onChange={handleFormChange}
+                                value={formValues.testimoni ? (formValues.testimoni) : (testi.testimoni)}
                                 //onChange={e => handleChangeNama(e)}
                                 autoFocus={true}
                             // error={namaError}
