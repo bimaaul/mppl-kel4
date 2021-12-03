@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext} from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Box, Grid, TextField, Button, makeStyles } from "@material-ui/core";
 import { useDropzone } from "react-dropzone";
 import AddPhotoAlternateOutlinedIcon from "@material-ui/icons/AddPhotoAlternateOutlined";
@@ -131,30 +131,32 @@ export default function AddProjekPage() {
   });
   console.log(image);
 
-  const [formValues, setFormValues] = useState([{
-    name: '', 
-    desription: '', 
-    startDate: '', 
-    endDate: '',
-    cover: '',
-  }])
-  
-  const handleFormChange = (e) => {
+  const [formValues, setFormValues] = useState([
+    {
+      name: "",
+      desription: "",
+      startDate: "",
+      endDate: "",
+      cover: "",
+    },
+  ]);
 
+  const handleFormChange = (e) => {
     e.preventDefault();
 
     const fieldName = e.target.getAttribute("name");
     const fieldValue = e.target.value;
 
-    const newFormValue = {...formValues};
+    const newFormValue = { ...formValues };
     newFormValue[fieldName] = fieldValue;
 
     setFormValues(newFormValue);
     console.log(newFormValue);
-  }
+  };
 
   const handleSubmit = () => {
     let formdata = new FormData();
+    console.log(formValues);
     formdata.append("name", formValues.name);
     formdata.append("description", formValues.description);
     formdata.append("startDate", formValues.startDate);
@@ -162,6 +164,7 @@ export default function AddProjekPage() {
     formdata.append("cover", image[0]);
 
     axios
+<<<<<<< HEAD
       .post(
         "https://be-mppl.herokuapp.com/api/projects",
           formdata, {
@@ -169,6 +172,13 @@ export default function AddProjekPage() {
               Authorization: `Bearer ${user.token}`,
             }
         })
+=======
+      .post("https://be-mppl.herokuapp.com/api/projects", formdata, {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      })
+>>>>>>> 9ee4b2aaeb00bc5ef3c7a50684afa5c51b3cb612
       .then((response) => {
         console.log(response);
         history.push("/admin/projek");
@@ -288,13 +298,7 @@ export default function AddProjekPage() {
         </form>
         <Grid container alignItems="center" justify="center" direction="column">
           <Grid item class="form-field">
-            <Button
-              onClick={handleSubmit}
-              className={classes.btn}
-              variant="contained"
-              type="submit"
-              fullWidth
-            >
+            <Button onClick={handleSubmit} className={classes.btn} variant="contained" type="submit" fullWidth>
               Tambah
             </Button>
           </Grid>
@@ -303,5 +307,3 @@ export default function AddProjekPage() {
     </div>
   );
 }
-
-

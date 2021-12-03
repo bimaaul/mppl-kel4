@@ -45,7 +45,7 @@ const AdminLayout = () => {
         <Route path={`${match.path}/testimoni/detail/:id`} component={DetailTestimoniPage} />
         {/* Permintaan */}
         <Route exact path={`${match.path}/permintaan`} component={PermintaanPage} />
-        <Route path={`${match.path}/permintaan/detail`} component={DetailPermintaanPage} />
+        <Route path={`${match.path}/permintaan/:id`} component={DetailPermintaanPage} />
         <Redirect to="/admin/tentang-kami" />
       </Switch>
     </Layout>

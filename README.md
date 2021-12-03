@@ -277,7 +277,7 @@ Metode komunikasi yang digunakan sebagai berikut :
 ### Use Case Diagram
 <h1 align="center">
 	<img
-	src="https://user-images.githubusercontent.com/60084871/144302266-f2a180e9-1406-448c-b064-7540ff46d60e.png"/>
+	src="https://user-images.githubusercontent.com/60084871/144603528-77431cad-05e6-48a9-b357-e339e092f61e.png"/>
 </h1>
 
 Kami menawarkan ide sebuah platform dimana user dapat melakukan permintaan kerjasama dengan pihak Mamen sebagai software engineer dalam pengembangan bisnis atau proyek mereka. User dapat melihat profile Mamen secara lengkap, daftar keahlian, profile anggota, riwayat projek, testimoni, serta melakukan pengajuan kerjasama. User dapat melakukan pengajuan untuk kerjasama dengan mengisikan form yang terdapat pada aplikasi dan mengirimkan data form tersebut. Kemudian pengajuan itu akan masuk ke dalam daftar permintaan pada aplikasi admin Mamen yang nantinya pengajuan tersebut dapat dilakukan tindakan lebih lanjut oleh admin untuk disetujui dan diterima.
@@ -300,7 +300,7 @@ Menurut kelompok kami, metode yang direkomendasikan adalah Use Case Point. Alasa
 ### Activity Diagram
 <h1 align="center">
 	<img
-	src="https://user-images.githubusercontent.com/60084871/144303469-0294ca8d-be09-4c32-b965-c6aa8a06c935.png"/>
+	src="https://user-images.githubusercontent.com/60083962/144602444-82d23499-30da-4667-be17-0864622a2bf3.png"/>
 	<img
 </h1>
 
@@ -313,7 +313,7 @@ Menurut kelompok kami, metode yang direkomendasikan adalah Use Case Point. Alasa
 ### Arsitektur Diagram
 <h1 align="center">
 	<img
-	src="https://user-images.githubusercontent.com/60083962/144602444-82d23499-30da-4667-be17-0864622a2bf3.png"/>
+	src="https://user-images.githubusercontent.com/60083962/144602837-03e82377-728d-4252-a27a-06397e2ab0e6.png"/>
 </h1>
 
 # :man_teacher: Stakeholder yang Terlibat
