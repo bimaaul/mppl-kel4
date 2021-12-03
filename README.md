@@ -91,6 +91,35 @@ Tahapan penting dalam metode Scrum dapat diuraikan menjadi beberapa poin, yakni:
 6. Review pekerjaan Scrum Team (review product).
 7. Proyek dianggap selesai. Baik karena kualitas produk telah sesuai permintaan, atau karena pekerjaan sudah berada pada batas waktu yang ditentukan.
 
+### Kick-off Meeting
+
+<table>
+    <thead>
+        <tr>
+            <th>Project Milestone</th>
+		<th>Target Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>First meet bersama client</td>
+            <td>Minggu, 29/08/21</td>
+        </tr>
+	<tr>
+            <td>Membuat perancangan awal sesuai dengan kebutuhan client</td>
+            <td>Minggu, 29/08/21</td>
+        </tr>
+	<tr>
+            <td>Membuat Use Case Diagram, Activity Diagram, ERD, Arsitektur Diagram</td>
+            <td>Minggu, 29/08/21 - Minggu, 05/09/21</td>
+        </tr>
+	<tr>
+            <td>Membuat Desain Tampilan Sistem</td>
+            <td>Minggu, 5/09/21 - Minggu, 12/09/21</td>
+        </tr>
+</tbody>
+</table>
+
 # 🎊 Hasil dan Pembahasan
 [`^ kembali ke atas ^`](#)  
 ### Use Case Diagram
