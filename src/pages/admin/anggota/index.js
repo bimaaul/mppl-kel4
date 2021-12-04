@@ -239,8 +239,8 @@ export default function AnggotaPage(props) {
             <Card className={classes.card1}>
               <CardContent>
                 <CardMedia className={classes.cardimg} component="img" height="140" src={img1} alt="profil picture" />
-                <h3 className={classes.h4}> {elem.nama} </h3>
-                <p className={classes.p}> {elem.job} </p>
+                <h3 className={classes.h4}> {elem.name} </h3>
+                <p className={classes.p}> {elem.role} </p>
                 <Button
                   className={classes.edit_button}
                   variant="contained"
