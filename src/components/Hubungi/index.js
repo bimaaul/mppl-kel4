@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from "axios";
 import { Box, Grid, TextField, Button, makeStyles, InputAdornment } from '@material-ui/core';
 import './Hubungi.css';
+import Notification from './notif';
 
 const styles = makeStyles(() =>({
     field: {
@@ -54,6 +55,7 @@ const styles = makeStyles(() =>({
 
 export default function FormHubungi()  {
     const classes = styles()
+    const [notify, setNotify] = useState({ isOpen: false, message: '', type: '' })
 
     const [formValues, setFormValues] = useState([{
         nama: '', 
@@ -88,10 +90,20 @@ export default function FormHubungi()  {
             })
           .then((res) => {
             console.log(res);
-            alert(res.data.message);
+            // alert(res.data.message);
+            setNotify({
+                isOpen: true,
+                message: 'Email Berhasil Terkirim',
+                type: 'success'
+            })
           })
           .catch((error) => {
-            alert(error.response.data.message);
+            // alert(error.response.data.message);
+            setNotify({
+                isOpen: true,
+                message: 'Email Gagal Terkirim',
+                type: 'error'
+            })
           });
         console.log(formValues);       
     };
@@ -199,7 +211,9 @@ export default function FormHubungi()  {
                     <Grid container alignItems="center" justify="center" direction="column">
                         <Grid item class="form-field">
                             <Button 
-                                onClick={handleSubmit}
+                                onClick={() => {
+                                    handleSubmit();
+                                }}
                                 className={classes.btn}
                                 variant="contained" 
                                 type="submit" 
@@ -213,6 +227,10 @@ export default function FormHubungi()  {
                     </Box>
                 </Box>
             </Box>
+            <Notification
+                notify={notify}
+                setNotify={setNotify}
+            />
         </Box>
     );
 };
