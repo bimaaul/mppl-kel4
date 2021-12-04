@@ -68,7 +68,6 @@ const useStyles = makeStyles((theme) => ({
   },
   tableAbout: {
     background: "#111113",
-    marginBottom: "20px",
     marginLeft: "auto",
     marginRight: "auto",
     marginBottom: "50px",

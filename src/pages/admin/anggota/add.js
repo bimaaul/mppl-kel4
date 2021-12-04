@@ -1,9 +1,10 @@
 import React, { useState, useContext } from "react";
 import { UserContext } from "../../../context/UserContext";
-import { Box, Grid, TextField, Button, makeStyles, InputAdornment, Card, Stack } from "@material-ui/core";
+import { Box, Grid, TextField, Button, makeStyles, Card } from "@material-ui/core";
 import { useDropzone } from "react-dropzone";
 import { useHistory } from "react-router-dom";
 import AddPhotoAlternateOutlinedIcon from "@material-ui/icons/AddPhotoAlternateOutlined";
+import Loading from "../../../components/Loading";
 import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
@@ -109,7 +110,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   input: {
-    color: "#645E6F",
+    color: "#DCD4E7",
     fontFamily: "Poppins",
   },
 
@@ -183,594 +184,380 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const projectState = {
+  name: "",
+  description: "",
+  startDate: "",
+  endDate: "",
+};
+
+const workState = {
+  role: "",
+  description: "",
+  startDate: "",
+  endDate: "",
+};
+
+const formState = {
+  name: "",
+  role: "",
+  description: "",
+  linkedin: "",
+  profile: "",
+};
+
 export default function AddAnggotaPage() {
   const [user] = useContext(UserContext);
   const history = useHistory();
   const classes = useStyles();
   const [image, setImage] = useState([]);
   const { getRootProps, isDragActive } = useDropzone({
-      accept: "image/*",
-      onDrop: (acceptedFiles) => {
-          setImage(
-              acceptedFiles.map((upFile) => Object.assign(upFile, {
-                  preview: URL.createObjectURL(upFile)
-              }))
-          )
-      }
-  })
+    accept: "image/*",
+    onDrop: (acceptedFiles) => {
+      setImage(
+        acceptedFiles.map((upFile) =>
+          Object.assign(upFile, {
+            preview: URL.createObjectURL(upFile),
+          })
+        )
+      );
+    },
+  });
 
-  console.log(image);
-
-  const onSubmit = ({ name, role, description, linkedin, profile, projects, works }) => {
-    axios
-      .post(
-        "https://be-mppl.herokuapp.com/api/member",
-        {
-          name,
-          role,
-          description,
-          linkedin,
-          profile,
-          projects,
-          works
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
-        }
-      )
-      .then((res) => {
-        history.push("/admin/anggota");
-      })
-      .catch((err) => {
-        console.log(err.response.data);
-      });
-  };
-  
-  const [formValues, setFormValues] = useState([{
-    name: '', 
-    role: '', 
-    description: '', 
-    linkedin: '',
-    profile: ''
-  }])
+  const [loading, setLoading] = useState(false);
+  const [formValues, setFormValues] = useState([formState]);
+  const [projects, setProjects] = useState([projectState, projectState]);
+  const [works, setWorks] = useState([workState, workState]);
 
   const handleFormChange = (e) => {
-
-    e.preventDefault();
-
     const fieldName = e.target.getAttribute("name");
     const fieldValue = e.target.value;
 
-    const newFormValue = {...formValues};
+    const newFormValue = { ...formValues };
     newFormValue[fieldName] = fieldValue;
 
     setFormValues(newFormValue);
-    console.log(newFormValue);
-  }
-  
-  const handleSubmit = (e) => {
-    let formdata = new FormData();
-      formdata.append("name", formValues.name);
-      formdata.append("role", formValues.role);
-      formdata.append("description", formValues.description);
-      formdata.append("linkedin", formValues.linkedin);
-      formdata.append("profile", image[0]);        
-    
-      axios
-        .post("https://be-mppl.herokuapp.com/api/member", 
-          formdata, {
-              headers: {
-                  Authorization: `Bearer ${user.token}`
-              }
-          })
-        .then((res) => {
-          console.log(res);
-          history.push("/admin/anggota");
-        })
-        .catch((error) => {
-         // alert(error.response.data.message);
-        });
   };
-  
-    return (
-      <Card className={classes.gridwrap}>
-        <h3 className={classes.h3}>Tambahkan Anggota</h3>
-        <hr style={{ color: "#fff", height: 1 }} />
-        <h4 className={classes.h4}>Informasi Anggota</h4>
-        <form onSubmit={handleSubmit(onSubmit)} className={classes.form} noValidate autoComplete="off">
-          <Grid container alignItems="center" justify="center" direction="column">
-            <Grid item class="form-field">
-              <div {...getRootProps()}>
-                <div className={classes.dnd__image}>
-                  <div style={{ position: "absolute", align: "center" }}>
-                    {image.map((upFile) => {
-                      return (
-                        <div>
-                          <img src={upFile.preview} className={classes.preview} alt="preview" />
-                        </div>
-                      );
-                    })}
-                  </div>
-                  <AddPhotoAlternateOutlinedIcon className={classes.dnd__icon} />
-                  {isDragActive ? (
-                    <p className={classes.text__dnd} align="center">
-                      Drop foto
-                      <br />
-                      di sini...
-                    </p>
-                  ) : (
-                    <p className={classes.text__dnd} align="center">
-                      Drag dan drop
-                      <br />
-                      foto di sini
-                    </p>
-                  )}
-                </div>
-              </div>
-            </Grid>
-  
-            <Grid item class="form-field">
-              <TextField
-                className={classes.field}
-                name="name"
-                // label="Nama"
-                placeholder="Nama Anggota"
-                variant="outlined"
-                display="flex"
-                size="small"
-                InputLabelProps={{ className: classes.label, required: false }}
-                InputProps={{ className: classes.input }}
-                fullWidth
-                required
-                type="text"
-                onChange={handleFormChange}
-                value={formValues.name}
-                autoFocus={true}
-                // error={namaError}
-              />
-            </Grid>
-  
-            <Grid item class="form-field">
-              <TextField
-                className={classes.field}
-                name="role"
-                // label="Nama"
-                placeholder="Role Keahlian Anggota"
-                variant="outlined"
-                display="flex"
-                InputLabelProps={{ className: classes.label, required: false }}
-                InputProps={{ className: classes.input }}
-                fullWidth
-                size="small"
-                required
-                type="text"
-                onChange={handleFormChange}
-                value={formValues.role}
-                autoFocus={true}
-                // error={namaError}
-              />
-            </Grid>
-  
-            <Grid item class="form-field">
-              <TextField
-                className={classes.field}
-                name="description"
-                // label="Nama"
-                placeholder="Deskripsi Keahlian Anggota"
-                variant="outlined"
-                display="flex"
-                InputLabelProps={{ className: classes.label, required: false }}
-                InputProps={{ className: classes.input }}
-                multiline
-                rows={5}
-                fullWidth
-                size="small"
-                required
-                type="text"
-                onChange={handleFormChange}
-                value={formValues.description}
-                autoFocus={true}
-                // error={namaError}
-              />
-            </Grid>
-  
-            <Grid item class="form-field">
-              <TextField
-                className={classes.field}
-                name="linkedin"
-                // label="LINKEDIN"
-                placeholder="Link Akun LinkedIn"
-                variant="outlined"
-                display="flex"
-                size="small"
-                InputLabelProps={{ className: classes.label, required: false }}
-                InputProps={{ className: classes.input }}
-                fullWidth
-                required
-                type="text"
-                onChange={handleFormChange}
-                value={formValues.linkedin}
-                autoFocus={true}
-                // error={namaError}
-              />
-            </Grid>
-  
-            <h4 className={classes.h4_1}>Pengalaman Projek 1</h4>
-            <Grid item class="form-field">
-              <TextField
-                className={classes.field}
-                name="project"
-                // label="Nama"
-                placeholder="Nama Projek 1"
-                variant="outlined"
-                display="flex"
-                size="small"
-                InputLabelProps={{ className: classes.label, required: false }}
-                InputProps={{ className: classes.input }}
-                fullWidth
-                required
-                type="text"
-                // onChange={(e) => setNama(e.target.value)}
-                //value={formValues.nama}
-                //onChange={e => handleChangeNama(e)}
-                autoFocus={true}
-                // error={namaError}
-              />
-            </Grid>
-  
-            <Grid item class="form-field">
-              <Box display="flex">
-                <TextField
-                  className={classes.field}
-                  type="date"
-                  name="tanggal"
-                  label="Tanggal mulai"
-                  placeholder="DD/MM/YYYY"
-                  variant="outlined"
-                  display="flex"
-                  size="small"
-                  InputLabelProps={{ className: classes.label, required: false, shrink: true }}
-                  InputProps={{
-                    className: classes.input,
-                  }}
-                  required
-                  // onChange={(e) => setNama(e.target.value)}
-                  //value={formValues.nama}
-                  //onChange={e => handleChangeNama(e)}
-                  autoFocus={true}
-                  // error={namaError}
-                />
-                <TextField
-                  className={classes.field}
-                  type="date"
-                  name="tanggal"
-                  label="Tanggal selesai"
-                  placeholder="DD/MM/YYYY"
-                  variant="outlined"
-                  display="flex"
-                  size="small"
-                  InputLabelProps={{ className: classes.label, required: false, shrink: true }}
-                  InputProps={{
-                    className: classes.input,
-                  }}
-                  required
-                  // onChange={(e) => setNama(e.target.value)}
-                  //value={formValues.nama}
-                  //onChange={e => handleChangeNama(e)}
-                  autoFocus={true}
-                  // error={namaError}
-                />
-              </Box>
-            </Grid>
-  
-            <Grid item class="form-field">
-              <TextField
-                className={classes.field}
-                name="desc"
-                // label="Nama"
-                placeholder="Deskripsi Umum Projek 1"
-                variant="outlined"
-                display="flex"
-                InputLabelProps={{ className: classes.label, required: false }}
-                InputProps={{ className: classes.input }}
-                multiline
-                rows={5}
-                fullWidth
-                size="small"
-                required
-                type="text"
-                // onChange={(e) => setNama(e.target.value)}
-                //value={formValues.nama}
-                //onChange={e => handleChangeNama(e)}
-                autoFocus={true}
-                // error={namaError}
-              />
-            </Grid>
-  
-            <h4 className={classes.h4_1}>Pengalaman Projek 2</h4>
-            <Grid item class="form-field">
-              <TextField
-                className={classes.field}
-                name="namaprojek"
-                // label="Nama"
-                placeholder="Nama Projek 2"
-                variant="outlined"
-                display="flex"
-                size="small"
-                InputLabelProps={{ className: classes.label, required: false }}
-                InputProps={{ className: classes.input }}
-                fullWidth
-                required
-                type="text"
-                // onChange={(e) => setNama(e.target.value)}
-                //value={formValues.nama}
-                //onChange={e => handleChangeNama(e)}
-                autoFocus={true}
-                // error={namaError}
-              />
-            </Grid>
-  
-            <Grid item class="form-field">
-              <Box display="flex">
-                <TextField
-                  className={classes.field}
-                  type="date"
-                  name="tanggal"
-                  label="Tanggal mulai"
-                  placeholder="DD/MM/YYYY"
-                  variant="outlined"
-                  display="flex"
-                  size="small"
-                  InputLabelProps={{ className: classes.label, required: false, shrink: true }}
-                  InputProps={{
-                    className: classes.input,
-                  }}
-                  required
-                  // onChange={(e) => setNama(e.target.value)}
-                  //value={formValues.nama}
-                  //onChange={e => handleChangeNama(e)}
-                  autoFocus={true}
-                  // error={namaError}
-                />
-                <TextField
-                  className={classes.field}
-                  type="date"
-                  name="tanggal"
-                  label="Tanggal selesai"
-                  placeholder="DD/MM/YYYY"
-                  variant="outlined"
-                  display="flex"
-                  size="small"
-                  InputLabelProps={{ className: classes.label, required: false, shrink: true }}
-                  InputProps={{
-                    className: classes.input,
-                  }}
-                  required
-                  // onChange={(e) => setNama(e.target.value)}
-                  //value={formValues.nama}
-                  //onChange={e => handleChangeNama(e)}
-                  autoFocus={true}
-                  // error={namaError}
-                />
-              </Box>
-            </Grid>
-  
-            <Grid item class="form-field">
-              <TextField
-                className={classes.field}
-                name="desc"
-                // label="Nama"
-                placeholder="Deskripsi Umum Projek 2"
-                variant="outlined"
-                display="flex"
-                InputLabelProps={{ className: classes.label, required: false }}
-                InputProps={{ className: classes.input }}
-                multiline
-                rows={5}
-                fullWidth
-                size="small"
-                required
-                type="text"
-                // onChange={(e) => setNama(e.target.value)}
-                //value={formValues.nama}
-                //onChange={e => handleChangeNama(e)}
-                autoFocus={true}
-                // error={namaError}
-              />
-            </Grid>
-  
-            <h4 className={classes.h4_1}>Pengalaman Projek 3</h4>
-            <Grid item class="form-field">
-              <TextField
-                className={classes.field}
-                name="namaprojek"
-                // label="Nama"
-                placeholder="Nama Projek 3"
-                variant="outlined"
-                display="flex"
-                size="small"
-                InputLabelProps={{ className: classes.label, required: false }}
-                InputProps={{ className: classes.input }}
-                fullWidth
-                required
-                type="text"
-                // onChange={(e) => setNama(e.target.value)}
-                //value={formValues.nama}
-                //onChange={e => handleChangeNama(e)}
-                autoFocus={true}
-                // error={namaError}
-              />
-            </Grid>
-  
-            <Grid item class="form-field">
-              <Box display="flex">
-                <TextField
-                  className={classes.field}
-                  type="date"
-                  name="tanggal"
-                  label="Tanggal mulai"
-                  placeholder="DD/MM/YYYY"
-                  variant="outlined"
-                  display="flex"
-                  size="small"
-                  InputLabelProps={{ className: classes.label, required: false, shrink: true }}
-                  InputProps={{
-                    className: classes.input,
-                  }}
-                  required
-                  // onChange={(e) => setNama(e.target.value)}
-                  //value={formValues.nama}
-                  //onChange={e => handleChangeNama(e)}
-                  autoFocus={true}
-                  // error={namaError}
-                />
-                <TextField
-                  className={classes.field}
-                  type="date"
-                  name="tanggal"
-                  label="Tanggal selesai"
-                  placeholder="DD/MM/YYYY"
-                  variant="outlined"
-                  display="flex"
-                  size="small"
-                  InputLabelProps={{ className: classes.label, required: false, shrink: true }}
-                  InputProps={{
-                    className: classes.input,
-                  }}
-                  required
-                  // onChange={(e) => setNama(e.target.value)}
-                  //value={formValues.nama}
-                  //onChange={e => handleChangeNama(e)}
-                  autoFocus={true}
-                  // error={namaError}
-                />
-              </Box>
-            </Grid>
-  
-            <Grid item class="form-field">
-              <TextField
-                className={classes.field}
-                name="desc"
-                // label="Nama"
-                placeholder="Deskripsi Umum Projek 3"
-                variant="outlined"
-                display="flex"
-                InputLabelProps={{ className: classes.label, required: false }}
-                InputProps={{ className: classes.input }}
-                multiline
-                rows={5}
-                fullWidth
-                size="small"
-                required
-                type="text"
-                // onChange={(e) => setNama(e.target.value)}
-                //value={formValues.nama}
-                //onChange={e => handleChangeNama(e)}
-                autoFocus={true}
-                // error={namaError}
-              />
-            </Grid>
-  
-            <h4 className={classes.h4_1}>Pengalaman Projek 4</h4>
-            <Grid item class="form-field">
-              <TextField
-                className={classes.field}
-                name="namaprojek"
-                // label="Nama"
-                placeholder="Nama Projek 4"
-                variant="outlined"
-                display="flex"
-                size="small"
-                InputLabelProps={{ className: classes.label, required: false }}
-                InputProps={{ className: classes.input }}
-                fullWidth
-                required
-                type="text"
-                // onChange={(e) => setNama(e.target.value)}
-                //value={formValues.nama}
-                //onChange={e => handleChangeNama(e)}
-                autoFocus={true}
-                // error={namaError}
-              />
-            </Grid>
-  
-            <Grid item class="form-field">
-              <Box display="flex">
-                <TextField
-                  className={classes.field}
-                  type="date"
-                  name="tanggal"
-                  label="Tanggal mulai"
-                  placeholder="DD/MM/YYYY"
-                  variant="outlined"
-                  display="flex"
-                  size="small"
-                  InputLabelProps={{ className: classes.label, required: false, shrink: true }}
-                  InputProps={{
-                    className: classes.input,
-                  }}
-                  required
-                  // onChange={(e) => setNama(e.target.value)}
-                  //value={formValues.nama}
-                  //onChange={e => handleChangeNama(e)}
-                  autoFocus={true}
-                  // error={namaError}
-                />
-                <TextField
-                  className={classes.field}
-                  type="date"
-                  name="tanggal"
-                  label="Tanggal selesai"
-                  placeholder="DD/MM/YYYY"
-                  variant="outlined"
-                  display="flex"
-                  size="small"
-                  InputLabelProps={{ className: classes.label, required: false, shrink: true }}
-                  InputProps={{
-                    className: classes.input,
-                  }}
-                  required
-                  // onChange={(e) => setNama(e.target.value)}
-                  //value={formValues.nama}
-                  //onChange={e => handleChangeNama(e)}
-                  autoFocus={true}
-                  // error={namaError}
-                />
-              </Box>
-            </Grid>
-  
-            <Grid item class="form-field">
-              <TextField
-                className={classes.field}
-                name="desc"
-                // label="Nama"
-                placeholder="Deskripsi Umum Projek 4"
-                variant="outlined"
-                display="flex"
-                InputLabelProps={{ className: classes.label, required: false }}
-                InputProps={{ className: classes.input }}
-                multiline
-                rows={5}
-                fullWidth
-                size="small"
-                required
-                type="text"
-                // onChange={(e) => setNama(e.target.value)}
-                //value={formValues.nama}
-                //onChange={e => handleChangeNama(e)}
-                autoFocus={true}
-                // error={namaError}
-              />
-            </Grid>
-          </Grid>
-          
-          <Grid container alignItems="center" justify="center" direction="column">
+
+  const handleChange = (stateName, name, value, index) => {
+    if (stateName === "projects") {
+      setProjects((oldState) => {
+        oldState[index][name] = value;
+        return oldState;
+      });
+    } else {
+      setWorks((oldState) => {
+        oldState[index][name] = value;
+        return oldState;
+      });
+    }
+  };
+
+  const handleSubmit = (e) => {
+    setLoading(true);
+
+    let formdata = new FormData();
+    formdata.append("name", formValues.name);
+    formdata.append("role", formValues.role);
+    formdata.append("description", formValues.description);
+    formdata.append("linkedin", formValues.linkedin);
+    formdata.append("projects", JSON.stringify(projects));
+    formdata.append("works", JSON.stringify(works));
+    formdata.append("profile", image[0]);
+
+    axios
+      .post("https://be-mppl.herokuapp.com/api/members", formdata, {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        history.push("/admin/anggota");
+      })
+      .catch((error) => {
+        console.log(error.response.data.message);
+      })
+      .finally(() => setLoading(false));
+  };
+
+  return (
+    <Card className={classes.gridwrap}>
+      <h3 className={classes.h3}>Tambahkan Anggota</h3>
+      <hr style={{ color: "#fff", height: 1 }} />
+      <h4 className={classes.h4}>Informasi Anggota</h4>
+      <form onSubmit={handleSubmit} className={classes.form} noValidate autoComplete="off">
+        <Grid container alignItems="center" justify="center" direction="column">
           <Grid item class="form-field">
+            <div {...getRootProps()}>
+              <div className={classes.dnd__image}>
+                <div style={{ position: "absolute", align: "center" }}>
+                  {image.map((upFile) => {
+                    return (
+                      <div>
+                        <img src={upFile.preview} className={classes.preview} alt="preview" />
+                      </div>
+                    );
+                  })}
+                </div>
+                <AddPhotoAlternateOutlinedIcon className={classes.dnd__icon} />
+                {isDragActive ? (
+                  <p className={classes.text__dnd} align="center">
+                    Drop foto
+                    <br />
+                    di sini...
+                  </p>
+                ) : (
+                  <p className={classes.text__dnd} align="center">
+                    Drag dan drop
+                    <br />
+                    foto di sini
+                  </p>
+                )}
+              </div>
+            </div>
+          </Grid>
+
+          <Grid item class="form-field">
+            <TextField
+              className={classes.field}
+              name="name"
+              placeholder="Nama Anggota"
+              variant="outlined"
+              display="flex"
+              size="small"
+              InputLabelProps={{ className: classes.label, required: false }}
+              InputProps={{ className: classes.input }}
+              fullWidth
+              required
+              type="text"
+              onChange={handleFormChange}
+              value={formValues.name}
+              autoFocus={true}
+            />
+          </Grid>
+
+          <Grid item class="form-field">
+            <TextField
+              className={classes.field}
+              name="role"
+              placeholder="Role Keahlian Anggota"
+              variant="outlined"
+              display="flex"
+              InputLabelProps={{ className: classes.label, required: false }}
+              InputProps={{ className: classes.input }}
+              fullWidth
+              size="small"
+              required
+              type="text"
+              onChange={handleFormChange}
+              value={formValues.role}
+            />
+          </Grid>
+
+          <Grid item class="form-field">
+            <TextField
+              className={classes.field}
+              name="description"
+              placeholder="Deskripsi Keahlian Anggota"
+              variant="outlined"
+              display="flex"
+              InputLabelProps={{ className: classes.label, required: false }}
+              InputProps={{ className: classes.input }}
+              multiline
+              rows={5}
+              fullWidth
+              size="small"
+              required
+              type="text"
+              onChange={handleFormChange}
+              value={formValues.description}
+            />
+          </Grid>
+
+          <Grid item class="form-field">
+            <TextField
+              className={classes.field}
+              name="linkedin"
+              placeholder="Link Akun LinkedIn"
+              variant="outlined"
+              display="flex"
+              size="small"
+              InputLabelProps={{ className: classes.label, required: false }}
+              InputProps={{ className: classes.input }}
+              fullWidth
+              required
+              type="text"
+              onChange={handleFormChange}
+              value={formValues.linkedin}
+            />
+          </Grid>
+
+          {projects.map((data, index) => (
+            <>
+              <h4 className={classes.h4_1}>Pengalaman Projek {index + 1}</h4>
+              <Grid item class="form-field">
+                <TextField
+                  onChange={(e) => handleChange("projects", e.target.name, e.target.value, index)}
+                  name="name"
+                  className={classes.field}
+                  placeholder={`Nama Projek ${index + 1}`}
+                  variant="outlined"
+                  display="flex"
+                  size="small"
+                  InputLabelProps={{ className: classes.label, required: false }}
+                  InputProps={{ className: classes.input }}
+                  fullWidth
+                  required
+                  type="text"
+                />
+              </Grid>
+
+              <Grid item class="form-field">
+                <Box display="flex">
+                  <TextField
+                    onChange={(e) => handleChange("projects", e.target.name, e.target.value, index)}
+                    name="startDate"
+                    className={classes.field}
+                    type="date"
+                    label="Tanggal mulai"
+                    placeholder="DD/MM/YYYY"
+                    variant="outlined"
+                    display="flex"
+                    size="small"
+                    InputLabelProps={{ className: classes.label, required: false, shrink: true }}
+                    InputProps={{
+                      className: classes.input,
+                    }}
+                    required
+                  />
+                  <TextField
+                    onChange={(e) => handleChange("projects", e.target.name, e.target.value, index)}
+                    name="endDate"
+                    className={classes.field}
+                    type="date"
+                    label="Tanggal selesai"
+                    placeholder="DD/MM/YYYY"
+                    variant="outlined"
+                    display="flex"
+                    size="small"
+                    InputLabelProps={{ className: classes.label, required: false, shrink: true }}
+                    InputProps={{
+                      className: classes.input,
+                    }}
+                    required
+                  />
+                </Box>
+              </Grid>
+
+              <Grid item class="form-field">
+                <TextField
+                  onChange={(e) => handleChange("projects", e.target.name, e.target.value, index)}
+                  name="description"
+                  className={classes.field}
+                  placeholder={`Deskripsi Umum Projek ${index + 1}`}
+                  variant="outlined"
+                  display="flex"
+                  InputLabelProps={{ className: classes.label, required: false }}
+                  InputProps={{ className: classes.input }}
+                  multiline
+                  rows={5}
+                  fullWidth
+                  size="small"
+                  required
+                  type="text"
+                />
+              </Grid>
+            </>
+          ))}
+
+          {works.map((data, index) => (
+            <>
+              <h4 className={classes.h4_1}>Pengalaman Kerja {index + 1}</h4>
+              <Grid item class="form-field">
+                <TextField
+                  onChange={(e) => handleChange("works", e.target.name, e.target.value, index)}
+                  name="role"
+                  className={classes.field}
+                  placeholder={`Nama Kerja ${index + 1}`}
+                  variant="outlined"
+                  display="flex"
+                  size="small"
+                  InputLabelProps={{ className: classes.label, required: false }}
+                  InputProps={{ className: classes.input }}
+                  fullWidth
+                  required
+                  type="text"
+                />
+              </Grid>
+
+              <Grid item class="form-field">
+                <Box display="flex">
+                  <TextField
+                    onChange={(e) => handleChange("works", e.target.name, e.target.value, index)}
+                    name="startDate"
+                    className={classes.field}
+                    type="date"
+                    label="Tanggal mulai"
+                    placeholder="DD/MM/YYYY"
+                    variant="outlined"
+                    display="flex"
+                    size="small"
+                    InputLabelProps={{ className: classes.label, required: false, shrink: true }}
+                    InputProps={{
+                      className: classes.input,
+                    }}
+                    required
+                  />
+                  <TextField
+                    onChange={(e) => handleChange("works", e.target.name, e.target.value, index)}
+                    name="endDate"
+                    className={classes.field}
+                    type="date"
+                    label="Tanggal selesai"
+                    placeholder="DD/MM/YYYY"
+                    variant="outlined"
+                    display="flex"
+                    size="small"
+                    InputLabelProps={{ className: classes.label, required: false, shrink: true }}
+                    InputProps={{
+                      className: classes.input,
+                    }}
+                    required
+                  />
+                </Box>
+              </Grid>
+
+              <Grid item class="form-field">
+                <TextField
+                  onChange={(e) => handleChange("works", e.target.name, e.target.value, index)}
+                  name="description"
+                  className={classes.field}
+                  placeholder={`"Deskripsi Umum Kerja ${index + 1}`}
+                  variant="outlined"
+                  display="flex"
+                  InputLabelProps={{ className: classes.label, required: false }}
+                  InputProps={{ className: classes.input }}
+                  multiline
+                  rows={5}
+                  fullWidth
+                  size="small"
+                  required
+                  type="text"
+                />
+              </Grid>
+            </>
+          ))}
+        </Grid>
+      </form>
+      <Grid container alignItems="center" justify="center" direction="column">
+        <Grid item class="form-field">
+          {loading ? (
+            <Loading />
+          ) : (
             <Button
-              onClick={handleSubmit}
               className={classes.btn}
+              onClick={handleSubmit}
               variant="contained"
               type="submit"
               fullWidth
@@ -778,14 +565,9 @@ export default function AddAnggotaPage() {
             >
               Tambah
             </Button>
-          </Grid>
+          )}
         </Grid>
-        </form>
-        
-      </Card>
-    );
-  
-  
-  
+      </Grid>
+    </Card>
+  );
 }
-

@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import {  useContext } from "react";
 import { UserContext } from "../../../context/UserContext";
 import { Grid, TextField, Button } from "@material-ui/core";
 import { makeStyles, withStyles } from "@material-ui/styles";
@@ -271,7 +271,7 @@ export default function AddTentangKami() {
                   type="submit"
                   variant="contained"
                   fullWidth
-                  // disabled={!isDirty || !isValid}
+                  disabled={!isDirty || !isValid}
                 >
                   Tambah
                 </StyledButton>

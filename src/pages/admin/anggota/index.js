@@ -190,36 +190,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// function createData(no, nama, jabatan, aksi) {
-//   return { no, nama, jabatan, aksi };
-// }
-
 export default function AnggotaPage(props) {
   const [user] = useContext(UserContext);
   const classes = useStyles();
   const history = useHistory();
   const [loading, setLoading] = useState(false);
-  const [member, setMember] = useState(null);
+  const [member, setMember] = useState([]);
   const [id, setId] = useState(null);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const data = [
-    { nama: "Ali Naufal Ammarullah", job: "Mobile Developer & QA" },
-    { nama: "Mutia Marcha Fatika", job: "Mobile Developer & QA" },
-    { nama: "Bima Aulia", job: "Mobile Developer & QA" },
-    { nama: "Arya Arminata", job: "Mobile Developer & QA" },
-  ];
 
   useEffect(() => {
-    if (member === null) {
-      setLoading(true);
-      axios.get("https://be-mppl.herokuapp.com/api/member").then((res) => {
-        setMember(res.data.member);
-        setLoading(false);        
-      });
-    }
-  }, [member]);
+    setLoading(true);
+    axios.get("https://be-mppl.herokuapp.com/api/members").then((res) => {
+      setMember(res.data);
+      setLoading(false);
+    });
+  }, []);
 
   return (
     <div className={classes.root}>
@@ -246,8 +234,8 @@ export default function AnggotaPage(props) {
           </Card>
         </Grid>
 
-        {data.map((elem) => (
-          <Grid item xs={2} sm={4} md={4} key={data.indexOf(elem)}>
+        {member.map((elem) => (
+          <Grid item xs={2} sm={4} md={4} key={elem._id}>
             <Card className={classes.card1}>
               <CardContent>
                 <CardMedia className={classes.cardimg} component="img" height="140" src={img1} alt="profil picture" />
@@ -257,7 +245,7 @@ export default function AnggotaPage(props) {
                   className={classes.edit_button}
                   variant="contained"
                   color="primary"
-                  onClick={() => history.push("/admin/anggota/edit")}
+                  onClick={() => history.push("/admin/anggota/edit/" + elem._id)}
                 >
                   Edit
                 </Button>
