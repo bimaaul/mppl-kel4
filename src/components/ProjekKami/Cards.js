@@ -1,47 +1,62 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect, Component } from 'react'
 import CardItem from './CardItem'
 import './Cards.css';
 import Slider from 'react-slick'; 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-{//import { AiOutlineLeftCircle, AiOutlineRightCircle } from "react-icons/ai"
-}
+//import { AiOutlineLeftCircle, AiOutlineRightCircle } from "react-icons/ai"
+import axios from 'axios';
 
-export default class SimpleSlider extends Component {
-    render(){
-        const settings = {
+export default function ProjekSlider () {
+    const [projek,setProjek] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        setLoading(true);
+        axios.get("https://be-mppl.herokuapp.com/api/projects").then((response) => {
+            setLoading(false);
+            setProjek(response.data);
+        });      
+    }, [projek]);
+
+        var settings = {
             dots:false,
             infinite:true,
             speed:500,
             slidesToShow:1,
-            slidesToScroll:1
+            slidesToScroll:1,
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow:1,
+                        infinite:true
+                    }
+                }
+            ],
         };
+
+        function formatDate(string){
+            var options = { day: 'numeric', month: 'long', year: 'numeric' };
+            return new Date(string).toLocaleDateString('en-GB', options);
+        }
+
         return (
             <div>
                 <h2>Projek Kami</h2>
                 <div className="cards__wrapper">
                     <Slider {...settings}>
-                        <CardItem
-                            src="data:image/jpeg;base64,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"
-                            name="Lorem Ipsum"
-                            desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices ante et tortor finibus congue. Morbi quis dolor lacus. Cras tempus, risus et molestie tristique, mauris felis ullamcorper metus, ac viverra mauris nisl non libero. Integer nisl augue, euismod sed pharetra at, euismod ac sem. Praesent consequat nisi erat, ac faucibus mi dapibus ac. Suspendisse sit amet velit tempor, pharetra ante eu, fringilla tellus. Donec varius tempus ligula at congue. Quisque consectetur in nibh nec vestibulum."
-                            date="14 Agustus 2021 - 24 September 2021"
-                            path='/services' />
-                        <CardItem
-                            src="https://i.ytimg.com/vi/Mr5LFJWgE9o/maxresdefault.jpg"
-                            name="Lorem Ipsum"
-                            desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices ante et tortor finibus congue. Morbi quis dolor lacus. Cras tempus, risus et molestie tristique, mauris felis ullamcorper metus, ac viverra mauris nisl non libero. Integer nisl augue, euismod sed pharetra at, euismod ac sem. Praesent consequat nisi erat, ac faucibus mi dapibus ac. Suspendisse sit amet velit tempor, pharetra ante eu, fringilla tellus. Donec varius tempus ligula at congue. Quisque consectetur in nibh nec vestibulum."
-                            date="14 Agustus 2021 - 24 September 2021"
-                            path='/services' />
-                        <CardItem
-                            src="https://1.bp.blogspot.com/-EiT-T_R6V3I/XujZRL4yBCI/AAAAAAAABko/cszIkZ3jhxw-oKN1qy1SM-ppPnWga4D0ACK4BGAsYHg/s480/hqdefault.jpg"
-                            name="Lorem Ipsum"
-                            desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices ante et tortor finibus congue. Morbi quis dolor lacus. Cras tempus, risus et molestie tristique, mauris felis ullamcorper metus, ac viverra mauris nisl non libero. Integer nisl augue, euismod sed pharetra at, euismod ac sem. Praesent consequat nisi erat, ac faucibus mi dapibus ac. Suspendisse sit amet velit tempor, pharetra ante eu, fringilla tellus. Donec varius tempus ligula at congue. Quisque consectetur in nibh nec vestibulum."
-                            date="14 Agustus 2021 - 24 September 2021"
-                            path='/services' />
+                        {projek.map((projek) => (
+                            <CardItem
+                                src="http://www.inventlayout.com/Uploads/2/60/Website-Under-Construction-2-under-construction-thumb.jpg"
+                                name={projek.name}
+                                desc={projek.description}
+                                startdate={formatDate(projek.startDate)}
+                                enddate={formatDate(projek.endDate)}
+                            />
+                        ))}
                     </Slider>
                 </div>
             </div>
         );
-    }
 }

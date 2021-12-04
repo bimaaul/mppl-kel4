@@ -86,8 +86,8 @@ const useStyles = makeStyles((theme) => ({
   dnd__image: {
     borderRadius: "5px",
     border: "1px solid #645E6F",
-    width: "193px",
-    height: "170px",
+    width: "200px",
+    height: "180px",
     margin: "5px 0 5px 0",
   },
 
@@ -100,9 +100,10 @@ const useStyles = makeStyles((theme) => ({
   },
 
   preview: {
-    margin: `calc(calc(160px - 100%)/2)`,
+    // margin: `calc(calc(160px - 100%)/2)`,
     height: "160px",
     maxWidth: "180px",
+    margin: "5% 5%",
   },
 
   text__dnd: {
@@ -163,31 +164,34 @@ export default function AddProjekPage() {
     formdata.append("cover", image[0]);
 
     axios
-      .post("https://be-mppl.herokuapp.com/api/projects", formdata, {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      })
+      .post(
+        "https://be-mppl.herokuapp.com/api/projects",
+          formdata, {
+            headers: {
+              Authorization: `Bearer ${user.token}`,
+            }
+        })
       .then((response) => {
         console.log(response);
         history.push("/admin/projek");
       })
       .catch((error) => {
-        alert(error.response.message);
+        console.log(error.response.data.message);
       });
   };
 
   return (
     <div className={classes.root}>
       <div className={classes.add__testi}>
-        <h3 className={classes.h3}>Tambahkan Projek</h3>
+        <h3 className={classes.h3}>Tambahkan Project</h3>
         <hr style={{ color: "#fff", height: 1 }} />
         <form onSubmit={handleSubmit} className={classes.form} noValidate autoComplete="off">
           <Grid container alignItems="center" justify="center" direction="column">
             <Grid item class="form-field">
               <TextField
                 className={`${classes.field}`}
-                placeholder="Nama Projek"
+                name="name"
+                placeholder="Nama Project"
                 variant="outlined"
                 size="small"
                 InputProps={{ className: classes.input }}
@@ -202,7 +206,8 @@ export default function AddProjekPage() {
             <Grid item class="form-field">
               <TextField
                 className={`${classes.field}`}
-                placeholder="Deskripsi Projek"
+                name="description"
+                placeholder="Deskripsi Project"
                 variant="outlined"
                 display="flex"
                 InputLabelProps={{ className: classes.label, required: false }}
@@ -222,7 +227,7 @@ export default function AddProjekPage() {
               <Box display="flex">
                 <TextField
                   className={classes.field}
-                  name="nama"
+                  name="startDate"
                   label="Tanggal mulai"
                   variant="outlined"
                   display="flex"
@@ -237,7 +242,7 @@ export default function AddProjekPage() {
                 />
                 <TextField
                   className={classes.field}
-                  name="nama"
+                  name="endDate"
                   label="Tanggal Selesai"
                   variant="outlined"
                   display="flex"

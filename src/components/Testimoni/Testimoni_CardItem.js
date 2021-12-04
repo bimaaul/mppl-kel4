@@ -10,7 +10,7 @@ function CardItem(props) {
     return (
         <>
            <li class="cards__item">
-               <div class="cards__item__link">
+               <div class="testi__item__link">
                     <div className="testi__item__photo">
                         <img src={ props.src } className="testi__item__photo-wrap"/>
                     </div>
@@ -19,7 +19,7 @@ function CardItem(props) {
                            {props.name}
                        </h5>
                        <p class="testi__item__position">
-                           {props.desc}
+                           {props.job}
                        </p>
                        <p class="testi__item__desc">
                             "{props.desc}"

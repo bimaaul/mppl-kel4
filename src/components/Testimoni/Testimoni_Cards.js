@@ -1,13 +1,30 @@
-import React, { Component } from 'react'
+import React, { Component, useState, useEffect } from 'react'
 import CardItem from './Testimoni_CardItem'
 import '../ProjekKami/Cards.css';
 import Slider from 'react-slick'; 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Photo from '../../assets/photo.jpeg'
+import axios from 'axios'
 
-export default class SimpleSlider extends Component {
-    render(){
+export default function SimpleSlider() {  
+    
+    const [testi,setTesti] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {  
+        //if(testi === null){
+        setLoading(true);
+        axios.get("https://be-mppl.herokuapp.com/api/clients").then((response) => {
+            //console.log(response);
+            setLoading(false);
+            setTesti(response.data);
+        });
+        //}      
+    }, [testi]);
+
+    //console.log(testi);
+
         var settings = {
             dots:false,
             infinite:true,
@@ -24,32 +41,23 @@ export default class SimpleSlider extends Component {
                 }
             ]
         };
+
         return (
             <div>
                 <h2>Testimoni</h2>
                 <div className="testi__wrapper">
                     <Slider {...settings}>
+                        {testi.map((testi) => (
                         <CardItem
+                            key={testi._id}
                             src={Photo}
-                            name="Lorem Ipsum"
-                            desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices ante et tortor finibus congue. Morbi quis dolor lacus. Cras tempus, risus et molestie tristique, mauris felis ullamcorper metus, ac viverra mauris nisl non libero. Integer nisl augue, euismod sed pharetra at, euismod ac sem. Praesent consequat nisi erat, ac faucibus mi dapibus ac. Suspendisse sit amet velit tempor, pharetra ante eu, fringilla tellus. Donec varius tempus ligula at congue. Quisque consectetur in nibh nec vestibulum."
-                            date="14 Agustus 2021 - 24 September 2021"
-                            path='/services' />
-                        <CardItem
-                            src={Photo}
-                            name="Lorem Ipsum"
-                            desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices ante et tortor finibus congue. Morbi quis dolor lacus. Cras tempus, risus et molestie tristique, mauris felis ullamcorper metus, ac viverra mauris nisl non libero. Integer nisl augue, euismod sed pharetra at, euismod ac sem. Praesent consequat nisi erat, ac faucibus mi dapibus ac. Suspendisse sit amet velit tempor, pharetra ante eu, fringilla tellus. Donec varius tempus ligula at congue. Quisque consectetur in nibh nec vestibulum."
-                            date="14 Agustus 2021 - 24 September 2021"
-                            path='/services' />
-                        <CardItem
-                            src={Photo}
-                            name="Lorem Ipsum"
-                            desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices ante et tortor finibus congue. Morbi quis dolor lacus. Cras tempus, risus et molestie tristique, mauris felis ullamcorper metus, ac viverra mauris nisl non libero. Integer nisl augue, euismod sed pharetra at, euismod ac sem. Praesent consequat nisi erat, ac faucibus mi dapibus ac. Suspendisse sit amet velit tempor, pharetra ante eu, fringilla tellus. Donec varius tempus ligula at congue. Quisque consectetur in nibh nec vestibulum."
-                            date="14 Agustus 2021 - 24 September 2021"
-                            path='/services' />
+                            name={testi.name}
+                            job={testi.job}
+                            desc={testi.testimoni}
+                        />
+                        ))}
                     </Slider>
                 </div>
             </div>
         );
     }
-}

@@ -63,6 +63,18 @@ body{
     overflow: hidden;
     text-decoration: none;
   }
+
+  .testi__item__link {
+    display: flex;
+    flex-flow: row;
+    position: relative;
+    width: 100%;
+    height: 332px;
+    box-shadow: 0 6px 20px rgba(56, 125, 255, 0.17);
+    border-radius: 10px;
+    overflow: hidden;
+    text-decoration: none;
+  }
   
   .cards__item__pic-wrap {
     position: relative;
@@ -114,7 +126,7 @@ body{
   .testi__item__info {
     position: relative;
     top: 27.45px;
-    left: -30px;
+    left: -15px;
     width: 55%;
     margin-bottom: 45px;
   }
