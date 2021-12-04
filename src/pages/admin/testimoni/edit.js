@@ -144,10 +144,7 @@ export default function EditTestimoniPage() {
                 }))
             )
         }
-    })
-
-    
-        
+    })        
     
     useEffect(() =>{
         if(formValues === false){

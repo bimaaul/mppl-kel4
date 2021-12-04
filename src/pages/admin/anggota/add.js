@@ -285,7 +285,6 @@ export default function AddAnggotaPage() {
     <Card className={classes.gridwrap}>
       <h3 className={classes.h3}>Tambahkan Anggota</h3>
       <hr style={{ color: "#fff", height: 1 }} />
-      <h4 className={classes.h4}>Informasi Anggota</h4>
       <form onSubmit={handleSubmit} className={classes.form} noValidate autoComplete="off">
         <Grid container alignItems="center" justify="center" direction="column">
           <Grid item class="form-field">

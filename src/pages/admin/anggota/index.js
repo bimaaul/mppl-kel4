@@ -201,6 +201,12 @@ export default function AnggotaPage(props) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  function handlePopup(id){
+    handleOpen();
+    //console.log(id);
+    setId(id);
+  }
+
   useEffect(() => {
     setLoading(true);
     axios.get("https://be-mppl.herokuapp.com/api/members").then((res) => {
@@ -208,6 +214,24 @@ export default function AnggotaPage(props) {
       setLoading(false);
     });
   }, []);
+
+  const handleDelete = () => {
+    setLoading(true);
+    
+    axios.delete("https://be-mppl.herokuapp.com/api/members/" + id , {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },     
+    }).then((response) => {
+      setLoading(false);
+      axios.get("https://be-mppl.herokuapp.com/api/members").then((response) => {
+        console.log(response);
+        setMember(response.data);
+      });
+    });
+
+    handleClose();
+}
 
   return (
     <div className={classes.root}>
@@ -239,8 +263,8 @@ export default function AnggotaPage(props) {
             <Card className={classes.card1}>
               <CardContent>
                 <CardMedia className={classes.cardimg} component="img" height="140" src={img1} alt="profil picture" />
-                <h3 className={classes.h4}> {elem.nama} </h3>
-                <p className={classes.p}> {elem.job} </p>
+                <h3 className={classes.h4}> {elem.name} </h3>
+                <p className={classes.p}> {elem.role} </p>
                 <Button
                   className={classes.edit_button}
                   variant="contained"
@@ -249,7 +273,7 @@ export default function AnggotaPage(props) {
                 >
                   Edit
                 </Button>
-                <Button className={classes.delete_button} variant="contained" onClick={handleOpen}>
+                <Button className={classes.delete_button} variant="contained" onClick={() => handlePopup(elem._id)}>
                   Hapus
                 </Button>
               </CardContent>
@@ -275,7 +299,7 @@ export default function AnggotaPage(props) {
                     marginLeft: "298px",
                   }}
                   variant="contained"
-                  onClick={handleClose}
+                  onClick={handleDelete}
                 >
                   Hapus
                 </Button>

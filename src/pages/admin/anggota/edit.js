@@ -1,11 +1,13 @@
 import React, { useState, useContext, useEffect } from "react";
 import { UserContext } from "../../../context/UserContext";
 import { Box, Grid, TextField, Button, makeStyles, Card } from "@material-ui/core";
+import { withStyles } from "@material-ui/styles";
 import { useDropzone } from "react-dropzone";
 import { useHistory, useParams } from "react-router-dom";
 import AddPhotoAlternateOutlinedIcon from "@material-ui/icons/AddPhotoAlternateOutlined";
 import Loading from "../../../components/Loading";
 import axios from "axios";
+import { set } from "react-hook-form";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -123,21 +125,28 @@ const useStyles = makeStyles((theme) => ({
     padding: "57px",
   },
 
-  add__button: {
-    padding: "57px",
-  },
-
   btn: {
     backgroundColor: "#644EEC",
     color: "white",
     fontFamily: "Poppins",
-    marginTop: "20px",
-    marginBottom: "20px",
-    width: "1024px",
-    marginLeft: "-160px",
+    marginBottom: "15px 30px",
+    width: "232px",
     textTransform: "initial",
     "&:hover": {
-      color: "black",
+      backgroundColor: "#644EEC",
+    },
+  },
+
+  btn_cancel: {
+    backgroundColor: "#645E6F",
+    color: "white",
+    fontFamily: "Poppins",
+    margin: "15px 30px",
+    width: "232px",
+    textTransform: "initial",
+    "&:hover": {
+      backgroundColor: "red",
+      color: "white",
     },
   },
 
@@ -184,35 +193,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const projectState = {
-  name: "",
-  description: "",
-  startDate: "",
-  endDate: "",
-};
-
-const workState = {
-  role: "",
-  description: "",
-  startDate: "",
-  endDate: "",
-};
-
-const formState = {
-  name: "",
-  role: "",
-  description: "",
-  linkedin: "",
-  profile: "",
-};
-
 export default function EditAnggotaPage() {
   const { id } = useParams();
   const [user] = useContext(UserContext);
   const history = useHistory();
   const classes = useStyles();
 
-  const [member, setMember] = useState({});
   useEffect(() => {
     axios
       .get("https://be-mppl.herokuapp.com/api/members/" + id, {
@@ -221,7 +207,15 @@ export default function EditAnggotaPage() {
         },
       })
       .then((res) => {
-        setMember(res.data.member);
+        const { name, role, description, linkedin, projects, works } = res.data.member;
+        setFormValues({
+          name,
+          role,
+          description,
+          linkedin,
+        });
+        setProjects(projects);
+        setWorks(works);
       });
   }, [id, user.token]);
 
@@ -241,8 +235,8 @@ export default function EditAnggotaPage() {
 
   const [loading, setLoading] = useState(false);
   const [formValues, setFormValues] = useState(false);
-  const [projects, setProjects] = useState([{}, {}]);
-  const [works, setWorks] = useState([{}, {}]);
+  const [projects, setProjects] = useState([]);
+  const [works, setWorks] = useState([]);
 
   const handleFormChange = (e) => {
     const fieldName = e.target.getAttribute("name");
@@ -272,16 +266,20 @@ export default function EditAnggotaPage() {
     setLoading(true);
 
     let formdata = new FormData();
+
+    formdata.append("_id", id);
     formdata.append("name", formValues.name);
     formdata.append("role", formValues.role);
     formdata.append("description", formValues.description);
     formdata.append("linkedin", formValues.linkedin);
     formdata.append("projects", JSON.stringify(projects));
     formdata.append("works", JSON.stringify(works));
-    formdata.append("profile", image[0]);
-
+    if (image.length) {
+      console.log("hehe");
+      formdata.append("profile", image[0]);
+    }
     axios
-      .post("https://be-mppl.herokuapp.com/api/members", formdata, {
+      .put("https://be-mppl.herokuapp.com/api/members", formdata, {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },
@@ -296,19 +294,14 @@ export default function EditAnggotaPage() {
       .finally(() => setLoading(false));
   };
 
-  const parseDate = (data) => {
-    const date = new Date(data);
-    const hari = date.getDate();
-    const tahun = date.getFullYear();
-    const bulan = date.getMonth();
-    return `${tahun}-${bulan}-${hari}`;
+  const parseDate = (data = "") => {
+    return data.split("T")[0];
   };
 
   return (
     <Card className={classes.gridwrap}>
       <h3 className={classes.h3}>Tambahkan Anggota</h3>
       <hr style={{ color: "#fff", height: 1 }} />
-      <h4 className={classes.h4}>Informasi Anggota</h4>
       <form onSubmit={handleSubmit} className={classes.form} noValidate autoComplete="off">
         <Grid container alignItems="center" justify="center" direction="column">
           <Grid item class="form-field">
@@ -343,8 +336,10 @@ export default function EditAnggotaPage() {
 
           <Grid item class="form-field">
             <TextField
-              className={classes.field}
+              onChange={handleFormChange}
               name="name"
+              value={formValues.name}
+              className={classes.field}
               placeholder="Nama Anggota"
               variant="outlined"
               display="flex"
@@ -354,15 +349,15 @@ export default function EditAnggotaPage() {
               fullWidth
               required
               type="text"
-              onChange={handleFormChange}
-              value={formValues.name ? formValues.name : member.name}
             />
           </Grid>
 
           <Grid item class="form-field">
             <TextField
-              className={classes.field}
+              onChange={handleFormChange}
               name="role"
+              value={formValues.role}
+              className={classes.field}
               placeholder="Role Keahlian Anggota"
               variant="outlined"
               display="flex"
@@ -372,8 +367,6 @@ export default function EditAnggotaPage() {
               size="small"
               required
               type="text"
-              onChange={handleFormChange}
-              value={formValues.role ? formValues.role : member.name}
             />
           </Grid>
 
@@ -393,14 +386,16 @@ export default function EditAnggotaPage() {
               required
               type="text"
               onChange={handleFormChange}
-              value={formValues.description ? formValues.description : member.description}
+              value={formValues.description}
             />
           </Grid>
 
           <Grid item class="form-field">
             <TextField
-              className={classes.field}
+              onChange={handleFormChange}
               name="linkedin"
+              value={formValues.linkedin}
+              className={classes.field}
               placeholder="Link Akun LinkedIn"
               variant="outlined"
               display="flex"
@@ -410,8 +405,6 @@ export default function EditAnggotaPage() {
               fullWidth
               required
               type="text"
-              onChange={handleFormChange}
-              value={formValues.linkedin ? formValues.linkedin : member.linkedin}
             />
           </Grid>
 
@@ -422,7 +415,7 @@ export default function EditAnggotaPage() {
                 <TextField
                   onChange={(e) => handleChange("projects", e.target.name, e.target.value, index)}
                   name="name"
-                  value={data.name ? data.name : member.projects && member.projects[index].name}
+                  value={data.name}
                   className={classes.field}
                   placeholder={`Nama Projek ${index + 1}`}
                   variant="outlined"
@@ -441,15 +434,10 @@ export default function EditAnggotaPage() {
                   <TextField
                     onChange={(e) => handleChange("projects", e.target.name, e.target.value, index)}
                     name="startDate"
-                    value={
-                      projects[index]
-                        ? projects[index].startDate
-                        : member.projects && parseDate(member.projects[index].startDate)
-                    }
+                    value={parseDate(data.startDate)}
                     className={classes.field}
                     type="date"
                     label="Tanggal mulai"
-                    placeholder="DD/MM/YYYY"
                     variant="outlined"
                     display="flex"
                     size="small"
@@ -462,6 +450,7 @@ export default function EditAnggotaPage() {
                   <TextField
                     onChange={(e) => handleChange("projects", e.target.name, e.target.value, index)}
                     name="endDate"
+                    value={parseDate(data.endDate)}
                     className={classes.field}
                     type="date"
                     label="Tanggal selesai"
@@ -481,6 +470,7 @@ export default function EditAnggotaPage() {
               <Grid item class="form-field">
                 <TextField
                   onChange={(e) => handleChange("projects", e.target.name, e.target.value, index)}
+                  value={data.description}
                   name="description"
                   className={classes.field}
                   placeholder={`Deskripsi Umum Projek ${index + 1}`}
@@ -506,6 +496,7 @@ export default function EditAnggotaPage() {
                 <TextField
                   onChange={(e) => handleChange("works", e.target.name, e.target.value, index)}
                   name="role"
+                  value={data.role}
                   className={classes.field}
                   placeholder={`Nama Kerja ${index + 1}`}
                   variant="outlined"
@@ -524,6 +515,7 @@ export default function EditAnggotaPage() {
                   <TextField
                     onChange={(e) => handleChange("works", e.target.name, e.target.value, index)}
                     name="startDate"
+                    value={parseDate(data.startDate)}
                     className={classes.field}
                     type="date"
                     label="Tanggal mulai"
@@ -540,6 +532,7 @@ export default function EditAnggotaPage() {
                   <TextField
                     onChange={(e) => handleChange("works", e.target.name, e.target.value, index)}
                     name="endDate"
+                    value={parseDate(data.endDate)}
                     className={classes.field}
                     type="date"
                     label="Tanggal selesai"
@@ -560,6 +553,7 @@ export default function EditAnggotaPage() {
                 <TextField
                   onChange={(e) => handleChange("works", e.target.name, e.target.value, index)}
                   name="description"
+                  value={data.description}
                   className={classes.field}
                   placeholder={`"Deskripsi Umum Kerja ${index + 1}`}
                   variant="outlined"
@@ -578,23 +572,19 @@ export default function EditAnggotaPage() {
           ))}
         </Grid>
       </form>
-      <Grid container alignItems="center" justify="center" direction="column">
-        <Grid item class="form-field">
-          {loading ? (
-            <Loading />
-          ) : (
-            <Button
-              className={classes.btn}
-              onClick={handleSubmit}
-              variant="contained"
-              type="submit"
-              fullWidth
-              // disabled={!formValues.nama && !formValues.nomorhp && !formValues.email && !formValues.pesan}
-            >
-              Tambah
+      <Grid container alignItems="center" justify="center" direction="row">
+        {loading ? (
+          <Loading />
+        ) : (
+          <>
+            <Button onClick={() => history.goBack()} variant="contained" className={classes.btn_cancel}>
+              Batal
             </Button>
-          )}
-        </Grid>
+            <Button type="submit" variant="contained" className={classes.btn} onClick={handleSubmit}>
+              Simpan
+            </Button>
+          </>
+        )}
       </Grid>
     </Card>
   );

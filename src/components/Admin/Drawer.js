@@ -69,7 +69,7 @@ const CustomDrawer = (props) => {
   const handleLogout = () => {
     setUser(null);
     localStorage.removeItem("user");
-    history.push("/");
+    history.push("/login");
   };
 
   const menuList = [
