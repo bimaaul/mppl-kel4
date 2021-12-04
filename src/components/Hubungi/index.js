@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from "axios";
 import { Box, Grid, TextField, Button, makeStyles, InputAdornment } from '@material-ui/core';
 import './Hubungi.css';
 
@@ -63,59 +64,36 @@ export default function FormHubungi()  {
 
     const [isDisabled, setIsDisabled] = useState(false);
 
-    const handleChangeNama = (i, e) => {
-        const _nama = [...formValues];
-        _nama[i].nama = e.target.value;
-        setFormValues(_nama);
-    }
-    const handleChangeNomorhp = (i, e) => {
-        const _nomorhp = [...formValues];
-        _nomorhp[i].nomorhp = e.target.value;
-        setFormValues(_nomorhp);
-    }
-    const handleChangeEmail = (i, e) => {
-        const _email = [...formValues];
-        _email[i].email = e.target.value;
-        setFormValues(_email);
-    }
-    const handleChangePesan = (i, e) => {
-        const _pesan = [...formValues];
-        _pesan[i].pesan = e.target.value;
-        setFormValues(_pesan);
+    const handleFormChange = (e) => {
+
+        e.preventDefault();
+
+        const fieldName = e.target.getAttribute("name");
+        const fieldValue = e.target.value;
+
+        const newFormValue = {...formValues};
+        newFormValue[fieldName] = fieldValue;
+
+        setFormValues(newFormValue);
+        console.log(newFormValue);
     }
 
-    const handleSubmit = (e) => {
-        // e.preventDefault();
-        // setNamaError(false)
-        // setNohpError(false)
-        // setEmailError(false)
-        // setPesanError(false)
-
-        // if(namaValue == ''){
-        //     setNamaError(true)
-        // }
-        // if(nohpValue == ''){
-        //     setNohpError(true)
-        // }
-        // if(emailValue == ''){
-        //     setEmailError(true)
-        // }
-        // if(pesanValue == ''){
-        //     setPesanError(true)
-        // }
-        // if(namaValue && nohpValue && emailValue && pesanValue){
-        //     console.log(formValues);
-        // }
-        
-        // setIsDisabled(false);
-
-        // if(formValues.nama == '' && formValues.nomorhp = '' && formValues.email = '' && formValues.pesan = ''){
-        //     setIsDisabled(true)
-        // }
-
-        console.log(formValues);
-
-       
+    const handleSubmit = () => {
+        axios
+          .post("https://be-mppl.herokuapp.com/api/requests", {
+              name: formValues.name,
+              phone: formValues.phone,
+              email: formValues.email,
+              message: formValues.message,
+            })
+          .then((res) => {
+            console.log(res);
+            alert(res.data.message);
+          })
+          .catch((error) => {
+            alert(error.response.data.message);
+          });
+        console.log(formValues);       
     };
     return (
         <Box class="container-hubungi" sx={{ flexDirection: 'column', maxWidth: 1316}}>
@@ -134,7 +112,7 @@ export default function FormHubungi()  {
                                 <Grid item class="form-field">
                                     <TextField
                                         className={classes.field}
-                                        name="nama"
+                                        name="name"
                                         // label="Nama"
                                         placeholder="Nama"
                                         variant="outlined"
@@ -145,7 +123,7 @@ export default function FormHubungi()  {
                                         required
                                         type="text"
                                         value={formValues.nama}
-                                        onChange={e => handleChangeNama(e)}
+                                        onChange={handleFormChange}
                                         autoFocus={true}
                                         // error={namaError}
                                     />
@@ -153,7 +131,7 @@ export default function FormHubungi()  {
                                 <Grid item class="form-field">
                                     <TextField
                                         className={classes.field}
-                                        name="nomorhp"
+                                        name="phone"
                                         // label="Nomor Handphone"
                                         placeholder="Nomor Handphone"
                                         variant="outlined"
@@ -168,7 +146,7 @@ export default function FormHubungi()  {
                                         required
                                         type="tel"
                                         value={formValues.nomorhp}
-                                        onChange={e => handleChangeNomorhp(e)}
+                                        onChange={handleFormChange}
                                         autoFocus={true}
                                         // error={nohpError}
                                     />
@@ -188,7 +166,7 @@ export default function FormHubungi()  {
                                         required
                                         type="email"
                                         value={formValues.email}
-                                        onChange={e => handleChangeEmail(e)}
+                                        onChange={handleFormChange}
                                         autoFocus={true}
                                         // error={emailError}
                                     />
@@ -196,7 +174,7 @@ export default function FormHubungi()  {
                                 <Grid item class="form-field">
                                     <TextField
                                         className={classes.field}
-                                        name="pesan"
+                                        name="message"
                                         // label="Pesan"
                                         placeholder="Kirim pesan atau maksud Anda menghubungi kami."
                                         variant="outlined"
@@ -209,7 +187,7 @@ export default function FormHubungi()  {
                                         required
                                         type="text"
                                         value={formValues.pesan}
-                                        onChange={e => handleChangePesan(e)}
+                                        onChange={handleFormChange}
                                         autoFocus={true}
                                         // error={pesanError}
                                     />
