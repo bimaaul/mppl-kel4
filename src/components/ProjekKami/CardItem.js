@@ -18,7 +18,7 @@ function CardItem(props) {
                            {props.desc}
                        </p>
                        <p class="cards__item__date">
-                           {props.startDate} - {props.endDate}
+                           {props.startdate} - {props.enddate}
                        </p>
                    </div>
                    <figure class="cards__item__pic-wrap">

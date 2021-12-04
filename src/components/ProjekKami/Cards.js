@@ -36,6 +36,11 @@ export default function ProjekSlider () {
             ],
         };
 
+        function formatDate(string){
+            var options = { day: 'numeric', month: 'long', year: 'numeric' };
+            return new Date(string).toLocaleDateString('en-GB', options);
+        }
+
         return (
             <div>
                 <h2>Projek Kami</h2>
@@ -46,8 +51,8 @@ export default function ProjekSlider () {
                                 src="http://www.inventlayout.com/Uploads/2/60/Website-Under-Construction-2-under-construction-thumb.jpg"
                                 name={projek.name}
                                 desc={projek.description}
-                                startdate={projek.startDate}
-                                enddate={projek.endDate}
+                                startdate={formatDate(projek.startDate)}
+                                enddate={formatDate(projek.endDate)}
                             />
                         ))}
                     </Slider>
