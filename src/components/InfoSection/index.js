@@ -19,22 +19,36 @@ import {
     InfoCard,
     PoinWrapper 
   } from './InfoElements'
+import { useState, useEffect, useContext } from 'react'
+import axios from 'axios'
+
 
 const InfoSection = ({id,
                       lightBg, 
-                      imgStart, 
-                      headLine,
+                      imgStart,
                       lightText, 
                       darkText, 
-                      description, 
                       buttonLabel, 
                       img, 
                       alt,
-                      numberOf,
                       primary, 
                       dark, 
-                      dark2
+                      dark2,
     }) => {
+    
+    const [loading, setLoading] = useState(false);
+    const [about, setAbout] = useState([]);
+    
+    useEffect(() => {
+        setLoading(true);
+        axios.get("https://be-mppl.herokuapp.com/api/about")
+        .then((res) => {
+            setLoading(false);
+            setAbout(res.data.about);
+        });
+    }, [about]);
+    
+    
     return (
         <>
          <InfoContainer id={id}  lightBg={lightBg}>
@@ -42,23 +56,23 @@ const InfoSection = ({id,
             <InfoRow imgStart= {imgStart}>
                     <Column1>
                         <TextWrapper>
-                            <Heading lightText={lightText }>{headLine}</Heading>
-                            <Subtitle darkText={darkText}>{description}</Subtitle>
+                            <Heading lightText={lightText }>{about.name}</Heading>
+                            <Subtitle darkText={darkText}>{about.description}</Subtitle>
                         </TextWrapper>
 
                         <PoinWrapper>
                             <InfoCard>
-                                <Heading1 lightText={lightText }>{numberOf}</Heading1>
+                                <Heading1 lightText={lightText }>{about.experience}</Heading1>
                                 <InfoP>Tahun</InfoP>
                                 <InfoPs>Pengalaman Kerja</InfoPs>
                             </InfoCard>
                             <InfoCard>
-                                <Heading1 lightText={lightText }>{numberOf}</Heading1>
+                                <Heading1 lightText={lightText }>{about.project}</Heading1>
                                 <InfoP>Total</InfoP>
                                 <InfoPs>Projek Berhasil</InfoPs>
                             </InfoCard>
                             <InfoCard>
-                                <Heading1 lightText={lightText }>{numberOf}</Heading1>
+                                <Heading1 lightText={lightText }>{about.client}</Heading1>
                                 <InfoP>Total</InfoP>
                                 <InfoPs>Kerjasama Client</InfoPs>
                             </InfoCard>
