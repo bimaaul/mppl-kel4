@@ -3,7 +3,6 @@ import styled from 'styled-components'
 export const InfoContainer= styled.div`
   color: #fff;
   background: ${({lightBg})=> (lightBg ? '#f9f9f9' : '#0A0A0A')};
-  
  
 `
 export const InfoWrapper= styled.div`
@@ -16,34 +15,25 @@ export const InfoRow = styled.div`
   display: grid;
   grid-auto-columns: minmax(auto, 1fr);
   grid-template-areas: ${({imgStart})=> (imgStart ? `'col2 col1'`: `'col1 col2'`)};
-  
-  @media screen and (max-width: 768px){
-    padding-top:0;
-    grid-template-areas: ${({imgStart})=> (imgStart ? `'col col2'`: `'col1 col1' 'col2 col2'`)};
 }
 `
 
 export const Column1= styled.div`
   //background-color: blue;
-  margin-top: 30px;
+  //margin-top: 30px;
   margin-bottom: 15px;
-  padding: 0 0 0 100px;
+  padding: 0 0 0 10%;
   grid-area: col1;
   width: 100%;
 `
-
-export const Column2= styled.div`
-//background-color: red;
-  margin-bottom: 15px;
-  grid-area: col2;
-  width: 100%;
-`
 export const TextWrapper= styled.div`
-  padding-top: 0;
-  margin-bottom: -20px;
+  position: relative;
+  margin-bottom: 46px;
+  padding-top: 30px;
 `
 
 export const PoinWrapper= styled.div`
+  position: relative;
   padding-top: 0;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -93,11 +83,17 @@ export const Heading1= styled.h1`
 `
 
 export const Subtitle= styled.p`
-  max-width: 540px;
+  max-width: 688px;
   margin-bottom: 35px;
   font-size: 16px;
   line-height: 24px;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-weight: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  line-clamp: 7;
+  -webkit-box-orient: vertical;
   color: ${({darkText})=> (darkText ? '#010606' : '#fff')};
 `
 
@@ -120,13 +116,22 @@ export const BtnWrap= styled.div`
 `
 
 export const ImgWrap= styled.div`
-float:right;
-  max-width: 555px;
-  height: 100%;
+  position: absolute;
+  float:right;
+  right: 0px;
+  max-width: 640px;
+  grid-area: img;
+  height: 200%;
+  justify-content: flex-end;
+
+  @media (max-width: 756px) {
+      display: none;
+  }
 `
 
 export const Img= styled.img`
   width: 100%;
   margin: 0 0 10px 0;
   padding-right: 0;
+  align-items: right;
 `

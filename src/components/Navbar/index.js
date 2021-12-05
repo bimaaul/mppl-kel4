@@ -19,7 +19,7 @@ const Navbar = ({toggle}) => {
             <Nav>
                 <NavbarContainer>
                     <NavLogo>
-                        <div to="/home">
+                        <div>
                             <img src={ Logo }  />
                         </div>
                     </NavLogo>

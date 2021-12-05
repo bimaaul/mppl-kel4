@@ -31,7 +31,7 @@ const Sidebar = ({isOpen, toggle}) => {
           </SidebarLink>
         </SidebarMenu>
         <SideBtnWrap>
-          <SidebarRoute to="/hubungi">Hubungi Kami</SidebarRoute>
+          <SidebarRoute>Hubungi Kami</SidebarRoute>
         </SideBtnWrap>
       </SidebarWrapper>
     </SidebarContainer>

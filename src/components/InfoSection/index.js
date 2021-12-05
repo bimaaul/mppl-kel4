@@ -28,12 +28,8 @@ const InfoSection = ({id,
                       imgStart,
                       lightText, 
                       darkText, 
-                      buttonLabel, 
                       img, 
                       alt,
-                      primary, 
-                      dark, 
-                      dark2,
     }) => {
     
     const [loading, setLoading] = useState(false);
@@ -51,10 +47,14 @@ const InfoSection = ({id,
     
     return (
         <>
-         <InfoContainer id={id}  lightBg={lightBg}>
+         <InfoContainer id={id}  lightBg={lightBg} imgStart= {imgStart}>
+            <ImgWrap>
+                <Img src={img} alt={alt}/>
+            </ImgWrap>
              <InfoWrapper>
-            <InfoRow imgStart= {imgStart}>
+            <InfoRow>
                     <Column1>
+                        
                         <TextWrapper>
                             <Heading lightText={lightText }>{about.name}</Heading>
                             <Subtitle darkText={darkText}>{about.description}</Subtitle>
@@ -79,11 +79,6 @@ const InfoSection = ({id,
                         </PoinWrapper>
 
                     </Column1>
-                    <Column2>
-                        <ImgWrap>
-                            <Img src={img} alt={alt}/>
-                        </ImgWrap>
-                    </Column2>
                 </InfoRow>
             </InfoWrapper>
         </InfoContainer>  
