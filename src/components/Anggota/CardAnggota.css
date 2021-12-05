@@ -143,6 +143,7 @@ h6{
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: all 0.5s ease-out;
 }
 
 .popup-box{
@@ -150,9 +151,7 @@ h6{
     flex-direction: column;
     margin: auto;
     position: relative;
-    width: 750px;
-    height: 550px;
-
+    width: 915px;
     background: #1D1C21;
     box-shadow: 0px 0px 15px #1B0CA1;
     border-radius: 10px;
@@ -162,9 +161,21 @@ h6{
     display: flex;
     position: relative;
     flex-direction: column;
-    width: 700px;
-    height: 500px;
-    margin: 20px 30px;
+    width: 829px;
+    margin: 40px 53px;
+}
+
+.expdesc {
+    color: white;
+    font-size: 14px;
+    font-weight: normal;
+    text-align: justify;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
 
 .top-row {
@@ -198,7 +209,7 @@ h6{
     margin-bottom: -90px;
     margin-right: 0%;
     margin-left: auto;
-    transition-duration: 0.4s;
+    
     cursor: pointer;
 }
 .close-btn:hover {
@@ -207,7 +218,7 @@ h6{
 
 .popup-nama{
     margin: 0px 0px -30px;
-    font-size: 24px;
+    font-size: 20px;
 }
 
 .popup-role{
@@ -220,7 +231,7 @@ h6{
     display: block; 
     background-color: white; 
     width: 300px;
-    height: 2px;
+    height: 1px;
     border-style: inset; 
     border-width: 1px;
     border-radius: 10px;
@@ -231,13 +242,13 @@ h6{
     align-items: flex-end; 
     background-color: white; 
     width: 300px;
-    height: 2px;
+    height: 1px;
     border-style: inset; 
     border-width: 1px;
     border-radius: 10px;
     margin-left: auto;
-    margin-top: -5px;
-    margin-bottom: 0px;
+    margin-top: 30px;
+    margin-bottom: 18px;
 }
 
 .narahubung{

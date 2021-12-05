@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import Modal from '@material-ui/core/Modal';
 import Grid from '@material-ui/core/Grid';
 import Lilogo from "./lilogo.png";
+import Fade from '@material-ui/core/Fade';
 import { makeStyles } from '@material-ui/core';
 
 const styles = makeStyles(() =>({
@@ -12,15 +13,14 @@ const styles = makeStyles(() =>({
         color: 'white',
         fontSize: '18px',
         fontWeight: 'bolder',
-        marginTop: '50px',
-        marginBottom: '0px',
+        paddingTop: '50px',
     },
     
     exptitle: {
         color: 'white',
         fontSize: '16px',
         fontWeight: 'bolder',
-        marginTop: '20px',
+        marginTop: '30px',
         marginBottom: '0px',
     },
     
@@ -30,13 +30,6 @@ const styles = makeStyles(() =>({
         fontWeight: 'bold',
         marginTop: '10px',
         marginBottom: '-10px',
-    },
-    
-    expdesc: {
-        color: 'white',
-        fontSize: '14px',
-        fontWeight: 'normal',
-        textAlign: 'justify',
     },
 
     expbox:{
@@ -72,10 +65,12 @@ export default function CardAnggota(props) {
                         <p class="cards-desc">{props.desc}</p>    
                     </Box>
                     <Button class="rm-link" onClick={handleOpen}>Selengkapnya</Button>
+                    
                     <Modal
                         class='popup-container'
                         open={open}
                         onClose={handleClose}>
+                        <Fade in={open}>
                         <Box class="popup-box">
                             <div class="popup-data">
                                 <div class="top-row">
@@ -98,23 +93,23 @@ export default function CardAnggota(props) {
                                         <p className={classes.exptag}>Pengalaman Projek</p>
                                         <p className={classes.exptitle}>{props.projtitle1}</p>
                                         <p className={classes.expdate}>{props.startproj1} - {props.endproj1}</p>
-                                        <p className={classes.expdesc}>{props.descproj1}</p>
+                                        <p className="expdesc">{props.descproj1}</p>
                                     </Grid>
                                     <Grid item xs={6} >
                                         <p className={classes.exptag}>Pengalaman Kerja</p>
                                         <p className={classes.exptitle}>{props.worktitle1}</p>
                                         <p className={classes.expdate}>{props.startwork1} - {props.endwork1}</p>
-                                        <p className={classes.expdesc}>{props.descwork1}</p>
+                                        <p className="expdesc">{props.descwork1}</p>
                                     </Grid>
                                     <Grid item xs={6} className={classes.expbox}>
                                         <p className={classes.exptitle}>{props.projtitle2}</p>
                                         <p className={classes.expdate}>{props.startproj2} - {props.endproj2}</p>
-                                        <p className={classes.expdesc}>{props.descproj2}</p>
+                                        <p className="expdesc">{props.descproj2}</p>
                                     </Grid>
                                     <Grid item xs={6} className={classes.expbox}>
                                         <p className={classes.exptitle}>{props.worktitle2}</p>
                                         <p className={classes.expdate}>{props.startwork2} - {props.endwork2}</p>
-                                        <p className={classes.expdesc}>{props.descwork2}</p>
+                                        <p className="expdesc">{props.descwork2}</p>
                                     </Grid>
                                 </Grid>
                                 <Box class="bot-row" className={classes.footer}>
@@ -130,6 +125,7 @@ export default function CardAnggota(props) {
                                 </Box>
                             </div>
                         </Box>
+                        </Fade>
                     </Modal>
                 </Box>                   
             </Box>

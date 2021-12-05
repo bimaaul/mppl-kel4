@@ -156,7 +156,7 @@ export default function AddTestimoniPage() {
     formdata.append("name", formValues.name);
     formdata.append("job", formValues.job);
     formdata.append("testimoni", formValues.testimoni);
-    // formdata.append("profile", image[0]);
+    formdata.append("profile", image[0]);
 
     axios
       .post("https://be-mppl.herokuapp.com/api/clients", formdata, {
