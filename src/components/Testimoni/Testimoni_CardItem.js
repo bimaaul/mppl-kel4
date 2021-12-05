@@ -9,7 +9,7 @@ console.log(logo);
 function CardItem(props) {
     return (
         <>
-           <li class="cards__item">
+           <li class="testi__item">
                <div class="testi__item__link">
                     <div className="testi__item__photo">
                         <img src={ props.src } className="testi__item__photo-wrap"/>

@@ -52,6 +52,15 @@ body{
     margin: 0 1rem;
     border-radius: 10px;
   }
+
+  .testi__item {
+    background-color: #131216;
+    box-shadow: 0px 0px 3.81415px #1B0CA1;
+    display: flex;
+    flex: 1;
+    margin: 0 1rem;
+    border-radius: 10px;
+  }
   
   .cards__item__link {
     display: flex;
@@ -74,6 +83,11 @@ body{
     border-radius: 10px;
     overflow: hidden;
     text-decoration: none;
+  }
+
+  .testi_container {
+    margin-top: 25px;
+    height: 1px;    
   }
   
   .cards__item__pic-wrap {

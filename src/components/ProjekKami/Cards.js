@@ -42,7 +42,7 @@ export default function ProjekSlider () {
         }
 
         return (
-            <div>
+            <div classname="testi_container">
                 <h2>Projek Kami</h2>
                 <div className="cards__wrapper">
                     <Slider {...settings}>

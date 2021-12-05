@@ -44,9 +44,12 @@ const styles = makeStyles(() =>({
     },
 
     btn: {
+        textTransform: 'initial',
+        fontFamily: "Poppins",
         backgroundColor: "#644EEC",
+        color: "white",
         '&:hover': {
-            backgroundColor: '#1D1C21',
+            backgroundColor: 'white',
             color: '#644EEC',
         },
     }

@@ -21,27 +21,29 @@ h6{
 }
 
 .container-anggota{
-    margin: 20px 0px;
+    padding: 40px 0px;
 }
 
 .anggota-wrapper{
     position: relative;
     justify-content: center;
+    margin-top: 50px;
 }
 
 .card-nama{
-    font-size: 24px;
+    font-size: 20px;
     font-weight: normal;
     text-align: left;
 }
 .card-role{
-    font-size: 24px;
+    font-size: 32px;
     font-weight: bold;
     margin-top: -20px;
+    margin-bottom: -15px;
     text-align: left;
 }
 .card-desc{
-    font-size: 20px;
+    font-size: 14px;
     font-weight: normal;
     text-align: left;
 }
@@ -91,6 +93,7 @@ h6{
     background-color: transparent;
     border: 2px #1D1C21;
     transition-duration: 0.5s;
+    margin-left: -5px;
     cursor: pointer;
 }
 .rm-link:hover{
