@@ -35,20 +35,16 @@ const ReadMore = ({ children }) => {
 };
 
 export default function Anggota () {
-  const [memberData, setMember] = useState(null);
+  const [memberData, setMember] = useState([]);
 
   useEffect(() => {  
-    if(memberData === null){
-      //setLoading(true);
       axios.get("https://be-mppl.herokuapp.com/api/members").then((response) => {
         console.log(response);
         setMember(response.data);
-        //setLoading(false);
-      });
-    }      
+      });     
   }, [memberData]);
 
-  console.log(memberData);
+  //console.log(memberData);
 
   function formatDate(string){
     var options = { day: 'numeric', month: 'long', year: 'numeric' };
